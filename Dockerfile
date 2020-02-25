@@ -39,7 +39,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 # Install python dependencies
 RUN mkdir /installer
-COPY requeriments.txt /installer
+COPY requeriments.txt /installer/requeriments.txt
 RUN pip3 install -r /installer/requirements.txt
 RUN rm -rf /installer
 
