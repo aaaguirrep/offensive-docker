@@ -39,7 +39,7 @@ RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master
 
 # Install python dependencies
 COPY requeriments.txt /tmp/
-RUN pip3 install -r /tmp/requeriments.txt
+RUN pip3 install -r /tmp/requirements.txt
 
 # Download wordlists
 RUN mkdir -p /tools/wordlist

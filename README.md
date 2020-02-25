@@ -32,6 +32,8 @@ Docker image with pentest tools.
 
 ## Usage
 
+### Option 1
+
 ```bash
 git clone --depth 1 https://github.com/aaaguirrep/pentest.git
 cd pentest
@@ -50,6 +52,14 @@ Inside docker container start apache2 and squid services by the aliases.
 ```bash
 apacheUp
 squidUp
+```
+
+### Option 2
+
+Use image from docker hub: [aaaguirrep/pentest](https://hub.docker.com/r/aaaguirrep/pentest)
+
+```
+docker pull aaaguirrep/pentest
 ```
 
 ## Considerations
