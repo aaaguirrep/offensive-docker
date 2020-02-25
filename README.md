@@ -38,7 +38,7 @@ Docker image with pentest tools.
 git clone --depth 1 https://github.com/aaaguirrep/pentest.git
 cd pentest
 docker build -t ImageName .
-docker run --rm -it -v /path/to/local/directory:/pentest --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 my-server /bin/zsh
+docker run --rm -it -v /path/to/local/directory:/pentest --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --name my-pentest pentest /bin/zsh
 ```
 
 Aditionally you can run the docker container exposing services as apache and squid using -p option.
