@@ -6,93 +6,153 @@ Docker image with pentest tools.
 
 ## Features
 
-- Connection to hack the box vpn
-- Popular wordlists installed
+- OS, networking, developing and pentesting tools installed.
+- Connection to HTB (Hack the Box) vpn to access HTB machines.
+- Popular wordlists installed: SecLists, dirb, dirbuster, fuzzdb and wfuzz.
+- Proxy service to send traffic from any browsers and burp suite installed in your local directory.
+- Exploit database installed.
+- Tool installed to discovery services running.
+- Tools installed to directory fuzzing.
+- Zsh shell installed.
 
 ## Tools installed
+
+### Operative System tools
+
+    vim
+    zsh
+    oh-my-zsh
+    locate
+    python3
+    python3-pip
+
+### Network tools
 
     traceroute
     net-tools
     iputils-ping
-    git
-    zsh
-    curl
-    locate
     openvpn
-    vim
-    wget
     ftp
+
+### Developer tools
+
+    git
+    curl
+    wget
+
+### Pentest tools
+
+    nmap
+    wfuzz
+    wordlists
+    searchsploit
+    dirsearch
+
+### Other services
+
     apache2
     squid
-    python3
-    python3-pip
-    libcurl4-openssl-dev
-    libssl-dev
-    nmap &&
 
 ## Usage
 
-### Option 1
+### Prerequisites
 
-```bash
-git clone --depth 1 https://github.com/aaaguirrep/pentest.git
-cd pentest
-docker build -t ImageName .
-docker run --rm -it -v /path/to/local/directory:/pentest --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --name my-pentest pentest /bin/zsh
-```
+- Docker service installed
 
-Aditionally you can run the docker container exposing services as apache and squid using -p option.
+You can use the docker image by the next two options:
 
-```bash
-docker run --rm -it -v /path/to/local/directory:/pentest --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --name my-pentest -p 80:80 -p 3128:3128 pentest /bin/zsh
-```
+### Option 1 - Use the github repository
 
-Inside docker container start apache2 and squid services by the aliases.
+    git clone --depth 1 https://github.com/aaaguirrep/pentest.git
+    cd pentest
+    docker build -t pentest .
+    docker run --rm -it --name my-pentest pentest /bin/zsh
 
-```bash
-apacheUp
-squidUp
-```
-
-### Option 2
+### Option 2 - Use the image from docker hub
 
 Use image from docker hub: [aaaguirrep/pentest](https://hub.docker.com/r/aaaguirrep/pentest)
 
-```
-docker pull aaaguirrep/pentest
-```
+    docker pull aaaguirrep/pentest
+    docker run --rm -it --name my-pentest pentest /bin/zsh
 
-## Considerations
+### Considerations to run the container
 
-### Alias to connect to HTB (Hack to the box) VPN
+There are differents use cases for use the image and you should know how to run the container properly.
 
-#### Option 1
+1. Use the container to access HTB (Hack the Box) machines by HTB vpn.
 
-Add the next line in step "Create shorcuts" in Dockerfile
+        docker run --rm -it --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --name my-pentest aaaguirrep/pentest /bin/zsh
 
-```docker
-RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
-```
+2. Share information from your local directory to container directory and save information on your local directory. You should save information under /pentest directory.
 
-#### Option 2
+        docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
 
-```
-FROM aaaguirrep/pentest
+3. Expose internal container services (apache, squid) for your local environment.
 
-# load command history
-RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
-```
+        docker run --rm -it --name my-pentest -p 80:80 -p 3128:3128 aaaguirrep/pentest /bin/zsh
 
-### Save and load command history locally
+    Inside the container start apache2 and squid services by the aliases.
 
-#### Opton 1
+        apacheUp
+        squidUp
 
-Add the next line in step "Create shorcuts" in Dockerfile
+## Nice configurations
 
-```docker
-RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
-```
+You can set up the docker image with nice configurations like as:
 
-#### Option 2
+### Alias to connect to HTB (Hack the Box) VPN
 
-## Examples
+To use both options you should use -v option to map local directoty with /pentest container directory.
+
+#### Option 1 - Using github repository
+
+Add the next line in step "Create shorcuts" in Dockerfile, build a new image and run a new container with the -v option.
+
+    RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
+
+#### Option 2 - Using docker hub image
+
+Create a new Dockerfile with the next steps, build a new image and run a new container with -v option.
+
+    FROM aaaguirrep/pentest
+
+    # Create a shortcut and load the ovpn file from workstation
+    RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
+
+### Save and load command history in your local environment
+
+When you delete a container all information is deleted incluide command history. The next configuration provides you an option for save the command history in your local environment and load it when you run a new container. So, you wont lose your command history when run a new container.
+
+To use both options you should use -v option to map local directoty with /pentest container directory.
+
+#### Option 1 - Using github repository
+
+Add the next line in step "Create shorcuts" in Dockerfile, build a new image and run a new container.
+
+    # Save and load command history in your local environment
+    RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
+
+#### Option 2 - Using docker hub image
+
+Create a new Dockerfile with the next steps, build a new image and run a new container.
+
+    FROM aaaguirrep/pentest
+
+    # Save and load command history in your local environment
+    RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
+
+## :heavy_check_mark: Environment tested
+
+The image was tested in the following environments:
+
+- Docker service for Mac: Docker version 19.03.5, build 633a0ea
+
+- Docker service for Linux instance on Google Cloud Platform: Docker version 19.03.6, build 369ce74a3c
+
+## :warning: Warning
+
+Do not save information on container directories because it will be lost after delete the container, you should save information in your local environment using the parameter -v when you run the container. For instance:
+
+    docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
+
+The above command specify a path local directory mapped with /pentest container directory. You should save all information under /pentest directory.
