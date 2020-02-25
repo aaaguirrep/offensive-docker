@@ -66,18 +66,33 @@ docker pull aaaguirrep/pentest
 
 ### Alias to connect to HTB (Hack to the box) VPN
 
+#### Option 1
+
 Add the next line in step "Create shorcuts" in Dockerfile
 
 ```docker
 RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
 ```
 
+#### Option 2
+
+```
+FROM aaaguirrep/pentest
+
+# load command history
+RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
+```
+
 ### Save and load command history locally
+
+#### Opton 1
 
 Add the next line in step "Create shorcuts" in Dockerfile
 
 ```docker
 RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
 ```
+
+#### Option 2
 
 ## Examples

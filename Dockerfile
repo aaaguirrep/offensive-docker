@@ -38,10 +38,8 @@ RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.con
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install python dependencies
-RUN mkdir /installer
-COPY requeriments.txt /installer/requeriments.txt
-RUN pip3 install -r /installer/requirements.txt
-RUN rm -rf /installer
+COPY requirements.txt /tmp
+RUN pip3 install -r /tmp/requirements.txt
 
 # Download wordlists
 RUN mkdir -p /tools/wordlist
