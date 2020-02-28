@@ -8,21 +8,24 @@ Docker image with pentest tools.
 
 - OS, networking, developing and pentesting tools installed.
 - Connection to HTB (Hack the Box) vpn to access HTB machines.
-- Popular wordlists installed: SecLists, dirb, dirbuster, fuzzdb and wfuzz.
+- Popular wordlists installed: SecLists, dirb, dirbuster, fuzzdb, wfuzz and rockyou.
 - Proxy service to send traffic from any browsers and burp suite installed in your local directory.
 - Exploit database installed.
-- Tool installed to discovery services running.
+- Tool for cracking password.
+- Linux enumeration tools installed.
+- Tools installed to discovery services running.
 - Tools installed to directory fuzzing.
 - Zsh shell installed.
 
 ## Tools installed
 
-### Operative System tools
+### Operative system tools
 
     vim
     zsh
     oh-my-zsh
     locate
+    python
     python3
     python3-pip
 
@@ -33,6 +36,7 @@ Docker image with pentest tools.
     iputils-ping
     openvpn
     ftp
+    netcat
 
 ### Developer tools
 
@@ -47,6 +51,10 @@ Docker image with pentest tools.
     wordlists
     searchsploit
     dirsearch
+    htbenum
+    linux-smart-enumeration
+    linenum
+    john
 
 ### Other services
 
@@ -100,17 +108,17 @@ There are differents use cases for use the image and you should know how to run 
 
 You can set up the docker image with nice configurations like as:
 
-### Alias to connect to HTB (Hack the Box) VPN
+### 1. Alias to connect to HTB (Hack the Box) VPN
 
 To use both options you should use -v option to map local directoty with /pentest container directory.
 
-#### Option 1 - Using github repository
+#### Option 1 - HTB VPN using github repository
 
 Add the next line in step "Create shorcuts" in Dockerfile, build a new image and run a new container with the -v option.
 
     RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
 
-#### Option 2 - Using docker hub image
+#### Option 2 - HTB VPN using docker hub image
 
 Create a new Dockerfile with the next steps, build a new image and run a new container with -v option.
 
@@ -119,20 +127,20 @@ Create a new Dockerfile with the next steps, build a new image and run a new con
     # Create a shortcut and load the ovpn file from workstation
     RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
 
-### Save and load command history in your local environment
+### 2. Save and load command history in your local environment
 
 When you delete a container all information is deleted incluide command history. The next configuration provides you an option for save the command history in your local environment and load it when you run a new container. So, you wont lose your command history when run a new container.
 
 To use both options you should use -v option to map local directoty with /pentest container directory.
 
-#### Option 1 - Using github repository
+#### Option 1 - Command history using github repository
 
 Add the next line in step "Create shorcuts" in Dockerfile, build a new image and run a new container.
 
     # Save and load command history in your local environment
     RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
 
-#### Option 2 - Using docker hub image
+#### Option 2 - Command history using docker hub image
 
 Create a new Dockerfile with the next steps, build a new image and run a new container.
 

@@ -11,8 +11,10 @@ RUN \
     net-tools \
     iputils-ping \
     git \
+    xsltproc \
     zsh \
     curl \
+    p7zip-full \
     locate \
     openvpn \
     vim \
@@ -21,10 +23,21 @@ RUN \
     apache2 \
     squid \
     python3 \
+    python \
     python3-pip \
     libcurl4-openssl-dev \
     libssl-dev \
-    nmap && \
+    nmap \
+    netcat \
+    # john dependencies
+    build-essential \
+    libssl-dev \
+    zlib1g-dev  \
+    yasm \
+    pkg-config \
+    libgmp-dev \
+    libpcap-dev \
+    libbz2-dev && \
     apt-get update
 
 # Apache configuration
@@ -59,6 +72,34 @@ RUN ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 RUN mkdir -p /tools/recon
 WORKDIR /tools/recon
 RUN git clone --depth 1 https://github.com/maurosoria/dirsearch.git
+
+# Install enum tools
+RUN mkdir -p /tools/enum
+WORKDIR /tools/enum
+RUN git clone --depth 1 https://github.com/diego-treitos/linux-smart-enumeration.git
+WORKDIR /tools/enum/linux-smart-enumeration
+RUN chmod +x lse.sh
+WORKDIR /tools/enum
+RUN git clone --depth 1 https://github.com/rebootuser/LinEnum.git
+WORKDIR /tools/enum/LinEnum
+RUN chmod +x LinEnum.sh
+WORKDIR /tools/enum
+RUN git clone --depth 1 https://github.com/SolomonSklash/htbenum.git
+WORKDIR /tools/enum/htbenum
+RUN chmod +x htbenum.sh
+RUN ./htbenum.sh -u
+
+# Download rockyou dictionary
+RUN mkdir -p /tools/dict
+WORKDIR /tools/dict
+RUN curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+
+# Install john the ripper
+RUN mkdir -p /tools/cracking
+WORKDIR /tools/cracking
+RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
+WORKDIR /tools/cracking/john/src
+RUN ./configure && make -s clean && make -sj4
 
 # Create shortcuts
 RUN echo "alias squidUp=\"service squid start\"" >> /root/.zshrc
