@@ -25,24 +25,31 @@ Docker image with pentest tools.
     zsh
     oh-my-zsh
     locate
+    cifs-utils
     python
+    python-pip
     python3
     python3-pip
 
 ### Network tools
 
     traceroute
+    telnet
     net-tools
     iputils-ping
     openvpn
     ftp
     netcat
+    rlwrap
+    smbclient
+    smbmap
 
 ### Developer tools
 
     git
     curl
     wget
+    ruby
 
 ### Pentest tools
 
@@ -55,6 +62,22 @@ Docker image with pentest tools.
     linux-smart-enumeration
     linenum
     john
+    enum4linux
+    impacket
+    ldapdomaindump
+    sqlmap
+    CrackMapExec
+
+### Exploits
+
+    MS17-010
+    AutoBlue-MS17-010
+    PrivExchange
+    PowerSploit
+
+### Custom functions
+
+    ExtractPorts by s4vitar
 
 ### Other services
 
@@ -103,6 +126,12 @@ There are differents use cases for use the image and you should know how to run 
 
         apacheUp
         squidUp
+
+4. Mount directories by umount command.
+
+        docker run --rm -it --privileged --name my-pentest aaaguirrep/pentest /bin/zsh
+
+5. Tools are downloaded in /tools directory.
 
 ## Nice configurations
 

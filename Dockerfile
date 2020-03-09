@@ -9,6 +9,9 @@ RUN \
     apt-get install -y \
     traceroute \
     net-tools \
+    telnet \
+    cifs-utils \
+    rlwrap \
     iputils-ping \
     git \
     xsltproc \
@@ -24,11 +27,17 @@ RUN \
     squid \
     python3 \
     python \
+    python-pip \
     python3-pip \
     libcurl4-openssl-dev \
     libssl-dev \
     nmap \
     netcat \
+    # evil-winrm
+    ruby-full \
+    # enum4linux dependencies
+    ldap-utils \
+    smbclient \
     # john dependencies
     build-essential \
     libssl-dev \
@@ -37,7 +46,10 @@ RUN \
     pkg-config \
     libgmp-dev \
     libpcap-dev \
-    libbz2-dev && \
+    libbz2-dev \
+    # crackmapexec dependencies
+    libffi-dev \
+    python-dev && \
     apt-get update
 
 # Apache configuration
@@ -51,8 +63,10 @@ RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.con
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
 # Install python dependencies
-COPY requirements.txt /tmp
-RUN pip3 install -r /tmp/requirements.txt
+COPY requirements_pip3.txt /tmp
+COPY requirements_pip.txt /tmp
+RUN pip3 install -r /tmp/requirements_pip3.txt
+RUN pip install -r /tmp/requirements_pip.txt
 
 # Download wordlists
 RUN mkdir -p /tools/wordlist
@@ -88,6 +102,20 @@ RUN git clone --depth 1 https://github.com/SolomonSklash/htbenum.git
 WORKDIR /tools/enum/htbenum
 RUN chmod +x htbenum.sh
 RUN ./htbenum.sh -u
+WORKDIR /tools/enum
+RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
+
+# Install impacket
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/SecureAuthCorp/impacket.git
+WORKDIR /tools/impacket
+RUN pip3 install .
+
+# Install ldapdomaindump
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/dirkjanm/ldapdomaindump.git
+WORKDIR /tools/ldapdomaindump
+RUN python3 setup.py install
 
 # Download rockyou dictionary
 RUN mkdir -p /tools/dict
@@ -101,6 +129,31 @@ RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleedin
 WORKDIR /tools/cracking/john/src
 RUN ./configure && make -s clean && make -sj4
 
+# Install evil-winrm
+RUN gem install evil-winrm
+
+# Install smbmap
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/ShawnDEvans/smbmap.git
+
+# Install sqlmap
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
+
+# Install crackmapexec
+WORKDIR /tools
+RUN git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
+WORKDIR /tools/CrackMapExec
+RUN pipenv install
+
+# Download exploits
+RUN mkdir -p /tools/exploits
+WORKDIR /tools/exploits
+RUN git clone --depth 1 https://github.com/worawit/MS17-010.git
+RUN git clone --depth 1 https://github.com/3ndG4me/AutoBlue-MS17-010.git
+RUN git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
+RUN git clone --depth 1 https://github.com/PowerShellMafia/PowerSploit.git
+
 # Create shortcuts
 RUN echo "alias squidUp=\"service squid start\"" >> /root/.zshrc
 RUN echo "alias squidDwUp=\"service squid restart\"" >> /root/.zshrc
@@ -108,6 +161,10 @@ RUN echo "alias squidDown=\"service squid stop\"" >> /root/.zshrc
 RUN echo "alias apacheUp=\"service apache2 start\"" >> /root/.zshrc
 RUN echo "alias apacheDwUp=\"service apache2 restart\"" >> /root/.zshrc
 RUN echo "alias apacheDown=\"service apache2 stop\"" >> /root/.zshrc
+
+# Copy custom function
+COPY customFunctions /tmp
+RUN cat /tmp/customFunctions >> /root/.zshrc
 
 # Create or update a database used by locate
 RUN updatedb

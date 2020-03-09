@@ -1,0 +1,5 @@
+pycurl==7.43.0.3
+wfuzz
+# ldapdomaindump dependencies
+ldap3
+dnspython
