@@ -9,12 +9,14 @@ RUN \
     apt-get install -y \
     traceroute \
     net-tools \
+    tcpdump \
     telnet \
     cifs-utils \
     rlwrap \
     iputils-ping \
     git \
     xsltproc \
+    rdate \
     zsh \
     curl \
     p7zip-full \
@@ -33,6 +35,7 @@ RUN \
     libssl-dev \
     nmap \
     netcat \
+    cewl \
     # evil-winrm
     ruby-full \
     # enum4linux dependencies
@@ -51,6 +54,7 @@ RUN \
     libffi-dev \
     python-dev && \
     apt-get update
+RUN gem install gpp-decrypt
 
 # Apache configuration
 RUN sed -i 's/It works!/It works form container!/g' /var/www/html/index.html
@@ -104,6 +108,8 @@ RUN chmod +x htbenum.sh
 RUN ./htbenum.sh -u
 WORKDIR /tools/enum
 RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
+WORKDIR /tools/enum
+RUN git clone https://github.com/m8r0wn/nullinux
 
 # Install impacket
 WORKDIR /tools
@@ -146,6 +152,25 @@ RUN git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
 WORKDIR /tools/CrackMapExec
 RUN pipenv install
 
+# Download PEASS - Privilege Escalation Awesome Scripts SUITE
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+
+# Install metasploit
+RUN mkdir -p /tools/metasploit
+WORKDIR /tools/metasploit
+RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+  chmod 755 msfinstall && \
+  ./msfinstall
+RUN msfupdate
+
+# Download pspy
+RUN mkdir -p /tools/pspy
+WORKDIR /tools/pspy
+RUN wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
+RUN wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
+RUN chmod +x *
+
 # Download exploits
 RUN mkdir -p /tools/exploits
 WORKDIR /tools/exploits
@@ -153,6 +178,16 @@ RUN git clone --depth 1 https://github.com/worawit/MS17-010.git
 RUN git clone --depth 1 https://github.com/3ndG4me/AutoBlue-MS17-010.git
 RUN git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
 RUN git clone --depth 1 https://github.com/PowerShellMafia/PowerSploit.git
+RUN git clone --depth 1 https://github.com/samratashok/nishang.git
+RUN git clone --depth 1 https://github.com/bitsadmin/wesng.git
+WORKDIR /tools/exploits/wesng
+RUN python3 wes.py --update
+WORKDIR /tools/exploits
+RUN git clone --depth 1 https://github.com/AonCyberLabs/Windows-Exploit-Suggester.git
+WORKDIR /tools/exploits/Windows-Exploit-Suggester
+RUN python windows-exploit-suggester.py --update
+WORKDIR /tools/exploits
+RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
 
 # Create shortcuts
 RUN echo "alias squidUp=\"service squid start\"" >> /root/.zshrc
@@ -161,6 +196,12 @@ RUN echo "alias squidDown=\"service squid stop\"" >> /root/.zshrc
 RUN echo "alias apacheUp=\"service apache2 start\"" >> /root/.zshrc
 RUN echo "alias apacheDwUp=\"service apache2 restart\"" >> /root/.zshrc
 RUN echo "alias apacheDown=\"service apache2 stop\"" >> /root/.zshrc
+
+# Copy custom scripts
+RUN mkdir -p /tools/scripts
+COPY /customScripts/ /tools/scripts
+WORKDIR /tools/scripts
+RUN chmod +x *
 
 # Copy custom function
 COPY customFunctions /tmp

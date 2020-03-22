@@ -15,12 +15,14 @@ Docker image with pentest tools.
 - Linux enumeration tools installed.
 - Tools installed to discovery services running.
 - Tools installed to directory fuzzing.
+- Monitor for linux processes without root permissions
 - Zsh shell installed.
 
 ## Tools installed
 
 ### Operative system tools
 
+    rdate
     vim
     zsh
     oh-my-zsh
@@ -30,6 +32,7 @@ Docker image with pentest tools.
     python-pip
     python3
     python3-pip
+    pspy
 
 ### Network tools
 
@@ -37,6 +40,7 @@ Docker image with pentest tools.
     telnet
     net-tools
     iputils-ping
+    tcpdump
     openvpn
     ftp
     netcat
@@ -55,6 +59,7 @@ Docker image with pentest tools.
 
     nmap
     wfuzz
+    cewl
     wordlists
     searchsploit
     dirsearch
@@ -62,22 +67,29 @@ Docker image with pentest tools.
     linux-smart-enumeration
     linenum
     john
+    evil-winrm
     enum4linux
+    nullinux
     impacket
     ldapdomaindump
     sqlmap
     CrackMapExec
-
-### Exploits
-
+    PEASS - Privilege Escalation Awesome Scripts SUITE
+    Nishang
+    Windows Exploit Suggester
+    Windows Exploit Suggester - Next Generation    
+    Juicy Potato
+    Metasploit
     MS17-010
     AutoBlue-MS17-010
     PrivExchange
     PowerSploit
+    gpp-decrypt
 
-### Custom functions
+### Custom functions or scripts
 
     ExtractPorts by s4vitar
+    PortScan created by s4vitar but with additionals improvements
 
 ### Other services
 
