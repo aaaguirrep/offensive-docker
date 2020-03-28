@@ -85,6 +85,8 @@ Docker image with pentest tools.
     PrivExchange
     PowerSploit
     gpp-decrypt
+    hydra
+    patator
 
 ### Custom functions or scripts
 
@@ -205,3 +207,9 @@ Do not save information on container directories because it will be lost after d
     docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
 
 The above command specify a path local directory mapped with /pentest container directory. You should save all information under /pentest directory.
+
+## License
+
+[MIT](LICENSE)
+
+Copyright (c) 2020, Arsenio Aguirre

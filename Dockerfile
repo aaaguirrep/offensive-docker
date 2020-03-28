@@ -36,6 +36,9 @@ RUN \
     nmap \
     netcat \
     cewl \
+    hydra \
+    # patator dependencies
+    libmysqlclient-dev \
     # evil-winrm
     ruby-full \
     # enum4linux dependencies
@@ -65,6 +68,7 @@ RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.con
 
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+RUN sed -i '1i export LC_CTYPE="C.UTF-8"' /root/.zshrc
 
 # Install python dependencies
 COPY requirements_pip3.txt /tmp
@@ -134,6 +138,10 @@ WORKDIR /tools/cracking
 RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
 WORKDIR /tools/cracking/john/src
 RUN ./configure && make -s clean && make -sj4
+
+# Download patator
+WORKDIR /tools/cracking
+RUN git clone --depth 1 https://github.com/lanjelot/patator.git
 
 # Install evil-winrm
 RUN gem install evil-winrm
