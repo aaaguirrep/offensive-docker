@@ -1,0 +1,6 @@
+alias squidUp="service squid start"
+alias squidDwUp="service squid restart"
+alias squidDown="service squid stop"
+alias apacheUp="service apache2 start"
+alias apacheDwUp="service apache2 restart"
+alias apacheDown="service apache2 stop"

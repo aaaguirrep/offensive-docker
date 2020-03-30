@@ -1,8 +1,14 @@
-# pentest
+<p align="center">
+  <a href="https://hub.docker.com/r/aaaguirrep/pentest">
+    <img
+      alt="Docker for pentest"
+      src="img/banner.jpg"
+      width="600"
+    />
+  </a>
+</p>
 
-## Overview
-
-Docker image with pentest tools.
+Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
 
 ## Features
 
@@ -207,6 +213,10 @@ Do not save information on container directories because it will be lost after d
     docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
 
 The above command specify a path local directory mapped with /pentest container directory. You should save all information under /pentest directory.
+
+## Contributing
+
+[Contributing Guide](CONTRIBUTING)
 
 ## License
 

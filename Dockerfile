@@ -9,6 +9,7 @@ RUN \
     apt-get install -y \
     traceroute \
     net-tools \
+    figlet \
     tcpdump \
     telnet \
     cifs-utils \
@@ -69,6 +70,10 @@ RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.con
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 RUN sed -i '1i export LC_CTYPE="C.UTF-8"' /root/.zshrc
+
+# Copy banner
+COPY banner /tmp
+RUN cat /tmp/banner >> /root/.zshrc
 
 # Install python dependencies
 COPY requirements_pip3.txt /tmp
@@ -198,12 +203,8 @@ WORKDIR /tools/exploits
 RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
 
 # Create shortcuts
-RUN echo "alias squidUp=\"service squid start\"" >> /root/.zshrc
-RUN echo "alias squidDwUp=\"service squid restart\"" >> /root/.zshrc
-RUN echo "alias squidDown=\"service squid stop\"" >> /root/.zshrc
-RUN echo "alias apacheUp=\"service apache2 start\"" >> /root/.zshrc
-RUN echo "alias apacheDwUp=\"service apache2 restart\"" >> /root/.zshrc
-RUN echo "alias apacheDown=\"service apache2 stop\"" >> /root/.zshrc
+COPY alias /tmp
+RUN cat /tmp/alias >> /root/.zshrc
 
 # Copy custom scripts
 RUN mkdir -p /tools/scripts
