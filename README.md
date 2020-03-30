@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 MD041 -->
+
 <p align="center">
   <a href="https://hub.docker.com/r/aaaguirrep/pentest">
     <img
@@ -216,7 +218,7 @@ The above command specify a path local directory mapped with /pentest container 
 
 ## Contributing
 
-[Contributing Guide](CONTRIBUTING)
+[Contributing Guide](CONTRIBUTING.md)
 
 ## License
 
