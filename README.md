@@ -55,6 +55,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
     rlwrap
     smbclient
     smbmap
+    whois
 
 ### Developer tools
 

@@ -8,6 +8,7 @@ RUN \
     apt-get update && \
     apt-get install -y \
     traceroute \
+    whois \
     net-tools \
     figlet \
     tcpdump \
@@ -70,9 +71,12 @@ RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.con
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 RUN sed -i '1i export LC_CTYPE="C.UTF-8"' /root/.zshrc
+RUN sed -i '2i export LC_ALL="C.UTF-8"' /root/.zshrc
+RUN sed -i '3i export LANG="C.UTF-8"' /root/.zshrc
+RUN sed -i '3i export LANGUAGE="C.UTF-8"' /root/.zshrc
 
 # Copy banner
-COPY banner /tmp
+COPY shell/banner /tmp
 RUN cat /tmp/banner >> /root/.zshrc
 
 # Install python dependencies
@@ -166,8 +170,11 @@ WORKDIR /tools/CrackMapExec
 RUN pipenv install
 
 # Download PEASS - Privilege Escalation Awesome Scripts SUITE
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git
+RUN mkdir -p /tools/PEASS
+WORKDIR /tools/PEASS
+RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe
+RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe
+RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe
 
 # Install metasploit
 RUN mkdir -p /tools/metasploit
@@ -180,8 +187,8 @@ RUN msfupdate
 # Download pspy
 RUN mkdir -p /tools/pspy
 WORKDIR /tools/pspy
-RUN wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
-RUN wget https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
+RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
+RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
 RUN chmod +x *
 
 # Download exploits
@@ -203,7 +210,7 @@ WORKDIR /tools/exploits
 RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
 
 # Create shortcuts
-COPY alias /tmp
+COPY shell/alias /tmp
 RUN cat /tmp/alias >> /root/.zshrc
 
 # Copy custom scripts
@@ -213,7 +220,7 @@ WORKDIR /tools/scripts
 RUN chmod +x *
 
 # Copy custom function
-COPY customFunctions /tmp
+COPY shell/customFunctions /tmp
 RUN cat /tmp/customFunctions >> /root/.zshrc
 
 # Create or update a database used by locate
