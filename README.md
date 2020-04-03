@@ -100,7 +100,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 ### Custom functions or scripts
 
     ExtractPorts by s4vitar
-    PortScan created by s4vitar but with additionals improvements
+    ScanPorts created by s4vitar but with additionals improvements
 
 ### Other services
 

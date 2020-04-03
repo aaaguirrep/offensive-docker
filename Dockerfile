@@ -207,8 +207,8 @@ RUN cat /tmp/alias >> /root/.zshrc
 
 # Copy custom scripts
 RUN mkdir -p /tools/scripts
-COPY /customScripts/ /tools/scripts
 WORKDIR /tools/scripts
+RUN wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh
 RUN chmod +x *
 
 # Copy custom function
