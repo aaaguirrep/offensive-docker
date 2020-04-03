@@ -21,6 +21,7 @@ RUN \
     rdate \
     zsh \
     curl \
+    unzip \
     p7zip-full \
     locate \
     openvpn \
@@ -190,6 +191,15 @@ WORKDIR /tools/exploits/wesng
 RUN python3 wes.py --update
 WORKDIR /tools/exploits
 RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
+
+# Passive Information tools (OSCP)
+RUN mkdir -p /tools/Passive\ Information
+WORKDIR /tools/Passive\ Information
+RUN wget --quiet https://github.com/michenriksen/gitrob/releases/download/v2.0.0-beta/gitrob_linux_amd64_2.0.0-beta.zip -O gitrob.zip
+RUN unzip gitrob.zip
+RUN rm gitrob.zip
+RUN wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks
+RUN chmod +x gitleaks
 
 # Create shortcuts
 COPY shell/alias /tmp
