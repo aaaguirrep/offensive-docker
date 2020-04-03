@@ -41,7 +41,7 @@ RUN \
     hydra \
     # patator dependencies
     libmysqlclient-dev \
-    # evil-winrm
+    # evil-winrm dependencies
     ruby-full \
     # enum4linux dependencies
     ldap-utils \
@@ -121,20 +121,6 @@ RUN chmod +x htbenum.sh
 RUN ./htbenum.sh -u
 WORKDIR /tools/enum
 RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
-WORKDIR /tools/enum
-RUN git clone https://github.com/m8r0wn/nullinux
-
-# Install impacket
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/SecureAuthCorp/impacket.git
-WORKDIR /tools/impacket
-RUN pip3 install .
-
-# Install ldapdomaindump
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/dirkjanm/ldapdomaindump.git
-WORKDIR /tools/ldapdomaindump
-RUN python3 setup.py install
 
 # Download rockyou dictionary
 RUN mkdir -p /tools/dict
@@ -202,10 +188,6 @@ RUN git clone --depth 1 https://github.com/samratashok/nishang.git
 RUN git clone --depth 1 https://github.com/bitsadmin/wesng.git
 WORKDIR /tools/exploits/wesng
 RUN python3 wes.py --update
-WORKDIR /tools/exploits
-RUN git clone --depth 1 https://github.com/AonCyberLabs/Windows-Exploit-Suggester.git
-WORKDIR /tools/exploits/Windows-Exploit-Suggester
-RUN python windows-exploit-suggester.py --update
 WORKDIR /tools/exploits
 RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
 

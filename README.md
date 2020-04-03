@@ -78,14 +78,12 @@ Docker for pentest is an image with the more used tools to create an pentest env
     john
     evil-winrm
     enum4linux
-    nullinux
     impacket
     ldapdomaindump
     sqlmap
     CrackMapExec
     PEASS - Privilege Escalation Awesome Scripts SUITE
     Nishang
-    Windows Exploit Suggester
     Windows Exploit Suggester - Next Generation    
     Juicy Potato
     Metasploit
