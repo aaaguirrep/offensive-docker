@@ -9,6 +9,7 @@ RUN \
     apt-get install -y \
     traceroute \
     whois \
+    host \
     net-tools \
     figlet \
     tcpdump \
@@ -37,6 +38,8 @@ RUN \
     libcurl4-openssl-dev \
     libssl-dev \
     nmap \
+    masscan \
+    nikto \
     netcat \
     cewl \
     hydra \

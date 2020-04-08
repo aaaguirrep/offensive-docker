@@ -9,6 +9,20 @@
     />
   </a>
 </p>
+<br/>
+<p align="center">
+  <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/aaaguirrep/pentest"></a>
+  <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/aaaguirrep/pentest"></a>
+  <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aaaguirrep/pentest"></a>
+    <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub issues" src="https://img.shields.io/github/issues/aaaguirrep/pentest"></a>
+  <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/aaaguirrep/pentest"></a>
+  <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Automated build" src="https://img.shields.io/docker/automated/aaaguirrep/pentest"></a>
+    <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/aaaguirrep/pentest"></a>
+  <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/aaaguirrep/pentest"></a>
+    <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/aaaguirrep/pentest"></a>
+    <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Stars" src="https://img.shields.io/docker/stars/aaaguirrep/pentest"></a>
+  <a href="https://github.com/aaaguirrep/pentest/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/aaaguirrep/pentest"></a>
+</p>
 
 Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
 
@@ -56,6 +70,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
     smbclient
     smbmap
     whois
+    host
 
 ### Developer tools
 
@@ -96,6 +111,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
     patator
     gitleaks
     gitrob
+    masscan
+    nikto
 
 ### Custom functions or scripts
 
