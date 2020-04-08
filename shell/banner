@@ -8,7 +8,7 @@ grayColour="\e[0;37m\033[1m"
 # Banner
 echo "\t${greenColour}************************************************************************************${yellowColour}"
 figlet -c -w 100 Docker for pentest
-echo "\t${redColour}Version: ${blueColour}v0.1.0${endColour}"
+echo "\t${redColour}Version: ${blueColour}v0.1.2${endColour}"
 echo "\t${greenColour}------------------------------------------------------------------------------------"
 echo "\t${redColour}Creator: ${blueColour}Arsenio Aguirre\t\t\t${redColour}Email: ${blueColour}a_aguirre117@hotmail.com"
 echo "\t${grayColour}Repositories links:"

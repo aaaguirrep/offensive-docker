@@ -1,5 +1,10 @@
 # Changelog for Docker image
-<!--LATEST=0.1.1-->
+<!--LATEST=0.1.2-->
+
+## 0.1.2
+
+* feat: add nikto, masscan and host packages
+* docs: add bagdes on readme file
 
 ## 0.1.1
 
