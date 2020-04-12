@@ -1,5 +1,9 @@
 # Changelog for Docker image
-<!--LATEST=0.1.2-->
+<!--LATEST=0.1.3-->
+
+## 0.1.3
+
+* feat: add cracking password tools
 
 ## 0.1.2
 
