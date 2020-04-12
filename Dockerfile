@@ -42,7 +42,10 @@ RUN \
     nikto \
     netcat \
     cewl \
+    crunch \
     hydra \
+    medusa \
+    hashcat \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -138,9 +141,23 @@ RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleedin
 WORKDIR /tools/cracking/john/src
 RUN ./configure && make -s clean && make -sj4
 
+# Download crowbar
+WORKDIR /tools/cracking
+RUN git clone --depth 1 https://github.com/galkan/crowbar.git
+
 # Download patator
 WORKDIR /tools/cracking
 RUN git clone --depth 1 https://github.com/lanjelot/patator.git
+
+# Download Pass-the-Hash
+WORKDIR /tools/cracking
+RUN git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git
+
+# Download Mimikatz
+WORKDIR /tools/cracking
+RUN wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip
+RUN unzip mimikatz.zip
+RUN rm mimikatz.zip
 
 # Install evil-winrm
 RUN gem install evil-winrm

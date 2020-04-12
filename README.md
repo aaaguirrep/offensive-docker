@@ -113,6 +113,13 @@ Docker for pentest is an image with the more used tools to create an pentest env
     gitrob
     masscan
     nikto
+    crunch
+    medusa
+    hashid
+    hashcat
+    crowbar
+    pass-the-hash
+    mimikatz
 
 ### Custom functions or scripts
 
