@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.1.3-->
 
+## 0.1.4
+
+* refactor: use env variable for version
+
 ## 0.1.3
 
 * feat: add cracking password tools
