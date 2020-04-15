@@ -65,8 +65,12 @@ RUN \
     # crackmapexec dependencies
     libffi-dev \
     python-dev && \
+    gem install \
+    gpp-decrypt \
+    addressable \
+    # Install evil-winrm
+    evil-winrm && \
     apt-get update
-RUN gem install gpp-decrypt
 
 # Apache configuration
 RUN sed -i 's/It works!/It works form container!/g' /var/www/html/index.html
@@ -91,6 +95,14 @@ COPY requirements_pip3.txt /tmp
 COPY requirements_pip.txt /tmp
 RUN pip3 install -r /tmp/requirements_pip3.txt
 RUN pip install -r /tmp/requirements_pip.txt
+
+# Download whatweb
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
+
+# Download wafw00f
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
 
 # Download wordlists
 RUN mkdir -p /tools/wordlist
@@ -158,9 +170,6 @@ WORKDIR /tools/cracking
 RUN wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip
 RUN unzip mimikatz.zip
 RUN rm mimikatz.zip
-
-# Install evil-winrm
-RUN gem install evil-winrm
 
 # Install smbmap
 WORKDIR /tools

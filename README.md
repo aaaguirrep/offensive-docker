@@ -120,6 +120,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
     crowbar
     pass-the-hash
     mimikatz
+    whatweb
+    wafw00z
 
 ### Custom functions or scripts
 
