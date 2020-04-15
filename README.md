@@ -50,11 +50,6 @@ Docker for pentest is an image with the more used tools to create an pentest env
     oh-my-zsh
     locate
     cifs-utils
-    python
-    python-pip
-    python3
-    python3-pip
-    pspy
 
 ### Network tools
 
@@ -64,11 +59,6 @@ Docker for pentest is an image with the more used tools to create an pentest env
     iputils-ping
     tcpdump
     openvpn
-    ftp
-    netcat
-    rlwrap
-    smbclient
-    smbmap
     whois
     host
 
@@ -79,56 +69,101 @@ Docker for pentest is an image with the more used tools to create an pentest env
     wget
     ruby
     go
+    python
+    python-pip
+    python3
+    python3-pip
 
 ### Pentest tools
 
-    nmap
-    wfuzz
-    cewl
-    wordlists
-    searchsploit
-    dirsearch
-    htbenum
-    linux-smart-enumeration
-    linenum
-    john
-    evil-winrm
-    enum4linux
-    impacket
-    ldapdomaindump
-    sqlmap
-    CrackMapExec
-    PEASS - Privilege Escalation Awesome Scripts SUITE
-    Nishang
-    Windows Exploit Suggester - Next Generation    
-    Juicy Potato
-    Metasploit
-    MS17-010
-    AutoBlue-MS17-010
-    PrivExchange
-    PowerSploit
-    gpp-decrypt
-    hydra
-    patator
-    gitleaks
-    gitrob
-    masscan
-    nikto
-    crunch
-    medusa
-    hashid
-    hashcat
-    crowbar
-    pass-the-hash
-    mimikatz
-    whatweb
-    wafw00z
-    hakrawler
+#### Reconnaissance
+
+- [nmap](https://github.com/nmap/nmap)
+- [wfuzz](https://github.com/xmendez/wfuzz)
+- [whatweb](https://github.com/urbanadventurer/WhatWeb.git)
+- [wafw00z](https://github.com/EnableSecurity/wafw00f.git)
+- [masscan](https://github.com/robertdavidgraham/masscan)
+- [nikto](https://github.com/sullo/nikto)
+- [dirsearch](https://github.com/maurosoria/dirsearch.git)
+- [cewl](https://github.com/digininja/CeWL)
+- wordlists
+  - [wfuzz](https://github.com/xmendez/wfuzz.git)
+  - [SecList](https://github.com/danielmiessler/SecLists.git)
+  - [Fuzzdb](https://github.com/fuzzdb-project/fuzzdb.git)
+  - [Dirbuster](https://github.com/daviddias/node-dirbuster.git)
+  - [Dirb](https://github.com/v0re/dirb.git)
+  - [Rockyou](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
+- crunch
+
+#### Enumeration
+
+- [htbenum](https://github.com/SolomonSklash/htbenum.git)
+- [linux-smart-enumeration](https://github.com/diego-treitos/linux-smart-enumeration.git)
+- [linenum](https://github.com/rebootuser/LinEnum.git)
+- [enum4linux](https://github.com/portcullislabs/enum4linux.git)
+- [ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)
+- [PEASS - Privilege Escalation Awesome Scripts SUITE](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git)
+- [Windows Exploit Suggester - Next Generation](https://github.com/bitsadmin/wesng.git)
+- [smbmap](https://github.com/ShawnDEvans/smbmap.git)
+- [pspy - unprivileged Linux process snooping](https://github.com/DominicBreuker/pspy)
+- smbclient
+- ftp
+
+#### Brute force
+
+- [crowbar](https://github.com/galkan/crowbar.git)
+- [hydra](https://github.com/vanhauser-thc/thc-hydra)
+- [patator](https://github.com/lanjelot/patator.git)
+- medusa
+
+#### Cracking
+
+- [hashid](https://github.com/psypanda/hashID)
+- [john the ripper](https://github.com/magnumripper/JohnTheRipper)
+- [hashcat](https://github.com/hashcat/hashcat)
+
+#### Crawler
+
+- [hakrawler](https://github.com/hakluke/hakrawler)
+
+#### Exploits
+
+- [searchsploit](https://github.com/offensive-security/exploitdb.git)
+- [Metasploit](https://github.com/rapid7/metasploit-framework)
+- [MS17-010](https://github.com/worawit/MS17-010.git)
+- [AutoBlue-MS17-010](https://github.com/3ndG4me/AutoBlue-MS17-010.git)
+- [PrivExchange](https://github.com/dirkjanm/PrivExchange)
+
+#### Windows
+
+- [evil-winrm](https://github.com/Hackplayers/evil-winrm)
+- [impacket](https://github.com/SecureAuthCorp/impacket)
+- [CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)
+- [Nishang](https://github.com/samratashok/nishang.git)
+- [Juicy Potato](https://github.com/ohpe/juicy-potato.git)
+- [PowerSploit](https://github.com/PowerShellMafia/PowerSploit.git)
+- [pass-the-hash](https://github.com/byt3bl33d3r/pth-toolkit.git)
+- [mimikatz](https://github.com/gentilkiwi/mimikatz)
+- gpp-decrypt
+
+#### Git repositories
+
+- [gitleaks](https://github.com/zricethezav/gitleaks)
+- [gitrob](https://github.com/michenriksen/gitrob)
+
+#### Web security
+
+- [sqlmap](https://github.com/sqlmapproject/sqlmap.git)
+
+#### Reverse shell
+
+- [netcat](https://github.com/diegocr/netcat)
+- [rlwrap](https://github.com/hanslub42/rlwrap)
 
 ### Custom functions or scripts
 
-    ExtractPorts by s4vitar
-    ScanPorts created by s4vitar but with additionals improvements
+- [ScanPorts created by s4vitar but with additionals improvements](https://github.com/aaaguirrep/scanPorts)
+- ExtractPorts by s4vitar
 
 ### Other services
 
