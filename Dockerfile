@@ -104,6 +104,16 @@ RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
 WORKDIR /tools
 RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
 
+# Install go
+WORKDIR /tmp
+RUN wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz
+RUN tar -C /usr/local -xzf go.tar.gz
+ENV PATH "$PATH:/usr/local/go/bin"
+
+# Install hakrawler
+RUN go get github.com/hakluke/hakrawler
+RUN ln -s /root/go/bin/hakrawler /usr/bin/hakrawler
+
 # Download wordlists
 RUN mkdir -p /tools/wordlist
 WORKDIR /tools/wordlist

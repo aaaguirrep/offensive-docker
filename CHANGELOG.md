@@ -3,6 +3,7 @@
 
 ## 0.1.4
 
+* feat: add go language and hakrawler
 * feat: add whatweb and wafw00f
 * refactor: use env variable for version
 

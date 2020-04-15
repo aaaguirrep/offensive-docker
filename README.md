@@ -78,6 +78,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
     curl
     wget
     ruby
+    go
 
 ### Pentest tools
 
@@ -122,6 +123,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
     mimikatz
     whatweb
     wafw00z
+    hakrawler
 
 ### Custom functions or scripts
 
