@@ -114,6 +114,14 @@ ENV PATH "$PATH:/usr/local/go/bin"
 RUN go get github.com/hakluke/hakrawler
 RUN ln -s /root/go/bin/hakrawler /usr/bin/hakrawler
 
+# Install waybackurls
+RUN go get github.com/tomnomnom/waybackurls
+RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
+
+# Install Photon
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
+
 # Download wordlists
 RUN mkdir -p /tools/wordlist
 WORKDIR /tools/wordlist

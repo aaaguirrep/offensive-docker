@@ -125,6 +125,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 #### Crawler
 
 - [hakrawler](https://github.com/hakluke/hakrawler)
+- [Photon](https://github.com/s0md3v/Photon.git)
+- [waybackurls](https://github.com/tomnomnom/waybackurls)
 
 #### Exploits
 

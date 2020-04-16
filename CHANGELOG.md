@@ -3,6 +3,7 @@
 
 ## 0.1.4
 
+* feat: add photon and waybackurls
 * docs: change readme file
 * feat: add go language and hakrawler
 * feat: add whatweb and wafw00f
