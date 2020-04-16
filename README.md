@@ -61,6 +61,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
     openvpn
     whois
     host
+    prips
 
 ### Developer tools
 
@@ -76,17 +77,32 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 ### Pentest tools
 
-#### Reconnaissance
+#### Port scanning
 
 - [nmap](https://github.com/nmap/nmap)
-- [wfuzz](https://github.com/xmendez/wfuzz)
+- [masscan](https://github.com/robertdavidgraham/masscan)
+
+#### Crawler
+
+- [hakrawler](https://github.com/hakluke/hakrawler)
+- [Photon](https://github.com/s0md3v/Photon.git)
+- [waybackurls](https://github.com/tomnomnom/waybackurls)
+
+#### Discovery
+
+- [hakrevdns](https://github.com/hakluke/hakrevdns)
 - [whatweb](https://github.com/urbanadventurer/WhatWeb.git)
 - [wafw00z](https://github.com/EnableSecurity/wafw00f.git)
-- [masscan](https://github.com/robertdavidgraham/masscan)
 - [nikto](https://github.com/sullo/nikto)
+- [wfuzz](https://github.com/xmendez/wfuzz)
 - [dirsearch](https://github.com/maurosoria/dirsearch.git)
+- [ffuf](https://github.com/ffuf/ffuf)
+- [arjun](https://github.com/s0md3v/Arjun)
+
+#### Wordlist
+
 - [cewl](https://github.com/digininja/CeWL)
-- wordlists
+- wordlists:
   - [wfuzz](https://github.com/xmendez/wfuzz.git)
   - [SecList](https://github.com/danielmiessler/SecLists.git)
   - [Fuzzdb](https://github.com/fuzzdb-project/fuzzdb.git)
@@ -95,19 +111,14 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [Rockyou](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
 - crunch
 
-#### Enumeration
+#### Git repositories
 
-- [htbenum](https://github.com/SolomonSklash/htbenum.git)
-- [linux-smart-enumeration](https://github.com/diego-treitos/linux-smart-enumeration.git)
-- [linenum](https://github.com/rebootuser/LinEnum.git)
-- [enum4linux](https://github.com/portcullislabs/enum4linux.git)
-- [ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)
-- [PEASS - Privilege Escalation Awesome Scripts SUITE](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git)
-- [Windows Exploit Suggester - Next Generation](https://github.com/bitsadmin/wesng.git)
-- [smbmap](https://github.com/ShawnDEvans/smbmap.git)
-- [pspy - unprivileged Linux process snooping](https://github.com/DominicBreuker/pspy)
-- smbclient
-- ftp
+- [gitleaks](https://github.com/zricethezav/gitleaks)
+- [gitrob](https://github.com/michenriksen/gitrob)
+
+#### OWASP
+
+- [sqlmap](https://github.com/sqlmapproject/sqlmap.git)
 
 #### Brute force
 
@@ -122,11 +133,19 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [john the ripper](https://github.com/magnumripper/JohnTheRipper)
 - [hashcat](https://github.com/hashcat/hashcat)
 
-#### Crawler
+#### OS Enumeration
 
-- [hakrawler](https://github.com/hakluke/hakrawler)
-- [Photon](https://github.com/s0md3v/Photon.git)
-- [waybackurls](https://github.com/tomnomnom/waybackurls)
+- [htbenum](https://github.com/SolomonSklash/htbenum.git)
+- [linux-smart-enumeration](https://github.com/diego-treitos/linux-smart-enumeration.git)
+- [linenum](https://github.com/rebootuser/LinEnum.git)
+- [enum4linux](https://github.com/portcullislabs/enum4linux.git)
+- [ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)
+- [PEASS - Privilege Escalation Awesome Scripts SUITE](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git)
+- [Windows Exploit Suggester - Next Generation](https://github.com/bitsadmin/wesng.git)
+- [smbmap](https://github.com/ShawnDEvans/smbmap.git)
+- [pspy - unprivileged Linux process snooping](https://github.com/DominicBreuker/pspy)
+- smbclient
+- ftp
 
 #### Exploits
 
@@ -147,15 +166,6 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [pass-the-hash](https://github.com/byt3bl33d3r/pth-toolkit.git)
 - [mimikatz](https://github.com/gentilkiwi/mimikatz)
 - gpp-decrypt
-
-#### Git repositories
-
-- [gitleaks](https://github.com/zricethezav/gitleaks)
-- [gitrob](https://github.com/michenriksen/gitrob)
-
-#### Web security
-
-- [sqlmap](https://github.com/sqlmapproject/sqlmap.git)
 
 #### Reverse shell
 

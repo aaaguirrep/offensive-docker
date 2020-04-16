@@ -3,6 +3,7 @@
 
 ## 0.1.4
 
+* feat: add prips, ffuf, hakrevdns and arjun
 * feat: add photon and waybackurls
 * docs: change readme file
 * feat: add go language and hakrawler

@@ -14,6 +14,7 @@ RUN \
     figlet \
     tcpdump \
     telnet \
+    prips \
     cifs-utils \
     rlwrap \
     iputils-ping \
@@ -121,6 +122,18 @@ RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
 # Install Photon
 WORKDIR /tools
 RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
+
+# Install ffuf
+RUN go get github.com/ffuf/ffuf
+RUN ln -s /root/go/bin/ffuf /usr/bin/ffuf
+
+# Install hakrevdns
+RUN go get github.com/hakluke/hakrevdns
+RUN ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns
+
+# Download arjun
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
 
 # Download wordlists
 RUN mkdir -p /tools/wordlist
