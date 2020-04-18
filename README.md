@@ -81,12 +81,14 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 - [nmap](https://github.com/nmap/nmap)
 - [masscan](https://github.com/robertdavidgraham/masscan)
+- [ScanPorts](https://github.com/aaaguirrep/scanPorts) created by [@s4vitar](https://github.com/s4vitar) with some improvements
 
 #### Crawler
 
 - [hakrawler](https://github.com/hakluke/hakrawler)
 - [Photon](https://github.com/s0md3v/Photon.git)
 - [waybackurls](https://github.com/tomnomnom/waybackurls)
+- [gospider](https://github.com/jaeles-project/gospider)
 
 #### Discovery
 
@@ -115,10 +117,12 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 - [gitleaks](https://github.com/zricethezav/gitleaks)
 - [gitrob](https://github.com/michenriksen/gitrob)
+- [gitGraber](https://github.com/hisxo/gitGraber.git)
 
 #### OWASP
 
 - [sqlmap](https://github.com/sqlmapproject/sqlmap.git)
+- [XSStrike](https://github.com/s0md3v/XSStrike.git)
 
 #### Brute force
 
@@ -172,10 +176,14 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [netcat](https://github.com/diegocr/netcat)
 - [rlwrap](https://github.com/hanslub42/rlwrap)
 
-### Custom functions or scripts
+#### Other resources
 
-- [ScanPorts created by s4vitar but with additionals improvements](https://github.com/aaaguirrep/scanPorts)
-- ExtractPorts by s4vitar
+- [pentest-tools](https://github.com/gwen001/pentest-tools) from [@gwen001](https://github.com/gwen001)
+- [qsreplace](https://github.com/tomnomnom/qsreplace) from [@tomnomnom](https://github.com/tomnomnom/qsreplace)
+
+### Custom functions
+
+- NmapExtractPorts from [@s4vitar](https://github.com/s4vitar)
 
 ### Other services
 

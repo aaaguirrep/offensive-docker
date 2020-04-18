@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.1.4-->
 
+## 0.1.5
+
+* feat: add xsstriker, gitgraber, gospider, pentest-tools and qsreplace
+
 ## 0.1.4
 
 * feat: add prips, ffuf, hakrevdns and arjun

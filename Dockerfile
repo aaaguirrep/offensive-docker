@@ -135,6 +135,28 @@ RUN ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns
 WORKDIR /tools
 RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
 
+# Download XSStrike
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/s0md3v/XSStrike.git
+
+# Download gitGrabber
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/hisxo/gitGraber.git
+
+# Download pentest-tools
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/gwen001/pentest-tools.git
+
+# Download qsreplace
+WORKDIR /tools
+RUN go get -u github.com/tomnomnom/qsreplace
+RUN ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
+
+# Download gospider
+WORKDIR /tools
+RUN go get -u github.com/jaeles-project/gospider
+RUN ln -s /root/go/bin/gospider /usr/bin/gospider
+
 # Download wordlists
 RUN mkdir -p /tools/wordlist
 WORKDIR /tools/wordlist
@@ -143,6 +165,7 @@ RUN git clone --depth 1 https://github.com/danielmiessler/SecLists.git
 RUN git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git
 RUN git clone --depth 1 https://github.com/daviddias/node-dirbuster.git
 RUN git clone --depth 1 https://github.com/v0re/dirb.git
+RUN curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
 # Install searchsploit
 RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb
@@ -171,11 +194,6 @@ RUN chmod +x htbenum.sh
 RUN ./htbenum.sh -u
 WORKDIR /tools/enum
 RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
-
-# Download rockyou dictionary
-RUN mkdir -p /tools/dict
-WORKDIR /tools/dict
-RUN curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
 # Install john the ripper
 RUN mkdir -p /tools/cracking
@@ -214,7 +232,6 @@ RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
 WORKDIR /tools
 RUN git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
 WORKDIR /tools/CrackMapExec
-RUN pipenv install
 
 # Download PEASS - Privilege Escalation Awesome Scripts SUITE
 RUN mkdir -p /tools/PEASS
