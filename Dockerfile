@@ -47,6 +47,7 @@ RUN \
     hydra \
     medusa \
     hashcat \
+    libwww-perl \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -69,6 +70,7 @@ RUN \
     gem install \
     gpp-decrypt \
     addressable \
+    wpscan \
     # Install evil-winrm
     evil-winrm && \
     apt-get update
@@ -156,6 +158,10 @@ RUN ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
 WORKDIR /tools
 RUN go get -u github.com/jaeles-project/gospider
 RUN ln -s /root/go/bin/gospider /usr/bin/gospider
+
+# Download joomscan
+WORKDIR /tools
+RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
 
 # Download wordlists
 RUN mkdir -p /tools/wordlist

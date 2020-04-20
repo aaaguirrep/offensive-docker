@@ -4,6 +4,7 @@
 ## 0.1.5
 
 * feat: add xsstriker, gitgraber, gospider, pentest-tools and qsreplace
+* feat: add wpscan and joomscan
 
 ## 0.1.4
 

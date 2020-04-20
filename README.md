@@ -100,6 +100,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [dirsearch](https://github.com/maurosoria/dirsearch.git)
 - [ffuf](https://github.com/ffuf/ffuf)
 - [arjun](https://github.com/s0md3v/Arjun)
+- [wpscan](https://github.com/wpscanteam/wpscan)
+- [joomscan](https://github.com/rezasp/joomscan)
 
 #### Wordlist
 
