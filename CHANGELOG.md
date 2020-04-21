@@ -5,6 +5,9 @@
 
 * feat: add xsstriker, gitgraber, gospider, pentest-tools and qsreplace
 * feat: add wpscan and joomscan
+* feat: add amass, knock, altdns, massdns, github-search and gobuster
+* refactor: change folder /tool organization according to readme file
+* refactor: use multi-stage to build the docker image
 
 ## 0.1.4
 

@@ -90,6 +90,14 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [waybackurls](https://github.com/tomnomnom/waybackurls)
 - [gospider](https://github.com/jaeles-project/gospider)
 
+#### Recon
+
+- [Amass](https://github.com/OWASP/Amass)
+- [GoBuster](https://github.com/OJ/gobuster)
+- [Knock](https://github.com/guelfoweb/knock)
+- [MassDNS](https://github.com/blechschmidt/massdns)
+- [Altdns](https://github.com/infosec-au/altdns)
+
 #### Discovery
 
 - [hakrevdns](https://github.com/hakluke/hakrevdns)
@@ -120,6 +128,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [gitleaks](https://github.com/zricethezav/gitleaks)
 - [gitrob](https://github.com/michenriksen/gitrob)
 - [gitGraber](https://github.com/hisxo/gitGraber.git)
+- [github-search](https://github.com/gwen001/github-search.git)
 
 #### OWASP
 

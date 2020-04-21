@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu as baseline
 
 LABEL maintainer="Arsenio Aguirre"
 LABEL email="a_aguirre117@hotmail.com"
@@ -35,7 +35,9 @@ RUN \
     python3 \
     python \
     python-pip \
+    python-dnspython \
     python3-pip \
+    jq \
     libcurl4-openssl-dev \
     libssl-dev \
     nmap \
@@ -75,12 +77,17 @@ RUN \
     evil-winrm && \
     apt-get update
 
+FROM baseline as builder
+# SERVICES
+
 # Apache configuration
 RUN sed -i 's/It works!/It works form container!/g' /var/www/html/index.html
 
 # Squid configuration
 RUN echo "http_access allow all" >> /etc/squid/squid.conf
 RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf
+
+# OS TOOLS
 
 # Install oh-my-zsh
 RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -89,23 +96,13 @@ RUN sed -i '2i export LC_ALL="C.UTF-8"' /root/.zshrc
 RUN sed -i '3i export LANG="C.UTF-8"' /root/.zshrc
 RUN sed -i '3i export LANGUAGE="C.UTF-8"' /root/.zshrc
 
-# Copy banner
-COPY shell/banner /tmp
-RUN cat /tmp/banner >> /root/.zshrc
-
 # Install python dependencies
 COPY requirements_pip3.txt /tmp
 COPY requirements_pip.txt /tmp
 RUN pip3 install -r /tmp/requirements_pip3.txt
 RUN pip install -r /tmp/requirements_pip.txt
 
-# Download whatweb
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
-
-# Download wafw00f
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
+# DEVELOPER TOOLS
 
 # Install go
 WORKDIR /tmp
@@ -113,59 +110,94 @@ RUN wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz
 RUN tar -C /usr/local -xzf go.tar.gz
 ENV PATH "$PATH:/usr/local/go/bin"
 
+# PORT SCANNING
+RUN mkdir -p /tools/portScanning
+WORKDIR /tools/portScanning
+
+# Download ScanPorts
+RUN wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh
+RUN chmod +x *
+
+# CRAWLER
+RUN mkdir -p /tools/crawler
+WORKDIR /tools/crawler
+
 # Install hakrawler
 RUN go get github.com/hakluke/hakrawler
 RUN ln -s /root/go/bin/hakrawler /usr/bin/hakrawler
+
+# Install Photon
+RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
 
 # Install waybackurls
 RUN go get github.com/tomnomnom/waybackurls
 RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
 
-# Install Photon
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
+# Download gospider
+RUN go get -u github.com/jaeles-project/gospider
+RUN ln -s /root/go/bin/gospider /usr/bin/gospider
 
-# Install ffuf
-RUN go get github.com/ffuf/ffuf
-RUN ln -s /root/go/bin/ffuf /usr/bin/ffuf
+# RECON
+RUN mkdir -p /tools/recon
+WORKDIR /tools/recon
+
+# Install gobuster
+RUN go get github.com/OJ/gobuster
+RUN ln -s /root/go/bin/gobuster /usr/bin/gobuster
+
+# Install knock
+RUN git clone --depth 1 https://github.com/guelfoweb/knock.git
+WORKDIR /tools/recon/knock
+RUN python setup.py install
+
+# Install amass
+WORKDIR /tools/recon
+RUN wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip
+RUN unzip amass.zip -d amass && rm amass.zip
+RUN ln -s /tools/recon/amass/amass_v3.5.5_linux_amd64/amass /usr/bin/amass
+
+# Install massdns
+WORKDIR /tools/recon
+RUN git clone --depth 1 https://github.com/blechschmidt/massdns.git
+
+# BUILDER DISCOVERY
+FROM baseline as discovery
+RUN mkdir /temp
+WORKDIR /temp/
+
+# Download whatweb
+RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
+
+# Download wafw00f
+RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
+
+# Install dirsearch
+RUN git clone --depth 1 https://github.com/maurosoria/dirsearch.git
+
+# Download arjun
+RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
+
+# Download joomscan
+RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
+
+# DISCOVERY
+FROM builder as builder2
+COPY --from=discovery /temp/ /tools/discovery/
 
 # Install hakrevdns
 RUN go get github.com/hakluke/hakrevdns
 RUN ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns
 
-# Download arjun
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
+# Install ffuf
+RUN go get github.com/ffuf/ffuf
+RUN ln -s /root/go/bin/ffuf /usr/bin/ffuf
 
-# Download XSStrike
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/s0md3v/XSStrike.git
-
-# Download gitGrabber
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/hisxo/gitGraber.git
-
-# Download pentest-tools
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/gwen001/pentest-tools.git
-
-# Download qsreplace
-WORKDIR /tools
-RUN go get -u github.com/tomnomnom/qsreplace
-RUN ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
-
-# Download gospider
-WORKDIR /tools
-RUN go get -u github.com/jaeles-project/gospider
-RUN ln -s /root/go/bin/gospider /usr/bin/gospider
-
-# Download joomscan
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
+# BUILDER WORDLIST
+FROM baseline as wordlist
+RUN mkdir /temp
+WORKDIR /temp
 
 # Download wordlists
-RUN mkdir -p /tools/wordlist
-WORKDIR /tools/wordlist
 RUN git clone --depth 1 https://github.com/xmendez/wfuzz.git
 RUN git clone --depth 1 https://github.com/danielmiessler/SecLists.git
 RUN git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git
@@ -173,126 +205,208 @@ RUN git clone --depth 1 https://github.com/daviddias/node-dirbuster.git
 RUN git clone --depth 1 https://github.com/v0re/dirb.git
 RUN curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
+# WORDLIST
+FROM builder2 as builder3
+COPY --from=wordlist /temp/ /tools/wordlist/
+
+# BUILDER GIT REPOSITORIES
+FROM baseline as gitrepositories
+RUN mkdir /temp
+WORKDIR /temp
+
+# Download gitGrabber
+RUN git clone --depth 1 https://github.com/hisxo/gitGraber.git
+
+# Install gitrob
+RUN wget --quiet https://github.com/michenriksen/gitrob/releases/download/v2.0.0-beta/gitrob_linux_amd64_2.0.0-beta.zip -O gitrob.zip
+RUN unzip gitrob.zip -d gitrob
+RUN rm gitrob.zip
+
+# Install gitleaks
+RUN wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks
+RUN chmod +x gitleaks
+
+# Download github-search
+RUN git clone --depth 1 https://github.com/gwen001/github-search.git
+
+# GIT REPOSITORIES
+FROM builder3 as builder4
+COPY --from=gitrepositories /temp/ /tools/gitRepositories/
+
+# BUILDER OWASP
+FROM baseline as owasp
+RUN mkdir /temp
+WORKDIR /temp
+
+# Install sqlmap
+RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap
+
+# Download XSStrike
+RUN git clone --depth 1 https://github.com/s0md3v/XSStrike.git
+
+# OWASP
+FROM builder4 as builder5
+COPY --from=owasp /temp/ /tools/owasp/
+
+# BUILDER BRUTE FORCE
+FROM baseline as bruteForce
+RUN mkdir /temp
+WORKDIR /temp
+
+# Download crowbar
+RUN git clone --depth 1 https://github.com/galkan/crowbar.git
+
+# Download patator
+RUN git clone --depth 1 https://github.com/lanjelot/patator.git
+
+# BRUTE FORCE
+FROM builder5 as builder6
+COPY --from=bruteForce /temp/ /tools/bruteForce/
+
+# CRACKING
+RUN mkdir -p /tools/cracking
+WORKDIR /tools/cracking
+
+# Install john the ripper
+RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
+WORKDIR /tools/cracking/john/src
+RUN ./configure && make -s clean && make -sj4
+
+# BUILDER OS ENUMERATION
+FROM baseline as osEnumeration
+RUN mkdir /temp
+WORKDIR /temp
+
+# Download htbenum
+RUN git clone --depth 1 https://github.com/SolomonSklash/htbenum.git
+WORKDIR /temp/htbenum
+RUN chmod +x htbenum.sh
+RUN ./htbenum.sh -u
+
+# Download linux smart enumeration
+WORKDIR /temp
+RUN git clone --depth 1 https://github.com/diego-treitos/linux-smart-enumeration.git
+WORKDIR /temp/linux-smart-enumeration
+RUN chmod +x lse.sh
+
+# Download linenum
+WORKDIR /temp
+RUN git clone --depth 1 https://github.com/rebootuser/LinEnum.git
+WORKDIR /temp/LinEnum
+RUN chmod +x LinEnum.sh
+
+# Download enum4linux
+WORKDIR /temp
+RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
+
+# Download PEASS - Privilege Escalation Awesome Scripts SUITE
+RUN mkdir -p /temo/peass
+WORKDIR /temp/peass
+RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe
+RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe
+RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe
+
+# Install smbmap
+WORKDIR /temp
+RUN git clone --depth 1 https://github.com/ShawnDEvans/smbmap.git
+
+# Download pspy
+RUN mkdir -p /temp/pspy
+WORKDIR /temp/pspy
+RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
+RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
+RUN chmod +x *
+
+# OS ENUMERATION
+FROM builder6 as builder7
+COPY --from=osEnumeration /temp/ /tools/osEnumeration/
+WORKDIR /tools/osEnumeration
+
+# Download Windows Exploit Suggester - Next Generation
+RUN git clone --depth 1 https://github.com/bitsadmin/wesng.git
+WORKDIR /tools/osEnumeration/wesng
+RUN python3 wes.py --update
+
+# BUILDER EXPLOITS
+FROM baseline as exploits
+RUN mkdir /temp
+WORKDIR /temp
+
+# Downlaod MS17-010
+RUN git clone --depth 1 https://github.com/worawit/MS17-010.git
+
+# Downlaod AutoBlue-MS17-010
+RUN git clone --depth 1 https://github.com/3ndG4me/AutoBlue-MS17-010.git
+
+# Download privexchange
+RUN git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
+
+# EXPLOITS
+FROM builder7 as builder8
+COPY --from=exploits /temp/ /tools/exploits/
+WORKDIR /tools/exploits
+
 # Install searchsploit
 RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb
 RUN sed 's|path_array+=(.*)|path_array+=("/opt/exploitdb")|g' /opt/exploitdb/.searchsploit_rc > ~/.searchsploit_rc
 RUN ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
 
-# Install dirsearch
-RUN mkdir -p /tools/recon
-WORKDIR /tools/recon
-RUN git clone --depth 1 https://github.com/maurosoria/dirsearch.git
-
-# Install enum tools
-RUN mkdir -p /tools/enum
-WORKDIR /tools/enum
-RUN git clone --depth 1 https://github.com/diego-treitos/linux-smart-enumeration.git
-WORKDIR /tools/enum/linux-smart-enumeration
-RUN chmod +x lse.sh
-WORKDIR /tools/enum
-RUN git clone --depth 1 https://github.com/rebootuser/LinEnum.git
-WORKDIR /tools/enum/LinEnum
-RUN chmod +x LinEnum.sh
-WORKDIR /tools/enum
-RUN git clone --depth 1 https://github.com/SolomonSklash/htbenum.git
-WORKDIR /tools/enum/htbenum
-RUN chmod +x htbenum.sh
-RUN ./htbenum.sh -u
-WORKDIR /tools/enum
-RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
-
-# Install john the ripper
-RUN mkdir -p /tools/cracking
-WORKDIR /tools/cracking
-RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
-WORKDIR /tools/cracking/john/src
-RUN ./configure && make -s clean && make -sj4
-
-# Download crowbar
-WORKDIR /tools/cracking
-RUN git clone --depth 1 https://github.com/galkan/crowbar.git
-
-# Download patator
-WORKDIR /tools/cracking
-RUN git clone --depth 1 https://github.com/lanjelot/patator.git
-
-# Download Pass-the-Hash
-WORKDIR /tools/cracking
-RUN git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git
-
-# Download Mimikatz
-WORKDIR /tools/cracking
-RUN wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip
-RUN unzip mimikatz.zip
-RUN rm mimikatz.zip
-
-# Install smbmap
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/ShawnDEvans/smbmap.git
-
-# Install sqlmap
-WORKDIR /tools
-RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev
-
-# Install crackmapexec
-WORKDIR /tools
-RUN git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
-WORKDIR /tools/CrackMapExec
-
-# Download PEASS - Privilege Escalation Awesome Scripts SUITE
-RUN mkdir -p /tools/PEASS
-WORKDIR /tools/PEASS
-RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe
-RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe
-RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe
-
 # Install metasploit
-RUN mkdir -p /tools/metasploit
-WORKDIR /tools/metasploit
 RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
   chmod 755 msfinstall && \
   ./msfinstall
 RUN msfupdate
 
-# Download pspy
-RUN mkdir -p /tools/pspy
-WORKDIR /tools/pspy
-RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
-RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
-RUN chmod +x *
+# BUILDER WINDOWS
+FROM baseline as windows
+RUN mkdir /temp
+WORKDIR /temp
 
-# Download exploits
-RUN mkdir -p /tools/exploits
-WORKDIR /tools/exploits
-RUN git clone --depth 1 https://github.com/worawit/MS17-010.git
-RUN git clone --depth 1 https://github.com/3ndG4me/AutoBlue-MS17-010.git
-RUN git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
-RUN git clone --depth 1 https://github.com/PowerShellMafia/PowerSploit.git
+# Download crackmapexec
+RUN git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
+
+# Download Nishang
 RUN git clone --depth 1 https://github.com/samratashok/nishang.git
-RUN git clone --depth 1 https://github.com/bitsadmin/wesng.git
-WORKDIR /tools/exploits/wesng
-RUN python3 wes.py --update
-WORKDIR /tools/exploits
+
+# Download juicy-potato
 RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
 
-# Passive Information tools (OSCP)
-RUN mkdir -p /tools/Passive\ Information
-WORKDIR /tools/Passive\ Information
-RUN wget --quiet https://github.com/michenriksen/gitrob/releases/download/v2.0.0-beta/gitrob_linux_amd64_2.0.0-beta.zip -O gitrob.zip
-RUN unzip gitrob.zip
-RUN rm gitrob.zip
-RUN wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks
-RUN chmod +x gitleaks
+# Download powersploit
+RUN git clone --depth 1 https://github.com/PowerShellMafia/PowerSploit.git
+
+# Download Pass-the-Hash
+RUN git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git
+
+# Download Mimikatz
+RUN wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip
+RUN unzip mimikatz.zip -d mimikatz
+RUN rm mimikatz.zip
+
+# WINDOWS
+FROM builder8 as builder9
+RUN mkdir -p /tools/windows
+COPY --from=windows /temp/ /tools/windows/
+
+# OTHER RESOURCES
+RUN mkdir -p /tools/otherResources
+WORKDIR /tools/otherResources
+
+# Download pentest-tools
+RUN git clone --depth 1 https://github.com/gwen001/pentest-tools.git
+
+# Download qsreplace
+RUN go get -u github.com/tomnomnom/qsreplace
+RUN ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
+
+# OS TUNNING
+
+# Copy banner
+COPY shell/banner /tmp
+RUN cat /tmp/banner >> /root/.zshrc
 
 # Create shortcuts
 COPY shell/alias /tmp
 RUN cat /tmp/alias >> /root/.zshrc
-
-# Copy custom scripts
-RUN mkdir -p /tools/scripts
-WORKDIR /tools/scripts
-RUN wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh
-RUN chmod +x *
 
 # Copy custom function
 COPY shell/customFunctions /tmp
