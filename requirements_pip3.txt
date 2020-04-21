@@ -3,3 +3,4 @@ wfuzz
 ldapdomaindump
 impacket
 hashid
+droopescan

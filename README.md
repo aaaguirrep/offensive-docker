@@ -100,9 +100,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [LinkFinder](https://github.com/GerbenJavado/LinkFinder.git)
 - [gowitness](https://github.com/sensepost/gowitness)
 - [aquatone](https://github.com/michenriksen/aquatone)
-
-#### Discovery
-
+- [subjack](https://github.com/haccer/subjack)
+- [droopescan](https://github.com/droope/droopescan)
 - [hakrevdns](https://github.com/hakluke/hakrevdns)
 - [whatweb](https://github.com/urbanadventurer/WhatWeb.git)
 - [wafw00z](https://github.com/EnableSecurity/wafw00f.git)

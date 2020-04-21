@@ -4,6 +4,8 @@
 ## 0.1.6
 
 * feat: add LinkFinder, chromium-browser, gowitness and aquatone
+* feat: add subjack and droopescan
+* refactor: merge discovery tools on recon folder
 
 ## 0.1.5
 

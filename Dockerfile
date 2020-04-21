@@ -138,8 +138,32 @@ RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
 RUN go get -u github.com/jaeles-project/gospider
 RUN ln -s /root/go/bin/gospider /usr/bin/gospider
 
+# BUILDER RECON
+FROM baseline as recon
+RUN mkdir /temp
+WORKDIR /temp/
+
+# Download whatweb
+RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
+
+# Download wafw00f
+RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
+
+# Install dirsearch
+RUN git clone --depth 1 https://github.com/maurosoria/dirsearch.git
+
+# Download arjun
+RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
+
+# Download joomscan
+RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
+
+# Install massdns
+RUN git clone --depth 1 https://github.com/blechschmidt/massdns.git
+
 # RECON
-RUN mkdir -p /tools/recon
+FROM builder as builder2
+COPY --from=recon /temp/ /tools/recon/
 WORKDIR /tools/recon
 
 # Install gobuster
@@ -149,6 +173,10 @@ RUN ln -s /root/go/bin/gobuster /usr/bin/gobuster
 # Install gowitness
 RUN go get -u github.com/sensepost/gowitness
 RUN ln -s /root/go/bin/gowitness /usr/bin/gowitness
+
+# Install subjack
+RUN go get github.com/haccer/subjack
+RUN ln -s /root/go/bin/subjack /usr/bin/subjack
 
 # Install aquatone
 RUN wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip
@@ -172,34 +200,6 @@ WORKDIR /tools/recon
 RUN wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip
 RUN unzip amass.zip -d amass && rm amass.zip
 RUN ln -s /tools/recon/amass/amass_v3.5.5_linux_amd64/amass /usr/bin/amass
-
-# Install massdns
-WORKDIR /tools/recon
-RUN git clone --depth 1 https://github.com/blechschmidt/massdns.git
-
-# BUILDER DISCOVERY
-FROM baseline as discovery
-RUN mkdir /temp
-WORKDIR /temp/
-
-# Download whatweb
-RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
-
-# Download wafw00f
-RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
-
-# Install dirsearch
-RUN git clone --depth 1 https://github.com/maurosoria/dirsearch.git
-
-# Download arjun
-RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
-
-# Download joomscan
-RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
-
-# DISCOVERY
-FROM builder as builder2
-COPY --from=discovery /temp/ /tools/discovery/
 
 # Install hakrevdns
 RUN go get github.com/hakluke/hakrevdns
