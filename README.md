@@ -97,6 +97,9 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [Knock](https://github.com/guelfoweb/knock)
 - [MassDNS](https://github.com/blechschmidt/massdns)
 - [Altdns](https://github.com/infosec-au/altdns)
+- [LinkFinder](https://github.com/GerbenJavado/LinkFinder.git)
+- [gowitness](https://github.com/sensepost/gowitness)
+- [aquatone](https://github.com/michenriksen/aquatone)
 
 #### Discovery
 
@@ -190,7 +193,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 #### Other resources
 
 - [pentest-tools](https://github.com/gwen001/pentest-tools) from [@gwen001](https://github.com/gwen001)
-- [qsreplace](https://github.com/tomnomnom/qsreplace) from [@tomnomnom](https://github.com/tomnomnom/qsreplace)
+- [qsreplace](https://github.com/tomnomnom/qsreplace) from [@tomnomnom](https://github.com/tomnomnom)
 
 ### Custom functions
 

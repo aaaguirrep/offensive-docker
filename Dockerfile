@@ -50,6 +50,7 @@ RUN \
     medusa \
     hashcat \
     libwww-perl \
+    chromium-browser \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -145,10 +146,26 @@ WORKDIR /tools/recon
 RUN go get github.com/OJ/gobuster
 RUN ln -s /root/go/bin/gobuster /usr/bin/gobuster
 
+# Install gowitness
+RUN go get -u github.com/sensepost/gowitness
+RUN ln -s /root/go/bin/gowitness /usr/bin/gowitness
+
+# Install aquatone
+RUN wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip
+RUN unzip aquatone.zip -d aquatone && rm aquatone.zip
+RUN ln -s /tools/recon/aquatone/aquatone /usr/bin/aquatone
+
 # Install knock
 RUN git clone --depth 1 https://github.com/guelfoweb/knock.git
 WORKDIR /tools/recon/knock
 RUN python setup.py install
+
+# Install linkfinder
+WORKDIR /tools/recon
+RUN git clone --depth 1 https://github.com/GerbenJavado/LinkFinder.git
+WORKDIR /tools/recon/LinkFinder
+RUN python3 setup.py install
+RUN pip3 install -r requirements.txt
 
 # Install amass
 WORKDIR /tools/recon

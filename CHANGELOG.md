@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.1.5-->
 
+## 0.1.6
+
+* feat: add LinkFinder, chromium-browser, gowitness and aquatone
+
 ## 0.1.5
 
 * feat: add xsstriker, gitgraber, gospider, pentest-tools and qsreplace
