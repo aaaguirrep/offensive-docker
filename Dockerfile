@@ -119,25 +119,6 @@ WORKDIR /tools/portScanning
 RUN wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh
 RUN chmod +x *
 
-# CRAWLER
-RUN mkdir -p /tools/crawler
-WORKDIR /tools/crawler
-
-# Install hakrawler
-RUN go get github.com/hakluke/hakrawler
-RUN ln -s /root/go/bin/hakrawler /usr/bin/hakrawler
-
-# Install Photon
-RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
-
-# Install waybackurls
-RUN go get github.com/tomnomnom/waybackurls
-RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
-
-# Download gospider
-RUN go get -u github.com/jaeles-project/gospider
-RUN ln -s /root/go/bin/gospider /usr/bin/gospider
-
 # BUILDER RECON
 FROM baseline as recon
 RUN mkdir /temp
@@ -161,6 +142,21 @@ RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
 # Install massdns
 RUN git clone --depth 1 https://github.com/blechschmidt/massdns.git
 
+# Install striker
+RUN git clone --depth 1 https://github.com/s0md3v/Striker.git
+
+# Install Photon
+RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
+
+# Download CMSeek
+RUN git clone --depth 1 https://github.com/Tuhinshubhra/CMSeeK.git
+
+# Download gowitness
+RUN mkdir -p /temp/gowitness
+WORKDIR /temp/gowitness
+RUN wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.3/gowitness-linux-amd64 -O gowitness
+RUN chmod +x gowitness
+
 # RECON
 FROM builder as builder2
 COPY --from=recon /temp/ /tools/recon/
@@ -171,8 +167,7 @@ RUN go get github.com/OJ/gobuster
 RUN ln -s /root/go/bin/gobuster /usr/bin/gobuster
 
 # Install gowitness
-RUN go get -u github.com/sensepost/gowitness
-RUN ln -s /root/go/bin/gowitness /usr/bin/gowitness
+RUN ln -s /tools/recon/gowitness/gowitness /usr/bin/gowitness
 
 # Install subjack
 RUN go get github.com/haccer/subjack
@@ -208,6 +203,22 @@ RUN ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns
 # Install ffuf
 RUN go get github.com/ffuf/ffuf
 RUN ln -s /root/go/bin/ffuf /usr/bin/ffuf
+
+# Install httprobe
+RUN go get -u github.com/tomnomnom/httprobe
+RUN ln -s /root/go/bin/httprobe /usr/bin/httprobe
+
+# Install hakrawler
+RUN go get github.com/hakluke/hakrawler
+RUN ln -s /root/go/bin/hakrawler /usr/bin/hakrawler
+
+# Install waybackurls
+RUN go get github.com/tomnomnom/waybackurls
+RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
+
+# Download gospider
+RUN go get -u github.com/jaeles-project/gospider
+RUN ln -s /root/go/bin/gospider /usr/bin/gospider
 
 # BUILDER WORDLIST
 FROM baseline as wordlist

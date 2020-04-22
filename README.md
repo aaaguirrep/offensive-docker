@@ -44,36 +44,36 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 ### Operative system tools
 
-    rdate
-    vim
-    zsh
-    oh-my-zsh
-    locate
-    cifs-utils
+- rdate
+- vim
+- zsh
+- oh-my-zsh
+- locate
+- cifs-utils
 
 ### Network tools
 
-    traceroute
-    telnet
-    net-tools
-    iputils-ping
-    tcpdump
-    openvpn
-    whois
-    host
-    prips
+- traceroute
+- telnet
+- net-tools
+- iputils-ping
+- tcpdump
+- openvpn
+- whois
+- host
+- prips
 
 ### Developer tools
 
-    git
-    curl
-    wget
-    ruby
-    go
-    python
-    python-pip
-    python3
-    python3-pip
+- git
+- curl
+- wget
+- ruby
+- go
+- python
+- python-pip
+- python3
+- python3-pip
 
 ### Pentest tools
 
@@ -83,35 +83,45 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [masscan](https://github.com/robertdavidgraham/masscan)
 - [ScanPorts](https://github.com/aaaguirrep/scanPorts) created by [@s4vitar](https://github.com/s4vitar) with some improvements
 
-#### Crawler
-
-- [hakrawler](https://github.com/hakluke/hakrawler)
-- [Photon](https://github.com/s0md3v/Photon.git)
-- [waybackurls](https://github.com/tomnomnom/waybackurls)
-- [gospider](https://github.com/jaeles-project/gospider)
-
 #### Recon
 
-- [Amass](https://github.com/OWASP/Amass)
-- [GoBuster](https://github.com/OJ/gobuster)
-- [Knock](https://github.com/guelfoweb/knock)
-- [MassDNS](https://github.com/blechschmidt/massdns)
-- [Altdns](https://github.com/infosec-au/altdns)
-- [LinkFinder](https://github.com/GerbenJavado/LinkFinder.git)
-- [gowitness](https://github.com/sensepost/gowitness)
-- [aquatone](https://github.com/michenriksen/aquatone)
-- [subjack](https://github.com/haccer/subjack)
-- [droopescan](https://github.com/droope/droopescan)
-- [hakrevdns](https://github.com/hakluke/hakrevdns)
-- [whatweb](https://github.com/urbanadventurer/WhatWeb.git)
-- [wafw00z](https://github.com/EnableSecurity/wafw00f.git)
-- [nikto](https://github.com/sullo/nikto)
-- [wfuzz](https://github.com/xmendez/wfuzz)
-- [dirsearch](https://github.com/maurosoria/dirsearch.git)
-- [ffuf](https://github.com/ffuf/ffuf)
-- [arjun](https://github.com/s0md3v/Arjun)
-- [wpscan](https://github.com/wpscanteam/wpscan)
-- [joomscan](https://github.com/rezasp/joomscan)
+- **Subdomains**
+  - [Amass](https://github.com/OWASP/Amass)
+  - [GoBuster](https://github.com/OJ/gobuster)
+  - [Knock](https://github.com/guelfoweb/knock)
+  - [MassDNS](https://github.com/blechschmidt/massdns)
+  - [Altdns](https://github.com/infosec-au/altdns)
+- **Subdomain takeover**
+  - [subjack](https://github.com/haccer/subjack)
+- **DNS Lookups**
+  - [hakrevdns](https://github.com/hakluke/hakrevdns)
+- **Screenshot**
+  - [gowitness](https://github.com/sensepost/gowitness)
+  - [aquatone](https://github.com/michenriksen/aquatone)
+- **Crawler**
+  - [hakrawler](https://github.com/hakluke/hakrawler)
+  - [Photon](https://github.com/s0md3v/Photon.git)
+  - [waybackurls](https://github.com/tomnomnom/waybackurls)
+  - [gospider](https://github.com/jaeles-project/gospider)
+- **Search directories**
+  - [dirsearch](https://github.com/maurosoria/dirsearch.git)
+- **Fuzzer**
+  - [wfuzz](https://github.com/xmendez/wfuzz)
+  - [ffuf](https://github.com/ffuf/ffuf)
+- **Web Scanning**
+  - [whatweb](https://github.com/urbanadventurer/WhatWeb.git)
+  - [wafw00z](https://github.com/EnableSecurity/wafw00f.git)
+  - [nikto](https://github.com/sullo/nikto)
+  - [arjun](https://github.com/s0md3v/Arjun)
+  - [httprobe](https://github.com/tomnomnom/httprobe)
+  - [striker](https://github.com/s0md3v/Striker.git)
+- **CMS**
+  - [wpscan](https://github.com/wpscanteam/wpscan)
+  - [joomscan](https://github.com/rezasp/joomscan)
+  - [droopescan](https://github.com/droope/droopescan)
+  - [cmseek](https://github.com/Tuhinshubhra/CMSeeK)
+- **Search JS**
+  - [LinkFinder](https://github.com/GerbenJavado/LinkFinder.git)
 
 #### Wordlist
 

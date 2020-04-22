@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.1.6-->
 
+## 0.1.7
+
+* feat: add strike, httprobe and cmseek
+
 ## 0.1.6
 
 * feat: add LinkFinder, chromium-browser, gowitness and aquatone
