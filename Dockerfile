@@ -174,6 +174,9 @@ RUN mv subfinder-linux-amd64 subfinder
 WORKDIR /temp
 RUN git clone --depth 1 https://github.com/aboul3la/Sublist3r.git
 
+# Download spiderfoot
+RUN git clone --depth 1 https://github.com/smicallef/spiderfoot
+
 # RECON
 FROM builder as builder2
 COPY --from=recon /temp/ /tools/recon/
@@ -243,6 +246,10 @@ RUN ln -s /root/go/bin/getJS /usr/bin/getJS
 
 # Install findomain
 RUN ln -s /tools/recon/findomain/findomain /usr/bin/findomain
+
+# Install spiderfoot
+WORKDIR /tools/recon/spiderfoot
+RUN pip3 install -r requirements.txt
 
 # BUILDER WORDLIST
 FROM baseline as wordlist

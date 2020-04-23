@@ -5,6 +5,7 @@
 
 * feat: add strike, httprobe and cmseek
 * feat: add spyse, getJS, sublist3r, findomain and subfinder
+* feat: add spiderfoot
 
 ## 0.1.6
 
