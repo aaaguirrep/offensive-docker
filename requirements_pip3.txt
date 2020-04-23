@@ -4,3 +4,6 @@ ldapdomaindump
 impacket
 hashid
 droopescan
+spyse.py
+#sublist3r dependency
+argparse

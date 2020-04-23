@@ -83,7 +83,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [masscan](https://github.com/robertdavidgraham/masscan)
 - [ScanPorts](https://github.com/aaaguirrep/scanPorts) created by [@s4vitar](https://github.com/s4vitar) with some improvements
 
-#### Recon
+#### 🔍 Recon
 
 - **Subdomains**
   - [Amass](https://github.com/OWASP/Amass)
@@ -91,11 +91,15 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [Knock](https://github.com/guelfoweb/knock)
   - [MassDNS](https://github.com/blechschmidt/massdns)
   - [Altdns](https://github.com/infosec-au/altdns)
+  - [spyse](https://github.com/zeropwn/spyse.py)
+  - [Sublist3r](https://github.com/aboul3la/Sublist3r)
+  - [findomain](https://github.com/Edu4rdSHL/findomain)
+  - [subfinder](https://github.com/projectdiscovery/subfinder)
 - **Subdomain takeover**
   - [subjack](https://github.com/haccer/subjack)
 - **DNS Lookups**
   - [hakrevdns](https://github.com/hakluke/hakrevdns)
-- **Screenshot**
+- 📷 **Screenshot**
   - [gowitness](https://github.com/sensepost/gowitness)
   - [aquatone](https://github.com/michenriksen/aquatone)
 - **Crawler**
@@ -122,6 +126,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [cmseek](https://github.com/Tuhinshubhra/CMSeeK)
 - **Search JS**
   - [LinkFinder](https://github.com/GerbenJavado/LinkFinder.git)
+  - [getJS](https://github.com/003random/getJS)
 
 #### Wordlist
 
@@ -210,8 +215,12 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 ### Other services
 
-    apache2
-    squid
+- apache2
+- squid
+
+## 📝 Documentation
+
+See the project's [wiki](https://github.com/aaaguirrep/pentest/wiki) for documentation.
 
 ## Usage
 
@@ -307,7 +316,7 @@ Create a new Dockerfile with the next steps, build a new image and run a new con
     # Save and load command history in your local environment
     RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
 
-## :heavy_check_mark: Environment tested
+## ✅ Environment tested
 
 The image was tested in the following environments:
 
@@ -315,13 +324,15 @@ The image was tested in the following environments:
 
 - Docker service for Linux instance on Google Cloud Platform: Docker version 19.03.6, build 369ce74a3c
 
-## :warning: Warning
+## ⚠️ Warning
 
-Do not save information on container directories because it will be lost after delete the container, you should save information in your local environment using the parameter -v when you run the container. For instance:
+- Do not save information on container directories because it will be lost after delete the container, you should save information in your local environment using the parameter -v when you run the container. For instance:
 
-    docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
+      docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
 
-The above command specify a path local directory mapped with /pentest container directory. You should save all information under /pentest directory.
+  The above command specify a path local directory mapped with /pentest container directory. You should save all information under /pentest directory.
+
+- Use hashcat and john the ripper on controlled environments as CTF. You can experiment issues.
 
 ## Contributing
 

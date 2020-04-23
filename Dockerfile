@@ -157,6 +157,23 @@ WORKDIR /temp/gowitness
 RUN wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.3/gowitness-linux-amd64 -O gowitness
 RUN chmod +x gowitness
 
+# Download findomain
+RUN mkdir -p /temp/findomain
+WORKDIR /temp/findomain
+RUN wget --quiet https://github.com/Edu4rdSHL/findomain/releases/download/1.5.0/findomain-linux -O findomain
+RUN chmod +x findomain
+
+# Download subfinder
+RUN mkdir -p /temp/subfinder
+WORKDIR /temp/subfinder
+RUN wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.3.2/subfinder-linux-amd64.tar
+RUN tar -xvf subfinder-linux-amd64.tar && rm subfinder-linux-amd64.tar
+RUN mv subfinder-linux-amd64 subfinder
+
+# Download Sublist3r
+WORKDIR /temp
+RUN git clone --depth 1 https://github.com/aboul3la/Sublist3r.git
+
 # RECON
 FROM builder as builder2
 COPY --from=recon /temp/ /tools/recon/
@@ -219,6 +236,13 @@ RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
 # Download gospider
 RUN go get -u github.com/jaeles-project/gospider
 RUN ln -s /root/go/bin/gospider /usr/bin/gospider
+
+# Download getJS
+RUN go get github.com/003random/getJS
+RUN ln -s /root/go/bin/getJS /usr/bin/getJS
+
+# Install findomain
+RUN ln -s /tools/recon/findomain/findomain /usr/bin/findomain
 
 # BUILDER WORDLIST
 FROM baseline as wordlist

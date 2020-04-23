@@ -4,6 +4,7 @@
 ## 0.1.7
 
 * feat: add strike, httprobe and cmseek
+* feat: add spyse, getJS, sublist3r, findomain and subfinder
 
 ## 0.1.6
 
