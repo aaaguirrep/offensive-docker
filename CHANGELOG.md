@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.1.7-->
 
+## 0.1.8
+
+* refactor: apply dockerfile best practices
+
 ## 0.1.7
 
 * feat: add strike, httprobe and cmseek

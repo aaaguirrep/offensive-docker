@@ -75,7 +75,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - python3
 - python3-pip
 
-### Pentest tools
+### 🔪 Pentest tools
 
 #### Port scanning
 
@@ -103,12 +103,12 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - 📷 **Screenshot**
   - [gowitness](https://github.com/sensepost/gowitness)
   - [aquatone](https://github.com/michenriksen/aquatone)
-- **Crawler**
+- 🕸️ **Crawler**
   - [hakrawler](https://github.com/hakluke/hakrawler)
   - [Photon](https://github.com/s0md3v/Photon.git)
   - [waybackurls](https://github.com/tomnomnom/waybackurls)
   - [gospider](https://github.com/jaeles-project/gospider)
-- **Search directories**
+- 📁 **Search directories**
   - [dirsearch](https://github.com/maurosoria/dirsearch.git)
 - **Fuzzer**
   - [wfuzz](https://github.com/xmendez/wfuzz)
@@ -223,7 +223,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 See the project's [wiki](https://github.com/aaaguirrep/pentest/wiki) for documentation.
 
-## Usage
+## 🛠️ Usage
 
 ### Prerequisites
 
@@ -272,7 +272,7 @@ There are differents use cases for use the image and you should know how to run 
 
 5. Tools are downloaded in /tools directory.
 
-## Nice configurations
+## ⚙️ Nice configurations
 
 You can set up the docker image with nice configurations like as:
 

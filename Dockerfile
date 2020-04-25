@@ -1,7 +1,7 @@
 FROM ubuntu as baseline
 
-LABEL maintainer="Arsenio Aguirre"
-LABEL email="a_aguirre117@hotmail.com"
+LABEL maintainer="Arsenio Aguirre" \
+      email="a_aguirre117@hotmail.com"
 
 # Install packages
 RUN \
@@ -82,42 +82,44 @@ FROM baseline as builder
 # SERVICES
 
 # Apache configuration
-RUN sed -i 's/It works!/It works form container!/g' /var/www/html/index.html
-
+RUN \
+    sed -i 's/It works!/It works form container!/g' /var/www/html/index.html && \
 # Squid configuration
-RUN echo "http_access allow all" >> /etc/squid/squid.conf
-RUN sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf
-
+    echo "http_access allow all" >> /etc/squid/squid.conf && \
+    sed -i 's/http_access deny all/#http_access deny all/g' /etc/squid/squid.conf && \
 # OS TOOLS
-
 # Install oh-my-zsh
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-RUN sed -i '1i export LC_CTYPE="C.UTF-8"' /root/.zshrc
-RUN sed -i '2i export LC_ALL="C.UTF-8"' /root/.zshrc
-RUN sed -i '3i export LANG="C.UTF-8"' /root/.zshrc
-RUN sed -i '3i export LANGUAGE="C.UTF-8"' /root/.zshrc
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended && \
+    sed -i '1i export LC_CTYPE="C.UTF-8"' /root/.zshrc && \
+    sed -i '2i export LC_ALL="C.UTF-8"' /root/.zshrc && \
+    sed -i '3i export LANG="C.UTF-8"' /root/.zshrc && \
+    sed -i '3i export LANGUAGE="C.UTF-8"' /root/.zshrc
 
 # Install python dependencies
 COPY requirements_pip3.txt /tmp
 COPY requirements_pip.txt /tmp
-RUN pip3 install -r /tmp/requirements_pip3.txt
-RUN pip install -r /tmp/requirements_pip.txt
+RUN \
+    pip3 install -r /tmp/requirements_pip3.txt && \
+    pip install -r /tmp/requirements_pip.txt
 
 # DEVELOPER TOOLS
 
 # Install go
 WORKDIR /tmp
-RUN wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz
-RUN tar -C /usr/local -xzf go.tar.gz
+RUN \
+    wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz && \
+    tar -C /usr/local -xzf go.tar.gz
 ENV PATH "$PATH:/usr/local/go/bin"
+ENV GOPATH "/root/go"
 
 # PORT SCANNING
 RUN mkdir -p /tools/portScanning
 WORKDIR /tools/portScanning
 
 # Download ScanPorts
-RUN wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh
-RUN chmod +x *
+RUN \
+    wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh && \
+    chmod +x *
 
 # BUILDER RECON
 FROM baseline as recon
@@ -125,57 +127,54 @@ RUN mkdir /temp
 WORKDIR /temp/
 
 # Download whatweb
-RUN git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git
-
+RUN \
+    git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git && \
 # Download wafw00f
-RUN git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git
-
+    git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git && \
 # Install dirsearch
-RUN git clone --depth 1 https://github.com/maurosoria/dirsearch.git
-
+    git clone --depth 1 https://github.com/maurosoria/dirsearch.git && \
 # Download arjun
-RUN git clone --depth 1 https://github.com/s0md3v/Arjun.git
-
+    git clone --depth 1 https://github.com/s0md3v/Arjun.git && \
 # Download joomscan
-RUN git clone --depth 1 https://github.com/rezasp/joomscan.git
-
+    git clone --depth 1 https://github.com/rezasp/joomscan.git && \
 # Install massdns
-RUN git clone --depth 1 https://github.com/blechschmidt/massdns.git
-
+    git clone --depth 1 https://github.com/blechschmidt/massdns.git && \
 # Install striker
-RUN git clone --depth 1 https://github.com/s0md3v/Striker.git
-
+    git clone --depth 1 https://github.com/s0md3v/Striker.git && \
 # Install Photon
-RUN git clone --depth 1 https://github.com/s0md3v/Photon.git
-
+    git clone --depth 1 https://github.com/s0md3v/Photon.git && \
 # Download CMSeek
-RUN git clone --depth 1 https://github.com/Tuhinshubhra/CMSeeK.git
-
+    git clone --depth 1 https://github.com/Tuhinshubhra/CMSeeK.git && \
 # Download gowitness
-RUN mkdir -p /temp/gowitness
+    mkdir -p /temp/gowitness
+
 WORKDIR /temp/gowitness
-RUN wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.3/gowitness-linux-amd64 -O gowitness
-RUN chmod +x gowitness
-
+RUN \
+    wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.3/gowitness-linux-amd64 -O gowitness && \
+    chmod +x gowitness && \
 # Download findomain
-RUN mkdir -p /temp/findomain
-WORKDIR /temp/findomain
-RUN wget --quiet https://github.com/Edu4rdSHL/findomain/releases/download/1.5.0/findomain-linux -O findomain
-RUN chmod +x findomain
+    mkdir -p /temp/findomain
 
+WORKDIR /temp/findomain
+RUN \
+    wget --quiet https://github.com/Edu4rdSHL/findomain/releases/download/1.5.0/findomain-linux -O findomain && \
+    chmod +x findomain && \
 # Download subfinder
-RUN mkdir -p /temp/subfinder
+    mkdir -p /temp/subfinder
+
 WORKDIR /temp/subfinder
-RUN wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.3.2/subfinder-linux-amd64.tar
-RUN tar -xvf subfinder-linux-amd64.tar && rm subfinder-linux-amd64.tar
-RUN mv subfinder-linux-amd64 subfinder
+RUN \
+    wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.3.2/subfinder-linux-amd64.tar && \
+    tar -xvf subfinder-linux-amd64.tar && \
+    rm subfinder-linux-amd64.tar && \
+    mv subfinder-linux-amd64 subfinder
 
 # Download Sublist3r
 WORKDIR /temp
-RUN git clone --depth 1 https://github.com/aboul3la/Sublist3r.git
-
+RUN \
+    git clone --depth 1 https://github.com/aboul3la/Sublist3r.git && \
 # Download spiderfoot
-RUN git clone --depth 1 https://github.com/smicallef/spiderfoot
+    git clone --depth 1 https://github.com/smicallef/spiderfoot
 
 # RECON
 FROM builder as builder2
@@ -183,23 +182,22 @@ COPY --from=recon /temp/ /tools/recon/
 WORKDIR /tools/recon
 
 # Install gobuster
-RUN go get github.com/OJ/gobuster
-RUN ln -s /root/go/bin/gobuster /usr/bin/gobuster
-
+RUN \
+    go get github.com/OJ/gobuster && \
+    ln -s /root/go/bin/gobuster /usr/bin/gobuster && \
 # Install gowitness
-RUN ln -s /tools/recon/gowitness/gowitness /usr/bin/gowitness
-
+    ln -s /tools/recon/gowitness/gowitness /usr/bin/gowitness && \
 # Install subjack
-RUN go get github.com/haccer/subjack
-RUN ln -s /root/go/bin/subjack /usr/bin/subjack
-
+    go get github.com/haccer/subjack && \
+    ln -s /root/go/bin/subjack /usr/bin/subjack && \
 # Install aquatone
-RUN wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip
-RUN unzip aquatone.zip -d aquatone && rm aquatone.zip
-RUN ln -s /tools/recon/aquatone/aquatone /usr/bin/aquatone
-
+    wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip && \
+    unzip aquatone.zip -d aquatone  && \
+    rm aquatone.zip && \
+    ln -s /tools/recon/aquatone/aquatone /usr/bin/aquatone && \
 # Install knock
-RUN git clone --depth 1 https://github.com/guelfoweb/knock.git
+    git clone --depth 1 https://github.com/guelfoweb/knock.git
+
 WORKDIR /tools/recon/knock
 RUN python setup.py install
 
@@ -207,45 +205,42 @@ RUN python setup.py install
 WORKDIR /tools/recon
 RUN git clone --depth 1 https://github.com/GerbenJavado/LinkFinder.git
 WORKDIR /tools/recon/LinkFinder
-RUN python3 setup.py install
-RUN pip3 install -r requirements.txt
+RUN \
+    python3 setup.py install && \
+    pip3 install -r requirements.txt
 
 # Install amass
 WORKDIR /tools/recon
-RUN wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip
-RUN unzip amass.zip -d amass && rm amass.zip
-RUN ln -s /tools/recon/amass/amass_v3.5.5_linux_amd64/amass /usr/bin/amass
-
+RUN \
+    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip && \
+    unzip amass.zip -d amass && \
+    rm amass.zip && \
+    ln -s /tools/recon/amass/amass_v3.5.5_linux_amd64/amass /usr/bin/amass && \
 # Install hakrevdns
-RUN go get github.com/hakluke/hakrevdns
-RUN ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns
-
+    go get github.com/hakluke/hakrevdns && \
+    ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns && \
 # Install ffuf
-RUN go get github.com/ffuf/ffuf
-RUN ln -s /root/go/bin/ffuf /usr/bin/ffuf
-
+    go get github.com/ffuf/ffuf && \
+    ln -s /root/go/bin/ffuf /usr/bin/ffuf && \
 # Install httprobe
-RUN go get -u github.com/tomnomnom/httprobe
-RUN ln -s /root/go/bin/httprobe /usr/bin/httprobe
-
+    go get -u github.com/tomnomnom/httprobe && \
+    ln -s /root/go/bin/httprobe /usr/bin/httprobe && \
 # Install hakrawler
-RUN go get github.com/hakluke/hakrawler
-RUN ln -s /root/go/bin/hakrawler /usr/bin/hakrawler
-
+    go get github.com/hakluke/hakrawler && \
+    ln -s /root/go/bin/hakrawler /usr/bin/hakrawler && \
 # Install waybackurls
-RUN go get github.com/tomnomnom/waybackurls
-RUN ln -s /root/go/bin/waybackurls /usr/bin/waybackurls
-
+    go get github.com/tomnomnom/waybackurls && \
+    ln -s /root/go/bin/waybackurls /usr/bin/waybackurls && \
 # Download gospider
-RUN go get -u github.com/jaeles-project/gospider
-RUN ln -s /root/go/bin/gospider /usr/bin/gospider
-
+    go get -u github.com/jaeles-project/gospider && \
+    ln -s /root/go/bin/gospider /usr/bin/gospider && \
 # Download getJS
-RUN go get github.com/003random/getJS
-RUN ln -s /root/go/bin/getJS /usr/bin/getJS
-
+    go get github.com/003random/getJS && \
+    ln -s /root/go/bin/getJS /usr/bin/getJS && \
 # Install findomain
-RUN ln -s /tools/recon/findomain/findomain /usr/bin/findomain
+    ln -s /tools/recon/findomain/findomain /usr/bin/findomain && \
+# Install subfinder
+    ln -s /tools/recon/subfinder/subfinder /usr/bin/subfinder
 
 # Install spiderfoot
 WORKDIR /tools/recon/spiderfoot
@@ -257,12 +252,13 @@ RUN mkdir /temp
 WORKDIR /temp
 
 # Download wordlists
-RUN git clone --depth 1 https://github.com/xmendez/wfuzz.git
-RUN git clone --depth 1 https://github.com/danielmiessler/SecLists.git
-RUN git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git
-RUN git clone --depth 1 https://github.com/daviddias/node-dirbuster.git
-RUN git clone --depth 1 https://github.com/v0re/dirb.git
-RUN curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+RUN \
+    git clone --depth 1 https://github.com/xmendez/wfuzz.git && \
+    git clone --depth 1 https://github.com/danielmiessler/SecLists.git && \
+    git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git && \
+    git clone --depth 1 https://github.com/daviddias/node-dirbuster.git && \
+    git clone --depth 1 https://github.com/v0re/dirb.git && \
+    curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
 # WORDLIST
 FROM builder2 as builder3
@@ -274,19 +270,17 @@ RUN mkdir /temp
 WORKDIR /temp
 
 # Download gitGrabber
-RUN git clone --depth 1 https://github.com/hisxo/gitGraber.git
-
+RUN \
+    git clone --depth 1 https://github.com/hisxo/gitGraber.git && \
 # Install gitrob
-RUN wget --quiet https://github.com/michenriksen/gitrob/releases/download/v2.0.0-beta/gitrob_linux_amd64_2.0.0-beta.zip -O gitrob.zip
-RUN unzip gitrob.zip -d gitrob
-RUN rm gitrob.zip
-
+    wget --quiet https://github.com/michenriksen/gitrob/releases/download/v2.0.0-beta/gitrob_linux_amd64_2.0.0-beta.zip -O gitrob.zip && \
+    unzip gitrob.zip -d gitrob && \
+    rm gitrob.zip && \
 # Install gitleaks
-RUN wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks
-RUN chmod +x gitleaks
-
+    wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks && \
+    chmod +x gitleaks && \
 # Download github-search
-RUN git clone --depth 1 https://github.com/gwen001/github-search.git
+    git clone --depth 1 https://github.com/gwen001/github-search.git
 
 # GIT REPOSITORIES
 FROM builder3 as builder4
@@ -298,10 +292,10 @@ RUN mkdir /temp
 WORKDIR /temp
 
 # Install sqlmap
-RUN git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap
-
+RUN \
+    git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap && \
 # Download XSStrike
-RUN git clone --depth 1 https://github.com/s0md3v/XSStrike.git
+    git clone --depth 1 https://github.com/s0md3v/XSStrike.git
 
 # OWASP
 FROM builder4 as builder5
@@ -313,10 +307,10 @@ RUN mkdir /temp
 WORKDIR /temp
 
 # Download crowbar
-RUN git clone --depth 1 https://github.com/galkan/crowbar.git
-
+RUN \
+    git clone --depth 1 https://github.com/galkan/crowbar.git && \
 # Download patator
-RUN git clone --depth 1 https://github.com/lanjelot/patator.git
+    git clone --depth 1 https://github.com/lanjelot/patator.git
 
 # BRUTE FORCE
 FROM builder5 as builder6
@@ -339,8 +333,9 @@ WORKDIR /temp
 # Download htbenum
 RUN git clone --depth 1 https://github.com/SolomonSklash/htbenum.git
 WORKDIR /temp/htbenum
-RUN chmod +x htbenum.sh
-RUN ./htbenum.sh -u
+RUN \
+    chmod +x htbenum.sh && \
+    ./htbenum.sh -u
 
 # Download linux smart enumeration
 WORKDIR /temp
@@ -356,25 +351,29 @@ RUN chmod +x LinEnum.sh
 
 # Download enum4linux
 WORKDIR /temp
-RUN git clone --depth 1 https://github.com/portcullislabs/enum4linux.git
-
+RUN \
+    git clone --depth 1 https://github.com/portcullislabs/enum4linux.git && \
 # Download PEASS - Privilege Escalation Awesome Scripts SUITE
-RUN mkdir -p /temo/peass
+    mkdir -p /temo/peass
+
 WORKDIR /temp/peass
-RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe
-RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe
-RUN wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe
+RUN \
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe && \
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe && \
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe
 
 # Install smbmap
 WORKDIR /temp
-RUN git clone --depth 1 https://github.com/ShawnDEvans/smbmap.git
-
+RUN \
+    git clone --depth 1 https://github.com/ShawnDEvans/smbmap.git && \
 # Download pspy
-RUN mkdir -p /temp/pspy
+    mkdir -p /temp/pspy
+
 WORKDIR /temp/pspy
-RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32
-RUN wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64
-RUN chmod +x *
+RUN \
+    wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy32 && \
+    wget -q https://github.com/DominicBreuker/pspy/releases/download/v1.2.0/pspy64 && \
+    chmod +x *
 
 # OS ENUMERATION
 FROM builder6 as builder7
@@ -392,13 +391,12 @@ RUN mkdir /temp
 WORKDIR /temp
 
 # Downlaod MS17-010
-RUN git clone --depth 1 https://github.com/worawit/MS17-010.git
-
+RUN \
+    git clone --depth 1 https://github.com/worawit/MS17-010.git && \
 # Downlaod AutoBlue-MS17-010
-RUN git clone --depth 1 https://github.com/3ndG4me/AutoBlue-MS17-010.git
-
+    git clone --depth 1 https://github.com/3ndG4me/AutoBlue-MS17-010.git && \
 # Download privexchange
-RUN git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
+    git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
 
 # EXPLOITS
 FROM builder7 as builder8
@@ -406,15 +404,15 @@ COPY --from=exploits /temp/ /tools/exploits/
 WORKDIR /tools/exploits
 
 # Install searchsploit
-RUN git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb
-RUN sed 's|path_array+=(.*)|path_array+=("/opt/exploitdb")|g' /opt/exploitdb/.searchsploit_rc > ~/.searchsploit_rc
-RUN ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit
-
+RUN \
+    git clone --depth 1 https://github.com/offensive-security/exploitdb.git /opt/exploitdb && \
+    sed 's|path_array+=(.*)|path_array+=("/opt/exploitdb")|g' /opt/exploitdb/.searchsploit_rc > ~/.searchsploit_rc && \
+    ln -sf /opt/exploitdb/searchsploit /usr/local/bin/searchsploit && \
 # Install metasploit
-RUN curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
-  chmod 755 msfinstall && \
-  ./msfinstall
-RUN msfupdate
+    curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall && \
+    chmod 755 msfinstall && \
+    ./msfinstall && \
+    msfupdate
 
 # BUILDER WINDOWS
 FROM baseline as windows
@@ -422,24 +420,20 @@ RUN mkdir /temp
 WORKDIR /temp
 
 # Download crackmapexec
-RUN git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec
-
+RUN \
+    git clone --recursive https://github.com/byt3bl33d3r/CrackMapExec && \
 # Download Nishang
-RUN git clone --depth 1 https://github.com/samratashok/nishang.git
-
+    git clone --depth 1 https://github.com/samratashok/nishang.git && \
 # Download juicy-potato
-RUN git clone --depth 1 https://github.com/ohpe/juicy-potato.git
-
+    git clone --depth 1 https://github.com/ohpe/juicy-potato.git && \
 # Download powersploit
-RUN git clone --depth 1 https://github.com/PowerShellMafia/PowerSploit.git
-
+    git clone --depth 1 https://github.com/PowerShellMafia/PowerSploit.git && \
 # Download Pass-the-Hash
-RUN git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git
-
+    git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git && \
 # Download Mimikatz
-RUN wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip
-RUN unzip mimikatz.zip -d mimikatz
-RUN rm mimikatz.zip
+    wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip && \
+    unzip mimikatz.zip -d mimikatz && \
+    rm mimikatz.zip
 
 # WINDOWS
 FROM builder8 as builder9
@@ -451,28 +445,24 @@ RUN mkdir -p /tools/otherResources
 WORKDIR /tools/otherResources
 
 # Download pentest-tools
-RUN git clone --depth 1 https://github.com/gwen001/pentest-tools.git
-
+RUN \
+    git clone --depth 1 https://github.com/gwen001/pentest-tools.git && \
 # Download qsreplace
-RUN go get -u github.com/tomnomnom/qsreplace
-RUN ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
+    go get -u github.com/tomnomnom/qsreplace && \
+    ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
 
 # OS TUNNING
 
+COPY shell/ /tmp
 # Copy banner
-COPY shell/banner /tmp
-RUN cat /tmp/banner >> /root/.zshrc
-
+RUN \
+    cat /tmp/banner >> /root/.zshrc && \
 # Create shortcuts
-COPY shell/alias /tmp
-RUN cat /tmp/alias >> /root/.zshrc
-
+    cat /tmp/alias >> /root/.zshrc && \
 # Copy custom function
-COPY shell/customFunctions /tmp
-RUN cat /tmp/customFunctions >> /root/.zshrc
-
+    cat /tmp/customFunctions >> /root/.zshrc && \
 # Create or update a database used by locate
-RUN updatedb
+    updatedb
 
 # Change workdir
 WORKDIR /
