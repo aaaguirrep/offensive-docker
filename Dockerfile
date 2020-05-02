@@ -10,6 +10,8 @@ RUN \
     traceroute \
     whois \
     host \
+    htop \
+    dnsutils \
     net-tools \
     figlet \
     tcpdump \
@@ -185,6 +187,9 @@ WORKDIR /tools/recon
 RUN \
     go get github.com/OJ/gobuster && \
     ln -s /root/go/bin/gobuster /usr/bin/gobuster && \
+# Install tojson
+    go get -u github.com/tomnomnom/hacks/tojson && \
+    ln -s /root/go/bin/gobuster /usr/bin/tojson && \
 # Install gowitness
     ln -s /tools/recon/gowitness/gowitness /usr/bin/gowitness && \
 # Install subjack
@@ -240,7 +245,9 @@ RUN \
 # Install findomain
     ln -s /tools/recon/findomain/findomain /usr/bin/findomain && \
 # Install subfinder
-    ln -s /tools/recon/subfinder/subfinder /usr/bin/subfinder
+    ln -s /tools/recon/subfinder/subfinder /usr/bin/subfinder && \
+# Install sublist3r
+    ln -s /tools/recon/Sublist3r/sublist3r.py /usr/bin/sublist3r
 
 # Install spiderfoot
 WORKDIR /tools/recon/spiderfoot

@@ -62,6 +62,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - whois
 - host
 - prips
+- dig
 
 ### Developer tools
 
@@ -74,6 +75,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - python-pip
 - python3
 - python3-pip
+- [tojson](https://github.com/tomnomnom/hacks/tree/master/tojson)
 
 ### 🔪 Pentest tools
 
@@ -105,39 +107,39 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [aquatone](https://github.com/michenriksen/aquatone)
 - 🕸️ **Crawler**
   - [hakrawler](https://github.com/hakluke/hakrawler)
-  - [Photon](https://github.com/s0md3v/Photon.git)
+  - [Photon](https://github.com/s0md3v/Photon)
   - [waybackurls](https://github.com/tomnomnom/waybackurls)
   - [gospider](https://github.com/jaeles-project/gospider)
 - 📁 **Search directories**
-  - [dirsearch](https://github.com/maurosoria/dirsearch.git)
+  - [dirsearch](https://github.com/maurosoria/dirsearch)
 - **Fuzzer**
   - [wfuzz](https://github.com/xmendez/wfuzz)
   - [ffuf](https://github.com/ffuf/ffuf)
 - **Web Scanning**
-  - [whatweb](https://github.com/urbanadventurer/WhatWeb.git)
-  - [wafw00z](https://github.com/EnableSecurity/wafw00f.git)
+  - [whatweb](https://github.com/urbanadventurer/WhatWeb)
+  - [wafw00z](https://github.com/EnableSecurity/wafw00f)
   - [nikto](https://github.com/sullo/nikto)
   - [arjun](https://github.com/s0md3v/Arjun)
   - [httprobe](https://github.com/tomnomnom/httprobe)
-  - [striker](https://github.com/s0md3v/Striker.git)
+  - [striker](https://github.com/s0md3v/Striker)
 - **CMS**
   - [wpscan](https://github.com/wpscanteam/wpscan)
   - [joomscan](https://github.com/rezasp/joomscan)
   - [droopescan](https://github.com/droope/droopescan)
   - [cmseek](https://github.com/Tuhinshubhra/CMSeeK)
 - **Search JS**
-  - [LinkFinder](https://github.com/GerbenJavado/LinkFinder.git)
+  - [LinkFinder](https://github.com/GerbenJavado/LinkFinder)
   - [getJS](https://github.com/003random/getJS)
 
 #### Wordlist
 
 - [cewl](https://github.com/digininja/CeWL)
 - wordlists:
-  - [wfuzz](https://github.com/xmendez/wfuzz.git)
-  - [SecList](https://github.com/danielmiessler/SecLists.git)
-  - [Fuzzdb](https://github.com/fuzzdb-project/fuzzdb.git)
-  - [Dirbuster](https://github.com/daviddias/node-dirbuster.git)
-  - [Dirb](https://github.com/v0re/dirb.git)
+  - [wfuzz](https://github.com/xmendez/wfuzz)
+  - [SecList](https://github.com/danielmiessler/SecLists)
+  - [Fuzzdb](https://github.com/fuzzdb-project/fuzzdb)
+  - [Dirbuster](https://github.com/daviddias/node-dirbuster)
+  - [Dirb](https://github.com/v0re/dirb)
   - [Rockyou](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
 - crunch
 
@@ -145,19 +147,19 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 - [gitleaks](https://github.com/zricethezav/gitleaks)
 - [gitrob](https://github.com/michenriksen/gitrob)
-- [gitGraber](https://github.com/hisxo/gitGraber.git)
-- [github-search](https://github.com/gwen001/github-search.git)
+- [gitGraber](https://github.com/hisxo/gitGraber)
+- [github-search](https://github.com/gwen001/github-search)
 
 #### OWASP
 
-- [sqlmap](https://github.com/sqlmapproject/sqlmap.git)
-- [XSStrike](https://github.com/s0md3v/XSStrike.git)
+- [sqlmap](https://github.com/sqlmapproject/sqlmap)
+- [XSStrike](https://github.com/s0md3v/XSStrike)
 
 #### Brute force
 
-- [crowbar](https://github.com/galkan/crowbar.git)
+- [crowbar](https://github.com/galkan/crowbar)
 - [hydra](https://github.com/vanhauser-thc/thc-hydra)
-- [patator](https://github.com/lanjelot/patator.git)
+- [patator](https://github.com/lanjelot/patator)
 - medusa
 
 #### Cracking
@@ -168,24 +170,24 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 #### OS Enumeration
 
-- [htbenum](https://github.com/SolomonSklash/htbenum.git)
-- [linux-smart-enumeration](https://github.com/diego-treitos/linux-smart-enumeration.git)
-- [linenum](https://github.com/rebootuser/LinEnum.git)
-- [enum4linux](https://github.com/portcullislabs/enum4linux.git)
+- [htbenum](https://github.com/SolomonSklash/htbenum)
+- [linux-smart-enumeration](https://github.com/diego-treitos/linux-smart-enumeration)
+- [linenum](https://github.com/rebootuser/LinEnum)
+- [enum4linux](https://github.com/portcullislabs/enum4linux)
 - [ldapdomaindump](https://github.com/dirkjanm/ldapdomaindump)
-- [PEASS - Privilege Escalation Awesome Scripts SUITE](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite.git)
-- [Windows Exploit Suggester - Next Generation](https://github.com/bitsadmin/wesng.git)
-- [smbmap](https://github.com/ShawnDEvans/smbmap.git)
+- [PEASS - Privilege Escalation Awesome Scripts SUITE](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite)
+- [Windows Exploit Suggester - Next Generation](https://github.com/bitsadmin/wesng)
+- [smbmap](https://github.com/ShawnDEvans/smbmap)
 - [pspy - unprivileged Linux process snooping](https://github.com/DominicBreuker/pspy)
 - smbclient
 - ftp
 
 #### Exploits
 
-- [searchsploit](https://github.com/offensive-security/exploitdb.git)
+- [searchsploit](https://github.com/offensive-security/exploitdb)
 - [Metasploit](https://github.com/rapid7/metasploit-framework)
-- [MS17-010](https://github.com/worawit/MS17-010.git)
-- [AutoBlue-MS17-010](https://github.com/3ndG4me/AutoBlue-MS17-010.git)
+- [MS17-010](https://github.com/worawit/MS17-010)
+- [AutoBlue-MS17-010](https://github.com/3ndG4me/AutoBlue-MS17-010)
 - [PrivExchange](https://github.com/dirkjanm/PrivExchange)
 
 #### Windows
@@ -193,10 +195,10 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [evil-winrm](https://github.com/Hackplayers/evil-winrm)
 - [impacket](https://github.com/SecureAuthCorp/impacket)
 - [CrackMapExec](https://github.com/byt3bl33d3r/CrackMapExec)
-- [Nishang](https://github.com/samratashok/nishang.git)
-- [Juicy Potato](https://github.com/ohpe/juicy-potato.git)
-- [PowerSploit](https://github.com/PowerShellMafia/PowerSploit.git)
-- [pass-the-hash](https://github.com/byt3bl33d3r/pth-toolkit.git)
+- [Nishang](https://github.com/samratashok/nishang)
+- [Juicy Potato](https://github.com/ohpe/juicy-potato)
+- [PowerSploit](https://github.com/PowerShellMafia/PowerSploit)
+- [pass-the-hash](https://github.com/byt3bl33d3r/pth-toolkit)
 - [mimikatz](https://github.com/gentilkiwi/mimikatz)
 - gpp-decrypt
 

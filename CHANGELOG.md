@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.1.8-->
 
+## 0.1.9
+
+* feat: add dig and tojson
+
 ## 0.1.8
 
 * refactor: apply dockerfile best practices
