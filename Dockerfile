@@ -195,6 +195,12 @@ RUN \
 # Install subjack
     go get github.com/haccer/subjack && \
     ln -s /root/go/bin/subjack /usr/bin/subjack && \
+# Install SubOver 
+    go get github.com/Ice3man543/SubOver && \
+    ln -s /root/go/bin/SubOver /usr/bin/SubOver && \
+# Install tko-subs
+    go get github.com/anshumanbh/tko-subs && \
+    ln -s /root/go/bin/tko-subs /usr/bin/tko-subs && \
 # Install aquatone
     wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip && \
     unzip aquatone.zip -d aquatone  && \

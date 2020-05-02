@@ -100,6 +100,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [spiderfoot](https://github.com/smicallef/spiderfoot)
 - **Subdomain takeover**
   - [subjack](https://github.com/haccer/subjack)
+  - [SubOver](https://github.com/Ice3man543/SubOver)
+  - [tko-subs](https://github.com/anshumanbh/tko-subs)
 - **DNS Lookups**
   - [hakrevdns](https://github.com/hakluke/hakrevdns)
 - 📷 **Screenshot**
