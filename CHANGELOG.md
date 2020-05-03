@@ -3,6 +3,7 @@
 
 ## 0.1.9
 
+* feat: add hakcheckurl and haktldextract
 * feat: add dig and tojson
 * feat: add SubOver and tko-subs
 

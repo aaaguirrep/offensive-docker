@@ -98,6 +98,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [findomain](https://github.com/Edu4rdSHL/findomain)
   - [subfinder](https://github.com/projectdiscovery/subfinder)
   - [spiderfoot](https://github.com/smicallef/spiderfoot)
+  - [haktldextract](https://github.com/hakluke/haktldextract)
 - **Subdomain takeover**
   - [subjack](https://github.com/haccer/subjack)
   - [SubOver](https://github.com/Ice3man543/SubOver)
@@ -124,6 +125,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [arjun](https://github.com/s0md3v/Arjun)
   - [httprobe](https://github.com/tomnomnom/httprobe)
   - [striker](https://github.com/s0md3v/Striker)
+  - [hakcheckurl](https://github.com/hakluke/hakcheckurl)
 - **CMS**
   - [wpscan](https://github.com/wpscanteam/wpscan)
   - [joomscan](https://github.com/rezasp/joomscan)
