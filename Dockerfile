@@ -111,8 +111,9 @@ WORKDIR /tmp
 RUN \
     wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz
-ENV PATH "$PATH:/usr/local/go/bin"
+ENV GOROOT "/usr/local/go"
 ENV GOPATH "/root/go"
+ENV PATH "$PATH:$GOPATH/bin:$GOROOT/bin"
 
 # PORT SCANNING
 RUN mkdir -p /tools/portScanning
@@ -186,27 +187,22 @@ WORKDIR /tools/recon
 # Install gobuster
 RUN \
     go get github.com/OJ/gobuster && \
-    ln -s /root/go/bin/gobuster /usr/bin/gobuster && \
 # Install tojson
     go get -u github.com/tomnomnom/hacks/tojson && \
-    ln -s /root/go/bin/gobuster /usr/bin/tojson && \
 # Install gowitness
     ln -s /tools/recon/gowitness/gowitness /usr/bin/gowitness && \
 # Install subjack
     go get github.com/haccer/subjack && \
-    ln -s /root/go/bin/subjack /usr/bin/subjack && \
 # Install SubOver 
     go get github.com/Ice3man543/SubOver && \
-    ln -s /root/go/bin/SubOver /usr/bin/SubOver && \
 # Install tko-subs
     go get github.com/anshumanbh/tko-subs && \
-    ln -s /root/go/bin/tko-subs /usr/bin/tko-subs && \
 # Install hakcheckurl
     go get github.com/hakluke/hakcheckurl && \
-    ln -s /root/go/bin/hakcheckurl /usr/bin/hakcheckurl && \
 # Install haktldextract
     go get github.com/hakluke/haktldextract && \
-    ln -s /root/go/bin/haktldextract /usr/bin/haktldextract && \
+# Install gotop
+    go get github.com/cjbassi/gotop && \
 # Install aquatone
     wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip && \
     unzip aquatone.zip -d aquatone  && \
@@ -235,25 +231,18 @@ RUN \
     ln -s /tools/recon/amass/amass_v3.5.5_linux_amd64/amass /usr/bin/amass && \
 # Install hakrevdns
     go get github.com/hakluke/hakrevdns && \
-    ln -s /root/go/bin/hakrevdns /usr/bin/hakrevdns && \
 # Install ffuf
     go get github.com/ffuf/ffuf && \
-    ln -s /root/go/bin/ffuf /usr/bin/ffuf && \
 # Install httprobe
     go get -u github.com/tomnomnom/httprobe && \
-    ln -s /root/go/bin/httprobe /usr/bin/httprobe && \
 # Install hakrawler
     go get github.com/hakluke/hakrawler && \
-    ln -s /root/go/bin/hakrawler /usr/bin/hakrawler && \
 # Install waybackurls
     go get github.com/tomnomnom/waybackurls && \
-    ln -s /root/go/bin/waybackurls /usr/bin/waybackurls && \
 # Download gospider
     go get -u github.com/jaeles-project/gospider && \
-    ln -s /root/go/bin/gospider /usr/bin/gospider && \
 # Download getJS
     go get github.com/003random/getJS && \
-    ln -s /root/go/bin/getJS /usr/bin/getJS && \
 # Install findomain
     ln -s /tools/recon/findomain/findomain /usr/bin/findomain && \
 # Install subfinder
@@ -319,6 +308,11 @@ RUN \
 # OWASP
 FROM builder4 as builder5
 COPY --from=owasp /temp/ /tools/owasp/
+# Install kxss
+RUN \
+    go get github.com/tomnomnom/hacks/kxss && \
+# Install dalfox
+    go get -u github.com/hahwul/dalfox
 
 # BUILDER BRUTE FORCE
 FROM baseline as bruteForce
@@ -467,8 +461,7 @@ WORKDIR /tools/otherResources
 RUN \
     git clone --depth 1 https://github.com/gwen001/pentest-tools.git && \
 # Download qsreplace
-    go get -u github.com/tomnomnom/qsreplace && \
-    ln -s /root/go/bin/qsreplace /usr/bin/qsreplace
+    go get -u github.com/tomnomnom/qsreplace
 
 # OS TUNNING
 

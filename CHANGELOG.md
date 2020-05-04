@@ -3,6 +3,9 @@
 
 ## 0.1.9
 
+* feat: add gotop, kxss and dalfox
+* refactor: change go env variables
+* docs: fix README.md file
 * feat: add hakcheckurl and haktldextract
 * feat: add dig and tojson
 * feat: add SubOver and tko-subs

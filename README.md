@@ -50,6 +50,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - oh-my-zsh
 - locate
 - cifs-utils
+- htop
+- [gotop](https://github.com/cjbassi/gotop)
 
 ### Network tools
 
@@ -158,6 +160,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 - [sqlmap](https://github.com/sqlmapproject/sqlmap)
 - [XSStrike](https://github.com/s0md3v/XSStrike)
+- [kxss](https://github.com/tomnomnom/hacks/tree/master/kxss)
+- [dalfox](https://github.com/hahwul/dalfox)
 
 #### Brute force
 
