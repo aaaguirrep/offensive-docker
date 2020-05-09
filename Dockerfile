@@ -72,6 +72,8 @@ RUN \
     # crackmapexec dependencies
     libffi-dev \
     python-dev && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y php \
+    libapache2-mod-php && \
     gem install \
     gpp-decrypt \
     addressable \
@@ -110,7 +112,11 @@ RUN \
 WORKDIR /tmp
 RUN \
     wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz && \
-    tar -C /usr/local -xzf go.tar.gz
+    tar -C /usr/local -xzf go.tar.gz && \
+# Install aws-cli
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    unzip awscliv2.zip && \
+    ./aws/install
 ENV GOROOT "/usr/local/go"
 ENV GOPATH "/root/go"
 ENV PATH "$PATH:$GOPATH/bin:$GOROOT/bin"
@@ -209,10 +215,18 @@ RUN \
     rm aquatone.zip && \
     ln -s /tools/recon/aquatone/aquatone /usr/bin/aquatone && \
 # Install knock
-    git clone --depth 1 https://github.com/guelfoweb/knock.git
+    git clone --depth 1 https://github.com/guelfoweb/knock.git && \
+# Install whatweb
+    ln -s /tools/recon/WhatWeb/whatweb /usr/bin/whatweb && \
+# Install CMSeek
+    ln -s /tools/recon/CMSeeK/cmseek.py /usr/bin/cmseek
 
 WORKDIR /tools/recon/knock
 RUN python setup.py install
+
+# Install wafw00f
+WORKDIR /tools/recon/wafw00f
+RUN python3 setup.py install
 
 # Install linkfinder
 WORKDIR /tools/recon

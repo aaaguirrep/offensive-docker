@@ -77,6 +77,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - python-pip
 - python3
 - python3-pip
+- php
+- aws-cli
 - [tojson](https://github.com/tomnomnom/hacks/tree/master/tojson)
 
 ### 🔪 Pentest tools
