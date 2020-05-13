@@ -80,6 +80,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - php
 - aws-cli
 - [tojson](https://github.com/tomnomnom/hacks/tree/master/tojson)
+- nodejs
 
 ### 🔪 Pentest tools
 
@@ -115,8 +116,10 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - 🕸️ **Crawler**
   - [hakrawler](https://github.com/hakluke/hakrawler)
   - [Photon](https://github.com/s0md3v/Photon)
-  - [waybackurls](https://github.com/tomnomnom/waybackurls)
   - [gospider](https://github.com/jaeles-project/gospider)
+  - [gau](https://github.com/lc/gau)
+  - [otxurls](https://github.com/lc/otxurls)
+  - [waybackurls](https://github.com/tomnomnom/waybackurls)
 - 📁 **Search directories**
   - [dirsearch](https://github.com/maurosoria/dirsearch)
 - **Fuzzer**
@@ -138,6 +141,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - **Search JS**
   - [LinkFinder](https://github.com/GerbenJavado/LinkFinder)
   - [getJS](https://github.com/003random/getJS)
+  - [subjs](https://github.com/lc/subjs)
 
 #### Wordlist
 
@@ -149,6 +153,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [Dirbuster](https://github.com/daviddias/node-dirbuster)
   - [Dirb](https://github.com/v0re/dirb)
   - [Rockyou](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt)
+  - [all.txt](https://gist.github.com/jhaddix/f64c97d0863a78454e44c2f7119c2a6a)
 - crunch
 
 #### Git repositories

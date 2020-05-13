@@ -53,6 +53,7 @@ RUN \
     hashcat \
     libwww-perl \
     chromium-browser \
+    dos2unix \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -97,7 +98,12 @@ RUN \
     sed -i '1i export LC_CTYPE="C.UTF-8"' /root/.zshrc && \
     sed -i '2i export LC_ALL="C.UTF-8"' /root/.zshrc && \
     sed -i '3i export LANG="C.UTF-8"' /root/.zshrc && \
-    sed -i '3i export LANGUAGE="C.UTF-8"' /root/.zshrc
+    sed -i '3i export LANGUAGE="C.UTF-8"' /root/.zshrc && \
+    git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
+    git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting && \
+    git clone --depth 1 https://github.com/zsh-users/zsh-history-substring-search /root/.oh-my-zsh/custom/plugins/zsh-history-substring-search && \
+    sed -i 's/plugins=(git)/plugins=(git aws go golang nmap node pip pipenv python ubuntu zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)/g' /root/.zshrc && \
+    sed -i '78i autoload -U compinit && compinit' /root/.zshrc
 
 # Install python dependencies
 COPY requirements_pip3.txt /tmp
@@ -114,9 +120,12 @@ RUN \
     wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz && \
 # Install aws-cli
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+    curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
     unzip awscliv2.zip && \
-    ./aws/install
+    ./aws/install && \
+# Install node
+    curl -sL https://deb.nodesource.com/setup_14.x | bash && \
+    apt install -y nodejs
 ENV GOROOT "/usr/local/go"
 ENV GOPATH "/root/go"
 ENV PATH "$PATH:$GOPATH/bin:$GOROOT/bin"
@@ -152,25 +161,51 @@ RUN \
     git clone --depth 1 https://github.com/s0md3v/Striker.git && \
 # Install Photon
     git clone --depth 1 https://github.com/s0md3v/Photon.git && \
-# Download CMSeek
+# Download linkfinder
+    git clone --depth 1 https://github.com/GerbenJavado/LinkFinder.git && \
+# Downlado CMSeeK
     git clone --depth 1 https://github.com/Tuhinshubhra/CMSeeK.git && \
-# Download gowitness
-    mkdir -p /temp/gowitness
+# Install aquatone
+    wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip && \
+    unzip aquatone.zip -d aquatone  && \
+    rm aquatone.zip && \
+# Install amass
+    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip && \
+    unzip amass.zip -d amass && \
+    rm amass.zip && \
+# Download Sublist3r
+    git clone --depth 1 https://github.com/aboul3la/Sublist3r.git && \
+# Download spiderfoot
+    git clone --depth 1 https://github.com/smicallef/spiderfoot && \
+    mkdir /temp/gowitness && \
+    mkdir /temp/subfinder && \
+    mkdir /temp/findomain && \
+    mkdir /temp/gau && \
+    mkdir /temp/subjs
 
+WORKDIR /temp/Photon
+RUN \
+    chmod +x photon.py && \
+    dos2unix photon.py
+
+WORKDIR /temp/CMSeeK
+RUN \
+    mkdir Result && \
+    chmod +x cmseek.py
+
+# Download gowitness
 WORKDIR /temp/gowitness
 RUN \
     wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.3/gowitness-linux-amd64 -O gowitness && \
-    chmod +x gowitness && \
-# Download findomain
-    mkdir -p /temp/findomain
+    chmod +x gowitness
 
+# Download findomain
 WORKDIR /temp/findomain
 RUN \
     wget --quiet https://github.com/Edu4rdSHL/findomain/releases/download/1.5.0/findomain-linux -O findomain && \
-    chmod +x findomain && \
-# Download subfinder
-    mkdir -p /temp/subfinder
+    chmod +x findomain
 
+# Download subfinder
 WORKDIR /temp/subfinder
 RUN \
     wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.3.2/subfinder-linux-amd64.tar && \
@@ -178,12 +213,19 @@ RUN \
     rm subfinder-linux-amd64.tar && \
     mv subfinder-linux-amd64 subfinder
 
-# Download Sublist3r
-WORKDIR /temp
+# Download gau
+WORKDIR /temp/gau
 RUN \
-    git clone --depth 1 https://github.com/aboul3la/Sublist3r.git && \
-# Download spiderfoot
-    git clone --depth 1 https://github.com/smicallef/spiderfoot
+    wget --quiet https://github.com/lc/gau/releases/download/v1.0.2/gau_1.0.2_linux_amd64.tar.gz -O gau.tar.gz && \
+    tar -xzf gau.tar.gz && \
+    rm gau.tar.gz
+
+# Download subjs
+WORKDIR /temp/subjs
+RUN \
+    wget --quiet https://github.com/lc/subjs/releases/download/v1.0.0/subjs_1.0.0_linux_amd64.tar.gz -O subjs.tar.gz && \
+    tar -xzf subjs.tar.gz && \
+    rm subjs.tar.gz
 
 # RECON
 FROM builder as builder2
@@ -210,38 +252,22 @@ RUN \
 # Install gotop
     go get github.com/cjbassi/gotop && \
 # Install aquatone
-    wget --quiet https://github.com/michenriksen/aquatone/releases/download/v1.7.0/aquatone_linux_amd64_1.7.0.zip -O aquatone.zip && \
-    unzip aquatone.zip -d aquatone  && \
-    rm aquatone.zip && \
     ln -s /tools/recon/aquatone/aquatone /usr/bin/aquatone && \
 # Install knock
     git clone --depth 1 https://github.com/guelfoweb/knock.git && \
 # Install whatweb
     ln -s /tools/recon/WhatWeb/whatweb /usr/bin/whatweb && \
 # Install CMSeek
-    ln -s /tools/recon/CMSeeK/cmseek.py /usr/bin/cmseek
-
-WORKDIR /tools/recon/knock
-RUN python setup.py install
-
-# Install wafw00f
-WORKDIR /tools/recon/wafw00f
-RUN python3 setup.py install
-
-# Install linkfinder
-WORKDIR /tools/recon
-RUN git clone --depth 1 https://github.com/GerbenJavado/LinkFinder.git
-WORKDIR /tools/recon/LinkFinder
-RUN \
-    python3 setup.py install && \
-    pip3 install -r requirements.txt
-
+    ln -s /tools/recon/CMSeeK/cmseek.py /usr/bin/cmseek && \
+# Install Photon
+    ln -s /tools/recon/Photon/photon.py /usr/bin/photon && \
+# Install gau
+    ln -s /tools/recon/gau/gau /usr/bin/getallurls && \
+# Install subjs
+    ln -s /tools/recon/subjs/subjs /usr/bin/subjs && \
+# Install otxurls
+    go get github.com/lc/otxurls && \
 # Install amass
-WORKDIR /tools/recon
-RUN \
-    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip && \
-    unzip amass.zip -d amass && \
-    rm amass.zip && \
     ln -s /tools/recon/amass/amass_v3.5.5_linux_amd64/amass /usr/bin/amass && \
 # Install hakrevdns
     go get github.com/hakluke/hakrevdns && \
@@ -264,6 +290,19 @@ RUN \
 # Install sublist3r
     ln -s /tools/recon/Sublist3r/sublist3r.py /usr/bin/sublist3r
 
+WORKDIR /tools/recon/knock
+RUN python setup.py install
+
+# Install wafw00f
+WORKDIR /tools/recon/wafw00f
+RUN python3 setup.py install
+
+# Install linkfinder
+WORKDIR /tools/recon/LinkFinder
+RUN \
+    python3 setup.py install && \
+    pip3 install -r requirements.txt
+
 # Install spiderfoot
 WORKDIR /tools/recon/spiderfoot
 RUN pip3 install -r requirements.txt
@@ -280,7 +319,8 @@ RUN \
     git clone --depth 1 https://github.com/fuzzdb-project/fuzzdb.git && \
     git clone --depth 1 https://github.com/daviddias/node-dirbuster.git && \
     git clone --depth 1 https://github.com/v0re/dirb.git && \
-    curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+    curl -L -o rockyou.txt https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt && \
+    curl -L -o all.txt https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
 
 # WORDLIST
 FROM builder2 as builder3

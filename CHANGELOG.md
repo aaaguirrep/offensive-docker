@@ -4,6 +4,8 @@
 ## 0.2.0
 
 feat: add aws-cli and php
+feat: add all.txt wordlist, gau, otxurls, node and zsh plugins
+feat: add subjs
 
 ## 0.1.9
 

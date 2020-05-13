@@ -7,3 +7,5 @@ droopescan
 spyse.py
 #sublist3r dependency
 argparse
+#photon dependency
+tld
