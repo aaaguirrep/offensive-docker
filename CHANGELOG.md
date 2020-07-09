@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.2.0-->
 
+## 0.2.1
+
+* feat: add GitTools
+
 ## 0.2.0
 
 * feat: add aws-cli and php

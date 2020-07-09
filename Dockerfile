@@ -342,7 +342,9 @@ RUN \
     wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks && \
     chmod +x gitleaks && \
 # Download github-search
-    git clone --depth 1 https://github.com/gwen001/github-search.git
+    git clone --depth 1 https://github.com/gwen001/github-search.git && \
+# Download GitTools
+    git clone --depth 1 https://github.com/internetwache/GitTools.git
 
 # GIT REPOSITORIES
 FROM builder3 as builder4

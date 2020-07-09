@@ -162,6 +162,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [gitrob](https://github.com/michenriksen/gitrob)
 - [gitGraber](https://github.com/hisxo/gitGraber)
 - [github-search](https://github.com/gwen001/github-search)
+- [GitTools](https://github.com/internetwache/GitTools)
 
 #### OWASP
 
