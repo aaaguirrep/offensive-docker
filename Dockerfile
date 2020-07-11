@@ -360,6 +360,11 @@ RUN \
     git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap && \
 # Download XSStrike
     git clone --depth 1 https://github.com/s0md3v/XSStrike.git
+# Download dalfox
+WORKDIR /temp/dalfox
+RUN \
+    wget --quiet https://github.com/hahwul/dalfox/releases/download/v1.2.0/dalfox_linux_amd64 -O dalfox && \
+    chmod +x dalfox
 
 # OWASP
 FROM builder4 as builder5
@@ -368,7 +373,7 @@ COPY --from=owasp /temp/ /tools/owasp/
 RUN \
     go get github.com/tomnomnom/hacks/kxss && \
 # Install dalfox
-    go get -u github.com/hahwul/dalfox
+    ln -s /tools/owasp/dalfox/dalfox /usr/bin/dalfox
 
 # BUILDER BRUTE FORCE
 FROM baseline as bruteForce
