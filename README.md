@@ -170,6 +170,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [XSStrike](https://github.com/s0md3v/XSStrike)
 - [kxss](https://github.com/tomnomnom/hacks/tree/master/kxss)
 - [dalfox](https://github.com/hahwul/dalfox)
+- [jwt_tool](https://github.com/ticarpi/jwt_tool)
 
 #### Brute force
 

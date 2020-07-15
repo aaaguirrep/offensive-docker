@@ -9,3 +9,5 @@ spyse.py
 argparse
 #photon dependency
 tld
+#jwt-tool dependency
+pycryptodomex

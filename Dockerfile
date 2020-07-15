@@ -359,7 +359,9 @@ WORKDIR /temp
 RUN \
     git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap && \
 # Download XSStrike
-    git clone --depth 1 https://github.com/s0md3v/XSStrike.git
+    git clone --depth 1 https://github.com/s0md3v/XSStrike.git && \
+# Download jwt_tool
+    git clone --depth 1 https://github.com/ticarpi/jwt_tool.git
 # Download dalfox
 WORKDIR /temp/dalfox
 RUN \

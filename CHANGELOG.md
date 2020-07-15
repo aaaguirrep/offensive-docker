@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.2.1-->
 
+## 0.2.2
+
+* feat: add jwt_tool
+
 ## 0.2.1.1
 
 * fix: dalfox installation
