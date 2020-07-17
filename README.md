@@ -172,6 +172,10 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [dalfox](https://github.com/hahwul/dalfox)
 - [jwt_tool](https://github.com/ticarpi/jwt_tool)
 
+#### 📱 Mobile
+
+- [apktool](https://ibotpeaches.github.io/Apktool/)
+
 #### Brute force
 
 - [crowbar](https://github.com/galkan/crowbar)

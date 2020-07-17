@@ -54,6 +54,7 @@ RUN \
     libwww-perl \
     chromium-browser \
     dos2unix \
+    openjdk-8-jdk \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -102,7 +103,7 @@ RUN \
     git clone --depth 1 https://github.com/zsh-users/zsh-autosuggestions /root/.oh-my-zsh/custom/plugins/zsh-autosuggestions && \
     git clone --depth 1 https://github.com/zsh-users/zsh-syntax-highlighting.git /root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting && \
     git clone --depth 1 https://github.com/zsh-users/zsh-history-substring-search /root/.oh-my-zsh/custom/plugins/zsh-history-substring-search && \
-    sed -i 's/plugins=(git)/plugins=(git aws go golang nmap node pip pipenv python ubuntu zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)/g' /root/.zshrc && \
+    sed -i 's/plugins=(git)/plugins=(git aws golang nmap node pip pipenv python ubuntu zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search)/g' /root/.zshrc && \
     sed -i '78i autoload -U compinit && compinit' /root/.zshrc
 
 # Install python dependencies
@@ -507,7 +508,7 @@ RUN \
 # Download Pass-the-Hash
     git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git && \
 # Download Mimikatz
-    wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200308-1/mimikatz_trunk.zip -O mimikatz.zip && \
+    wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200715/mimikatz_trunk.zip -O mimikatz.zip && \
     unzip mimikatz.zip -d mimikatz && \
     rm mimikatz.zip
 
@@ -515,6 +516,22 @@ RUN \
 FROM builder8 as builder9
 RUN mkdir -p /tools/windows
 COPY --from=windows /temp/ /tools/windows/
+
+# BUILDER MOBILE
+FROM baseline as mobile
+RUN mkdir /temp
+WORKDIR /temp
+
+RUN \
+# Download APKTOOL
+    wget --quiet https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool -O apktool && \
+    chmod +x apktool && \
+    wget --quiet https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.4.1.jar -O apktool.jar && \
+    chmod +x apktool.jar
+
+# Mobile
+FROM builder9 as builder10
+COPY --from=mobile /temp/ /usr/local/bin
 
 # OTHER RESOURCES
 RUN mkdir -p /tools/otherResources
