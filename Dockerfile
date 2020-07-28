@@ -3,6 +3,9 @@ FROM ubuntu as baseline
 LABEL maintainer="Arsenio Aguirre" \
       email="a_aguirre117@hotmail.com"
 
+RUN apt-get update && \
+    DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
+
 # Install packages
 RUN \
     apt-get update && \
@@ -36,7 +39,6 @@ RUN \
     squid \
     python3 \
     python \
-    python-pip \
     python-dnspython \
     python3-pip \
     jq \
@@ -83,6 +85,12 @@ RUN \
     # Install evil-winrm
     evil-winrm && \
     apt-get update
+
+# Installing python-pip
+RUN curl -O https://raw.githubusercontent.com/pypa/get-pip/master/get-pip.py &&  \
+    python get-pip.py  && \
+    echo "PATH=$HOME/.local/bin/:$PATH" >> ~/.bashrc && \
+    rm get-pip.py
 
 FROM baseline as builder
 # SERVICES
