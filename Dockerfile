@@ -236,6 +236,13 @@ RUN \
     tar -xzf subjs.tar.gz && \
     rm subjs.tar.gz
 
+# Download httpx
+WORKDIR /temp/httpx
+RUN \
+    wget --quiet https://github.com/projectdiscovery/httpx/releases/download/v0.0.8/httpx_0.0.8_linux_amd64.tar.gz -O httpx.tar.gz && \
+    tar -xzf httpx.tar.gz && \
+    rm httpx.tar.gz
+
 # RECON
 FROM builder as builder2
 COPY --from=recon /temp/ /tools/recon/
@@ -297,7 +304,9 @@ RUN \
 # Install subfinder
     ln -s /tools/recon/subfinder/subfinder /usr/bin/subfinder && \
 # Install sublist3r
-    ln -s /tools/recon/Sublist3r/sublist3r.py /usr/bin/sublist3r
+    ln -s /tools/recon/Sublist3r/sublist3r.py /usr/bin/sublist3r && \
+# Install httpx
+    ln -s /tools/recon/httpx/httpx /usr/bin/httpx
 
 WORKDIR /tools/recon/knock
 RUN python setup.py install

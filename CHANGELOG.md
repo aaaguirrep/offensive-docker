@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.2.3-->
 
+## 0.2.4
+
+* feat: add httpx
+
 ## 0.2.3
 
 * feat: add apktool

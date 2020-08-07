@@ -133,6 +133,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [httprobe](https://github.com/tomnomnom/httprobe)
   - [striker](https://github.com/s0md3v/Striker)
   - [hakcheckurl](https://github.com/hakluke/hakcheckurl)
+  - [httpx](https://github.com/projectdiscovery/httpx)
 - **CMS**
   - [wpscan](https://github.com/wpscanteam/wpscan)
   - [joomscan](https://github.com/rezasp/joomscan)
@@ -299,7 +300,11 @@ There are differents use cases for use the image and you should know how to run 
 
 You can set up the docker image with nice configurations like as:
 
-### 1. Alias to connect to HTB (Hack the Box) VPN
+### 1. Configure credentials in the docker
+
+To use access keys, tokens or API Keys in the docker review the next repo [docker-pentest-config](https://github.com/aaaguirrep/docker-pentest-config)
+
+### 2. Alias to connect to HTB (Hack the Box) VPN
 
 To use both options you should use -v option to map local directoty with /pentest container directory.
 
@@ -318,7 +323,7 @@ Create a new Dockerfile with the next steps, build a new image and run a new con
     # Create a shortcut and load the ovpn file from workstation
     RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
 
-### 2. Save and load command history in your local environment
+### 3. Save and load command history in your local environment
 
 When you delete a container all information is deleted incluide command history. The next configuration provides you an option for save the command history in your local environment and load it when you run a new container. So, you wont lose your command history when run a new container.
 
