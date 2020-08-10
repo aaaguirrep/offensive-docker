@@ -363,9 +363,21 @@ The image was tested in the following environments:
 
 - Use hashcat and john the ripper on controlled environments as CTF. You can experiment issues.
 
+## Donations
+
+Thanks for your donations, are always appreciated.
+
+While I drink the coffee I check more tools to add in the docker image.
+
+<a href="https://www.buymeacoffee.com/aaaguirrep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 40px !important; width: 174px !important;" ></a>
+
 ## Contributing
 
 [Contributing Guide](CONTRIBUTING.md)
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/aaaguirrep/pentest.svg)](https://starchart.cc/aaaguirrep/pentest)
 
 ## License
 
