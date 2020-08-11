@@ -26,6 +26,60 @@
 
 Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
 
+### Table of Contents
+
+- [Features](#features)
+- [Tools installed](#tools-installed)
+  - [Operative system tools](#operative-system-tools)
+  - [Network tools](#network-tools)
+  - [Developer tools](#developer-tools)
+  - [:hocho: Pentest tools](#hocho-pentest-tools)
+    - [Port scanning](#port-scanning)
+    - [:mag: Recon](#mag-recon)
+      - [Subdomains](#subdomains)
+      - [Subdomain takeover](#subdomain-takeover)
+      - [DNS Lookups](#dns-lookups)
+      - [:camera: Screenshot](#camera-screenshot)
+      - [:spider_web: Crawler](#spider_web-crawler)
+      - [:file_folder: Search directories](#file_folder-search-directories)
+      - [Fuzzer](#fuzzer)
+      - [Web Scanning](#web-scanning)
+      - [CMS](#cms)
+      - [Search JS](#search-js)
+    - [Wordlist](#wordlist)
+    - [Git repositories](#git-repositories)
+    - [OWASP](#owasp)
+    - [:iphone: Mobile](#iphone-mobile)
+    - [Brute force](#brute-force)
+    - [Cracking](#cracking)
+    - [OS Enumeration](#os-enumeration)
+    - [Exploits](#exploits)
+    - [Windows](#windows)
+    - [Reverse shell](#reverse-shell)
+    - [Other resources](#other-resources)
+  - [Custom functions](#custom-functions)
+  - [Other services](#other-services)
+- [:memo: Documentation](#memo-documentation)
+- [:hammer_and_wrench: Usage](#hammer_and_wrench-usage)
+  - [Prerequisites](#prerequisites)
+  - [Option 1 - Use the github repository](#option-1---use-the-github-repository)
+  - [Option 2 - Use the image from docker hub](#option-2---use-the-image-from-docker-hub)
+  - [Considerations to run the container](#considerations-to-run-the-container)
+- [:gear: Nice configurations](#gear-nice-configurations)
+  - [1. Configure credentials in the docker](#1-configure-credentials-in-the-docker)
+  - [2. Alias to connect to HTB (Hack the Box) VPN](#2-alias-to-connect-to-htb-hack-the-box-vpn)
+    - [Option 1 - HTB VPN using github repository](#option-1---htb-vpn-using-github-repository)
+    - [Option 2 - HTB VPN using docker hub image](#option-2---htb-vpn-using-docker-hub-image)
+  - [3. Save and load command history in your local environment](#3-save-and-load-command-history-in-your-local-environment)
+    - [Option 1 - Command history using github repository](#option-1---command-history-using-github-repository)
+    - [Option 2 - Command history using docker hub image](#option-2---command-history-using-docker-hub-image)
+- [:white_check_mark: Environment tested](#white_check_mark-environment-tested)
+- [:warning: Warning](#warning-warning)
+- [:coffee: Donations](#coffee-donations)
+- [Contributing](#contributing)
+- [:chart_with_upwards_trend: Stargazers over time](#chart_with_upwards_trend-stargazers-over-time)
+- [License](#license)
+
 ## Features
 
 - OS, networking, developing and pentesting tools installed.
@@ -82,7 +136,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [tojson](https://github.com/tomnomnom/hacks/tree/master/tojson)
 - nodejs
 
-### 🔪 Pentest tools
+### :hocho: Pentest tools
 
 #### Port scanning
 
@@ -90,59 +144,78 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [masscan](https://github.com/robertdavidgraham/masscan)
 - [ScanPorts](https://github.com/aaaguirrep/scanPorts) created by [@s4vitar](https://github.com/s4vitar) with some improvements
 
-#### 🔍 Recon
+#### :mag: Recon
 
-- **Subdomains**
-  - [Amass](https://github.com/OWASP/Amass)
-  - [GoBuster](https://github.com/OJ/gobuster)
-  - [Knock](https://github.com/guelfoweb/knock)
-  - [MassDNS](https://github.com/blechschmidt/massdns)
-  - [Altdns](https://github.com/infosec-au/altdns)
-  - [spyse](https://github.com/zeropwn/spyse.py)
-  - [Sublist3r](https://github.com/aboul3la/Sublist3r)
-  - [findomain](https://github.com/Edu4rdSHL/findomain)
-  - [subfinder](https://github.com/projectdiscovery/subfinder)
-  - [spiderfoot](https://github.com/smicallef/spiderfoot)
-  - [haktldextract](https://github.com/hakluke/haktldextract)
-- **Subdomain takeover**
-  - [subjack](https://github.com/haccer/subjack)
-  - [SubOver](https://github.com/Ice3man543/SubOver)
-  - [tko-subs](https://github.com/anshumanbh/tko-subs)
-- **DNS Lookups**
-  - [hakrevdns](https://github.com/hakluke/hakrevdns)
-- 📷 **Screenshot**
-  - [gowitness](https://github.com/sensepost/gowitness)
-  - [aquatone](https://github.com/michenriksen/aquatone)
-- 🕸️ **Crawler**
-  - [hakrawler](https://github.com/hakluke/hakrawler)
-  - [Photon](https://github.com/s0md3v/Photon)
-  - [gospider](https://github.com/jaeles-project/gospider)
-  - [gau](https://github.com/lc/gau)
-  - [otxurls](https://github.com/lc/otxurls)
-  - [waybackurls](https://github.com/tomnomnom/waybackurls)
-- 📁 **Search directories**
-  - [dirsearch](https://github.com/maurosoria/dirsearch)
-- **Fuzzer**
-  - [wfuzz](https://github.com/xmendez/wfuzz)
-  - [ffuf](https://github.com/ffuf/ffuf)
-- **Web Scanning**
-  - [whatweb](https://github.com/urbanadventurer/WhatWeb)
-  - [wafw00z](https://github.com/EnableSecurity/wafw00f)
-  - [nikto](https://github.com/sullo/nikto)
-  - [arjun](https://github.com/s0md3v/Arjun)
-  - [httprobe](https://github.com/tomnomnom/httprobe)
-  - [striker](https://github.com/s0md3v/Striker)
-  - [hakcheckurl](https://github.com/hakluke/hakcheckurl)
-  - [httpx](https://github.com/projectdiscovery/httpx)
-- **CMS**
-  - [wpscan](https://github.com/wpscanteam/wpscan)
-  - [joomscan](https://github.com/rezasp/joomscan)
-  - [droopescan](https://github.com/droope/droopescan)
-  - [cmseek](https://github.com/Tuhinshubhra/CMSeeK)
-- **Search JS**
-  - [LinkFinder](https://github.com/GerbenJavado/LinkFinder)
-  - [getJS](https://github.com/003random/getJS)
-  - [subjs](https://github.com/lc/subjs)
+##### Subdomains
+
+- [Amass](https://github.com/OWASP/Amass)
+- [GoBuster](https://github.com/OJ/gobuster)
+- [Knock](https://github.com/guelfoweb/knock)
+- [MassDNS](https://github.com/blechschmidt/massdns)
+- [Altdns](https://github.com/infosec-au/altdns)
+- [spyse](https://github.com/zeropwn/spyse.py)
+- [Sublist3r](https://github.com/aboul3la/Sublist3r)
+- [findomain](https://github.com/Edu4rdSHL/findomain)
+- [subfinder](https://github.com/projectdiscovery/subfinder)
+- [spiderfoot](https://github.com/smicallef/spiderfoot)
+- [haktldextract](https://github.com/hakluke/haktldextract)
+
+##### Subdomain takeover
+
+- [subjack](https://github.com/haccer/subjack)
+- [SubOver](https://github.com/Ice3man543/SubOver)
+- [tko-subs](https://github.com/anshumanbh/tko-subs)
+  
+##### DNS Lookups
+
+- [hakrevdns](https://github.com/hakluke/hakrevdns)
+
+##### :camera: Screenshot
+
+- [gowitness](https://github.com/sensepost/gowitness)
+- [aquatone](https://github.com/michenriksen/aquatone)
+
+##### :spider_web: Crawler
+
+- [hakrawler](https://github.com/hakluke/hakrawler)
+- [Photon](https://github.com/s0md3v/Photon)
+- [gospider](https://github.com/jaeles-project/gospider)
+- [gau](https://github.com/lc/gau)
+- [otxurls](https://github.com/lc/otxurls)
+- [waybackurls](https://github.com/tomnomnom/waybackurls)
+  
+##### :file_folder: Search directories
+
+- [dirsearch](https://github.com/maurosoria/dirsearch)
+
+##### Fuzzer
+
+- [wfuzz](https://github.com/xmendez/wfuzz)
+- [ffuf](https://github.com/ffuf/ffuf)
+
+##### Web Scanning
+
+- [whatweb](https://github.com/urbanadventurer/WhatWeb)
+- [wafw00z](https://github.com/EnableSecurity/wafw00f)
+- [nikto](https://github.com/sullo/nikto)
+- [arjun](https://github.com/s0md3v/Arjun)
+- [httprobe](https://github.com/tomnomnom/httprobe)
+- [striker](https://github.com/s0md3v/Striker)
+- [hakcheckurl](https://github.com/hakluke/hakcheckurl)
+- [httpx](https://github.com/projectdiscovery/httpx)
+
+##### CMS
+
+- [wpscan](https://github.com/wpscanteam/wpscan)
+- [joomscan](https://github.com/rezasp/joomscan)
+- [droopescan](https://github.com/droope/droopescan)
+- [cmseek](https://github.com/Tuhinshubhra/CMSeeK)
+
+##### Search JS
+
+- [LinkFinder](https://github.com/GerbenJavado/LinkFinder)
+- [getJS](https://github.com/003random/getJS)
+- [subjs](https://github.com/lc/subjs)
 
 #### Wordlist
 
@@ -173,7 +246,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [dalfox](https://github.com/hahwul/dalfox)
 - [jwt_tool](https://github.com/ticarpi/jwt_tool)
 
-#### 📱 Mobile
+#### :iphone: Mobile
 
 - [apktool](https://ibotpeaches.github.io/Apktool/)
 
@@ -243,11 +316,11 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - apache2
 - squid
 
-## 📝 Documentation
+## :memo: Documentation
 
 See the project's [wiki](https://github.com/aaaguirrep/pentest/wiki) for documentation.
 
-## 🛠️ Usage
+## :hammer_and_wrench: Usage
 
 ### Prerequisites
 
@@ -296,7 +369,7 @@ There are differents use cases for use the image and you should know how to run 
 
 5. Tools are downloaded in /tools directory.
 
-## ⚙️ Nice configurations
+## :gear: Nice configurations
 
 You can set up the docker image with nice configurations like as:
 
@@ -345,7 +418,7 @@ Create a new Dockerfile with the next steps, build a new image and run a new con
     # Save and load command history in your local environment
     RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
 
-## ✅ Environment tested
+## :white_check_mark: Environment tested
 
 The image was tested in the following environments:
 
@@ -353,7 +426,9 @@ The image was tested in the following environments:
 
 - Docker service for Linux instance on Google Cloud Platform: Docker version 19.03.6, build 369ce74a3c
 
-## ⚠️ Warning
+- Docker service for Linux droplet on Digital Ocean: Docker version 19.03.6, build 369ce74a3c
+
+## :warning: Warning
 
 - Do not save information on container directories because it will be lost after delete the container, you should save information in your local environment using the parameter -v when you run the container. For instance:
 
@@ -363,19 +438,19 @@ The image was tested in the following environments:
 
 - Use hashcat and john the ripper on controlled environments as CTF. You can experiment issues.
 
-## Donations
+## :coffee: Donations
 
 Thanks for your donations, are always appreciated.
 
 While I drink the coffee I check more tools to add in the docker image.
 
-<a href="https://www.buymeacoffee.com/aaaguirrep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 40px !important; width: 174px !important;" ></a>
+<a href="https://www.buymeacoffee.com/aaaguirrep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 23px !important; width: 100px !important;" ></a>
 
 ## Contributing
 
 [Contributing Guide](CONTRIBUTING.md)
 
-## Stargazers over time
+## :chart_with_upwards_trend: Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/aaaguirrep/pentest.svg)](https://starchart.cc/aaaguirrep/pentest)
 
