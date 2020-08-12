@@ -26,9 +26,12 @@
 
 Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
 
+:arrow_right: **Note:** Check out the next repo to know how to launch the docker for pentest in a VPS in Google Cloud Platform or Digital Ocean. [VPS for docker for pentest](https://github.com/aaaguirrep/vps-docker-for-pentest)
+
 ### Table of Contents
 
 - [Features](#features)
+- [Requirements](#requirements)
 - [Tools installed](#tools-installed)
   - [Operative system tools](#operative-system-tools)
   - [Network tools](#network-tools)
@@ -61,7 +64,6 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [Other services](#other-services)
 - [:memo: Documentation](#memo-documentation)
 - [:hammer_and_wrench: Usage](#hammer_and_wrench-usage)
-  - [Prerequisites](#prerequisites)
   - [Option 1 - Use the github repository](#option-1---use-the-github-repository)
   - [Option 2 - Use the image from docker hub](#option-2---use-the-image-from-docker-hub)
   - [Considerations to run the container](#considerations-to-run-the-container)
@@ -93,6 +95,10 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - Tools installed to directory fuzzing.
 - Monitor for linux processes without root permissions
 - Zsh shell installed.
+
+## Requirements
+
+- Docker service installed
 
 ## Tools installed
 
@@ -321,10 +327,6 @@ Docker for pentest is an image with the more used tools to create an pentest env
 See the project's [wiki](https://github.com/aaaguirrep/pentest/wiki) for documentation.
 
 ## :hammer_and_wrench: Usage
-
-### Prerequisites
-
-- Docker service installed
 
 You can use the docker image by the next two options:
 
