@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.2.4-->
 
+## 0.2.5
+
+* feat: add naabu
+
 ## 0.2.4
 
 * feat: add httpx

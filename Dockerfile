@@ -146,7 +146,15 @@ WORKDIR /tools/portScanning
 # Download ScanPorts
 RUN \
     wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh && \
-    chmod +x *
+    chmod +x * && \
+# Download naabu
+    mkdir -p /tools/portScanning/naabu
+WORKDIR /tools/portScanning/naabu
+RUN \
+    wget --quiet https://github.com/projectdiscovery/naabu/releases/download/v1.1.4/naabu_1.1.4_linux_amd64.tar.gz -O naabu.tar.gz && \
+    tar -xzf naabu.tar.gz && \
+    rm naabu.tar.gz && \
+    ln -s /tools/portScanning/naabu/naabu /usr/bin/naabu
 
 # BUILDER RECON
 FROM baseline as recon
@@ -525,7 +533,7 @@ RUN \
 # Download Pass-the-Hash
     git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git && \
 # Download Mimikatz
-    wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200715/mimikatz_trunk.zip -O mimikatz.zip && \
+    wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200816/mimikatz_trunk.zip -O mimikatz.zip && \
     unzip mimikatz.zip -d mimikatz && \
     rm mimikatz.zip
 

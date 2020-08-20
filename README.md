@@ -26,7 +26,7 @@
 
 Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
 
-:arrow_right: **Note:** Check out the next repo to know how to launch the docker for pentest in a VPS in Google Cloud Platform or Digital Ocean. [VPS for docker for pentest](https://github.com/aaaguirrep/vps-docker-for-pentest)
+:arrow_right: **Note:** Check out the next repo to know how to launch the docker for pentest in a VPS in Google Cloud Platform or Digital Ocean (free credit included) . [VPS for docker for pentest](https://github.com/aaaguirrep/vps-docker-for-pentest)
 
 ### Table of Contents
 
@@ -78,6 +78,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [:white_check_mark: Environment tested](#white_check_mark-environment-tested)
 - [:warning: Warning](#warning-warning)
 - [:coffee: Donations](#coffee-donations)
+- [Contributors](#contributors)
 - [Contributing](#contributing)
 - [:chart_with_upwards_trend: Stargazers over time](#chart_with_upwards_trend-stargazers-over-time)
 - [License](#license)
@@ -149,6 +150,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [nmap](https://github.com/nmap/nmap)
 - [masscan](https://github.com/robertdavidgraham/masscan)
 - [ScanPorts](https://github.com/aaaguirrep/scanPorts) created by [@s4vitar](https://github.com/s4vitar) with some improvements
+- [naabu](https://github.com/projectdiscovery/naabu)
 
 #### :mag: Recon
 
@@ -447,6 +449,10 @@ Thanks for your donations, are always appreciated.
 While I drink the coffee I check more tools to add in the docker image.
 
 <a href="https://www.buymeacoffee.com/aaaguirrep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 23px !important; width: 100px !important;" ></a>
+
+## Contributors
+
+Thank you to all our [contributors](https://github.com/aaaguirrep/pentest/graphs/contributors)!
 
 ## Contributing
 
