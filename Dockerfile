@@ -31,6 +31,7 @@ RUN \
     unzip \
     p7zip-full \
     locate \
+    tree \
     openvpn \
     vim \
     wget \
@@ -393,6 +394,13 @@ WORKDIR /temp/dalfox
 RUN \
     wget --quiet https://github.com/hahwul/dalfox/releases/download/v1.2.0/dalfox_linux_amd64 -O dalfox && \
     chmod +x dalfox
+# Download jaeles
+WORKDIR /temp/jaeles
+RUN \
+    wget --quiet https://github.com/jaeles-project/jaeles/releases/download/beta-v0.12/jaeles-v0.12-linux-amd64.zip -O jaeles.zip && \
+    unzip jaeles.zip && \
+    rm jaeles.zip && \
+    mv jaeles-v0.12-linux-amd64 jaeles
 
 # OWASP
 FROM builder4 as builder5
@@ -401,7 +409,9 @@ COPY --from=owasp /temp/ /tools/owasp/
 RUN \
     go get github.com/tomnomnom/hacks/kxss && \
 # Install dalfox
-    ln -s /tools/owasp/dalfox/dalfox /usr/bin/dalfox
+    ln -s /tools/owasp/dalfox/dalfox /usr/bin/dalfox && \
+# Install jaeles
+    ln -s /tools/owasp/jaeles/jaeles /usr/bin/jaeles 
 
 # BUILDER BRUTE FORCE
 FROM baseline as bruteForce
