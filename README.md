@@ -15,13 +15,19 @@
   <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/aaaguirrep/pentest"></a>
   <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aaaguirrep/pentest"></a>
     <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub issues" src="https://img.shields.io/github/issues/aaaguirrep/pentest"></a>
+    <a href="https://github.com/aaaguirrep/pentest/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/aaaguirrep/pentest">
+  <a href="https://github.com/aaaguirrep/pentest/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/aaaguirrep/pentest"></a>
+</p>
+<p align="center">
   <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/aaaguirrep/pentest"></a>
   <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Automated build" src="https://img.shields.io/docker/automated/aaaguirrep/pentest"></a>
     <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/aaaguirrep/pentest"></a>
   <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/aaaguirrep/pentest"></a>
     <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/aaaguirrep/pentest"></a>
     <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Stars" src="https://img.shields.io/docker/stars/aaaguirrep/pentest"></a>
-  <a href="https://github.com/aaaguirrep/pentest/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/aaaguirrep/pentest"></a>
+</p>
+<p align="center">
+  <a href="https://discord.gg/2uBfu8E"><img alt="Discord" src="https://img.shields.io/discord/749093790676942888">
 </p>
 
 Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
@@ -30,6 +36,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 ### Table of Contents
 
+- [Links](#links)
 - [Features](#features)
 - [Requirements](#requirements)
 - [Tools installed](#tools-installed)
@@ -82,6 +89,13 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [Contributing](#contributing)
 - [:chart_with_upwards_trend: Stargazers over time](#chart_with_upwards_trend-stargazers-over-time)
 - [License](#license)
+
+## Links
+
+- 🎬 Video: [Demos](https://asciinema.org/~aaaguirrep)
+- 💬 Chat: [Discord](https://discord.gg/2uBfu8E)
+- 🌟 [VPS Automation](https://github.com/aaaguirrep/vps-docker-for-pentest)
+- 👉 [Advanced configurations](https://github.com/aaaguirrep/docker-pentest-config)
 
 ## Features
 
