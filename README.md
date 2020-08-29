@@ -27,12 +27,12 @@
     <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Stars" src="https://img.shields.io/docker/stars/aaaguirrep/pentest"></a>
 </p>
 <p align="center">
-  <a href="https://discord.gg/2uBfu8E"><img alt="Discord" src="https://img.shields.io/discord/749093790676942888">
+  <a href="https://discord.gg/2uBfu8E"><img alt="Discord" src="https://img.shields.io/discord/749093790676942888"></a>
 </p>
 
 Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
 
-:arrow_right: **Note:** Check out the next repo to know how to launch the docker for pentest in a VPS in Google Cloud Platform or Digital Ocean (free credit included) . [VPS for docker for pentest](https://github.com/aaaguirrep/vps-docker-for-pentest)
+:arrow_right: **Note:** Check out the next repo to know how to launch the docker for pentest in a VPS in Google Cloud Platform or Digital Ocean (free credit included). [VPS for docker for pentest](https://github.com/aaaguirrep/vps-docker-for-pentest)
 
 ### Table of Contents
 
