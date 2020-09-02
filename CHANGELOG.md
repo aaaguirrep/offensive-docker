@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.2.6-->
 
+## 0.2.7
+
+* feat: update packages
+
 ## 0.2.6
 
 * feat: add tree and jaeles

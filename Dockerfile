@@ -188,7 +188,7 @@ RUN \
     unzip aquatone.zip -d aquatone  && \
     rm aquatone.zip && \
 # Install amass
-    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.5.5/amass_v3.5.5_linux_amd64.zip -O amass.zip && \
+    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.10.2/amass_linux_amd64.zip -O amass.zip && \
     unzip amass.zip -d amass && \
     rm amass.zip && \
 # Download Sublist3r
@@ -214,41 +214,40 @@ RUN \
 # Download gowitness
 WORKDIR /temp/gowitness
 RUN \
-    wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.3/gowitness-linux-amd64 -O gowitness && \
+    wget --quiet https://github.com/sensepost/gowitness/releases/download/1.3.4/gowitness-linux-amd64 -O gowitness && \
     chmod +x gowitness
 
 # Download findomain
 WORKDIR /temp/findomain
 RUN \
-    wget --quiet https://github.com/Edu4rdSHL/findomain/releases/download/1.5.0/findomain-linux -O findomain && \
+    wget --quiet https://github.com/Edu4rdSHL/findomain/releases/download/2.1.1/findomain-linux -O findomain && \
     chmod +x findomain
 
 # Download subfinder
 WORKDIR /temp/subfinder
 RUN \
-    wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.3.2/subfinder-linux-amd64.tar && \
-    tar -xvf subfinder-linux-amd64.tar && \
-    rm subfinder-linux-amd64.tar && \
-    mv subfinder-linux-amd64 subfinder
+    wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.4.3/subfinder_2.4.3_linux_amd64.tar.gz -O subfinder.tar.gz && \
+    tar -xzf subfinder.tar.gz && \
+    rm subfinder.tar.gz
 
 # Download gau
 WORKDIR /temp/gau
 RUN \
-    wget --quiet https://github.com/lc/gau/releases/download/v1.0.2/gau_1.0.2_linux_amd64.tar.gz -O gau.tar.gz && \
+    wget --quiet https://github.com/lc/gau/releases/download/v1.0.3/gau_1.0.3_linux_amd64.tar.gz -O gau.tar.gz && \
     tar -xzf gau.tar.gz && \
     rm gau.tar.gz
 
 # Download subjs
 WORKDIR /temp/subjs
 RUN \
-    wget --quiet https://github.com/lc/subjs/releases/download/v1.0.0/subjs_1.0.0_linux_amd64.tar.gz -O subjs.tar.gz && \
+    wget --quiet https://github.com/lc/subjs/releases/download/v1.0.1/subjs_1.0.1_linux_amd64.tar.gz -O subjs.tar.gz && \
     tar -xzf subjs.tar.gz && \
     rm subjs.tar.gz
 
 # Download httpx
 WORKDIR /temp/httpx
 RUN \
-    wget --quiet https://github.com/projectdiscovery/httpx/releases/download/v0.0.8/httpx_0.0.8_linux_amd64.tar.gz -O httpx.tar.gz && \
+    wget --quiet https://github.com/projectdiscovery/httpx/releases/download/v1.0.1/httpx_1.0.1_linux_amd64.tar.gz -O httpx.tar.gz && \
     tar -xzf httpx.tar.gz && \
     rm httpx.tar.gz
 
@@ -366,7 +365,7 @@ RUN \
     unzip gitrob.zip -d gitrob && \
     rm gitrob.zip && \
 # Install gitleaks
-    wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v4.1.0/gitleaks-linux-amd64 -O gitleaks && \
+    wget --quiet https://github.com/zricethezav/gitleaks/releases/download/v6.1.1/gitleaks-linux-amd64 -O gitleaks && \
     chmod +x gitleaks && \
 # Download github-search
     git clone --depth 1 https://github.com/gwen001/github-search.git && \
@@ -392,8 +391,9 @@ RUN \
 # Download dalfox
 WORKDIR /temp/dalfox
 RUN \
-    wget --quiet https://github.com/hahwul/dalfox/releases/download/v1.2.0/dalfox_linux_amd64 -O dalfox && \
-    chmod +x dalfox
+    wget --quiet https://github.com/hahwul/dalfox/releases/download/v2.0.2/dalfox_2.0.2_linux_amd64.tar.gz -O dalfox.tar.gz && \
+    tar -xzf dalfox.tar.gz && \
+    rm dalfox.tar.gz
 # Download jaeles
 WORKDIR /temp/jaeles
 RUN \
