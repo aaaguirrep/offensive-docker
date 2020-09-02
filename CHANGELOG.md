@@ -1,5 +1,5 @@
 # Changelog for Docker image
-<!--LATEST=0.2.6-->
+<!--LATEST=0.2.7-->
 
 ## 0.2.7
 
