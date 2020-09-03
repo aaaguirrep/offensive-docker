@@ -1,4 +1,4 @@
-# Contributing to Pentest image
+# Contributing to Offensive Docker image
 
 Want to contribute to docker image? We provide the next guide to help you get started.
 

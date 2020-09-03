@@ -1,9 +1,9 @@
 <!-- markdownlint-disable MD033 MD041 -->
 
 <p align="center">
-  <a href="https://hub.docker.com/r/aaaguirrep/pentest">
+  <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker">
     <img
-      alt="Docker for pentest"
+      alt="Offensive Docker"
       src="img/banner.jpg"
       width="600"
     />
@@ -11,28 +11,28 @@
 </p>
 <br/>
 <p align="center">
-  <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/aaaguirrep/pentest"></a>
-  <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/aaaguirrep/pentest"></a>
-  <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aaaguirrep/pentest"></a>
-    <a href="https://github.com/aaaguirrep/pentest"><img alt="GitHub issues" src="https://img.shields.io/github/issues/aaaguirrep/pentest"></a>
-    <a href="https://github.com/aaaguirrep/pentest/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/aaaguirrep/pentest">
-  <a href="https://github.com/aaaguirrep/pentest/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/aaaguirrep/pentest"></a>
+  <a href="https://github.com/aaaguirrep/offensive-docker"><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/aaaguirrep/offensive-docker"></a>
+  <a href="https://github.com/aaaguirrep/offensive-docker"><img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/aaaguirrep/offensive-docker"></a>
+  <a href="https://github.com/aaaguirrep/offensive-docker"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/aaaguirrep/offensive-docker"></a>
+    <a href="https://github.com/aaaguirrep/offensive-docker"><img alt="GitHub issues" src="https://img.shields.io/github/issues/aaaguirrep/offensive-docker"></a>
+    <a href="https://github.com/aaaguirrep/offensive-docker/graphs/contributors"><img alt="GitHub contributors" src="https://img.shields.io/github/contributors/aaaguirrep/offensive-docker">
+  <a href="https://github.com/aaaguirrep/offensive-docker/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/aaaguirrep/offensive-docker"></a>
 </p>
 <p align="center">
-  <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/aaaguirrep/pentest"></a>
-  <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Automated build" src="https://img.shields.io/docker/automated/aaaguirrep/pentest"></a>
-    <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/aaaguirrep/pentest"></a>
-  <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/aaaguirrep/pentest"></a>
-    <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/aaaguirrep/pentest"></a>
-    <a href="https://hub.docker.com/r/aaaguirrep/pentest"><img alt="Docker Stars" src="https://img.shields.io/docker/stars/aaaguirrep/pentest"></a>
+  <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/aaaguirrep/offensive-docker"></a>
+  <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker"><img alt="Docker Automated build" src="https://img.shields.io/docker/automated/aaaguirrep/offensive-docker"></a>
+    <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker"><img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/aaaguirrep/offensive-docker"></a>
+  <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker"><img alt="Docker Image Size (latest by date)" src="https://img.shields.io/docker/image-size/aaaguirrep/offensive-docker"></a>
+    <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker"><img alt="Docker Image Version (latest by date)" src="https://img.shields.io/docker/v/aaaguirrep/offensive-docker"></a>
+    <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker"><img alt="Docker Stars" src="https://img.shields.io/docker/stars/aaaguirrep/offensive-docker"></a>
 </p>
 <p align="center">
   <a href="https://discord.gg/2uBfu8E"><img alt="Discord" src="https://img.shields.io/discord/749093790676942888"></a>
 </p>
 
-Docker for pentest is an image with the more used tools to create an pentest environment easily and quickly.
+Offensive Docker is an image with the more used tools to create an pentest environment easily and quickly.
 
-:arrow_right: **Note:** Check out the next repo to know how to launch the docker for pentest in a VPS in Google Cloud Platform or Digital Ocean (free credit included). [VPS for docker for pentest](https://github.com/aaaguirrep/vps-docker-for-pentest)
+:arrow_right: **Note:** Check out the next repo to know how to launch offensive docker in a VPS in Google Cloud Platform or Digital Ocean (free credit included). [Offensive Docker VPS](https://github.com/aaaguirrep/offensive-docker-vps)
 
 ### Table of Contents
 
@@ -43,7 +43,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
   - [Operative system tools](#operative-system-tools)
   - [Network tools](#network-tools)
   - [Developer tools](#developer-tools)
-  - [:hocho: Pentest tools](#hocho-pentest-tools)
+  - [:hocho: Offensive tools](#hocho-offensive-tools)
     - [Port scanning](#port-scanning)
     - [:mag: Recon](#mag-recon)
       - [Subdomains](#subdomains)
@@ -94,8 +94,8 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 - 🎬 Video: [Demos](https://asciinema.org/~aaaguirrep)
 - 💬 Chat: [Discord](https://discord.gg/2uBfu8E)
-- 🌟 [VPS Automation](https://github.com/aaaguirrep/vps-docker-for-pentest)
-- 👉 [Advanced configurations](https://github.com/aaaguirrep/docker-pentest-config)
+- 🌟 [VPS Automation](https://github.com/aaaguirrep/offensive-docker-vps)
+- 👉 [Advanced configurations](https://github.com/aaaguirrep/offensive-docker-custom)
 
 ## Features
 
@@ -158,7 +158,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 - [tojson](https://github.com/tomnomnom/hacks/tree/master/tojson)
 - nodejs
 
-### :hocho: Pentest tools
+### :hocho: Offensive tools
 
 #### Port scanning
 
@@ -328,7 +328,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 #### Other resources
 
-- [pentest-tools](https://github.com/gwen001/pentest-tools) from [@gwen001](https://github.com/gwen001)
+- [pentest-tools](https://github.com/gwen001/offensive-tools) from [@gwen001](https://github.com/gwen001)
 - [qsreplace](https://github.com/tomnomnom/qsreplace) from [@tomnomnom](https://github.com/tomnomnom)
 
 ### Custom functions
@@ -342,7 +342,7 @@ Docker for pentest is an image with the more used tools to create an pentest env
 
 ## :memo: Documentation
 
-See the project's [wiki](https://github.com/aaaguirrep/pentest/wiki) for documentation.
+See the project's [wiki](https://github.com/aaaguirrep/offensive-docker/wiki) for documentation.
 
 ## :hammer_and_wrench: Usage
 
@@ -350,17 +350,17 @@ You can use the docker image by the next two options:
 
 ### Option 1 - Use the github repository
 
-    git clone --depth 1 https://github.com/aaaguirrep/pentest.git
-    cd pentest
-    docker build -t pentest .
-    docker run --rm -it --name my-pentest pentest /bin/zsh
+    git clone --depth 1 https://github.com/aaaguirrep/offensive-docker.git
+    cd offensive-docker
+    docker build -t offensive-docker .
+    docker run --rm -it --name my-offensive-docker offensive-docker /bin/zsh
 
 ### Option 2 - Use the image from docker hub
 
-Use image from docker hub: [aaaguirrep/pentest](https://hub.docker.com/r/aaaguirrep/pentest)
+Use image from docker hub: [aaaguirrep/offensive-docker](https://hub.docker.com/r/aaaguirrep/offensive-docker)
 
-    docker pull aaaguirrep/pentest
-    docker run --rm -it --name my-pentest pentest /bin/zsh
+    docker pull aaaguirrep/offensive-docker
+    docker run --rm -it --name my-offensive-docker offensive-docker /bin/zsh
 
 ### Considerations to run the container
 
@@ -368,15 +368,15 @@ There are differents use cases for use the image and you should know how to run 
 
 1. Use the container to access HTB (Hack the Box) machines by HTB vpn.
 
-        docker run --rm -it --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --name my-pentest aaaguirrep/pentest /bin/zsh
+        docker run --rm -it --cap-add=NET_ADMIN --device=/dev/net/tun --sysctl net.ipv6.conf.all.disable_ipv6=0 --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
-2. Share information from your local directory to container directory and save information on your local directory. You should save information under /pentest directory.
+2. Share information from your local directory to container directory and save information on your local directory. You should save information under /offensive directory.
 
-        docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
+        docker run --rm -it -v /path/to/local/directory:/offensive --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
 3. Expose internal container services (apache, squid) for your local environment.
 
-        docker run --rm -it --name my-pentest -p 80:80 -p 3128:3128 aaaguirrep/pentest /bin/zsh
+        docker run --rm -it --name my-offensive-docker -p 80:80 -p 3128:3128 aaaguirrep/offensive-docker /bin/zsh
 
     Inside the container start apache2 and squid services by the aliases.
 
@@ -385,7 +385,7 @@ There are differents use cases for use the image and you should know how to run 
 
 4. Mount directories by umount command.
 
-        docker run --rm -it --privileged --name my-pentest aaaguirrep/pentest /bin/zsh
+        docker run --rm -it --privileged --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
 5. Tools are downloaded in /tools directory.
 
@@ -395,48 +395,48 @@ You can set up the docker image with nice configurations like as:
 
 ### 1. Configure credentials in the docker
 
-To use access keys, tokens or API Keys in the docker review the next repo [docker-pentest-config](https://github.com/aaaguirrep/docker-pentest-config)
+To use access keys, tokens or API Keys in the docker review the next repo [Offensive Docker Custom](https://github.com/aaaguirrep/offensive-docker-custom)
 
 ### 2. Alias to connect to HTB (Hack the Box) VPN
 
-To use both options you should use -v option to map local directoty with /pentest container directory.
+To use both options you should use -v option to map local directoty with /offensive container directory.
 
 #### Option 1 - HTB VPN using github repository
 
 Add the next line in step "Create shorcuts" in Dockerfile, build a new image and run a new container with the -v option.
 
-    RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
+    RUN echo "alias vpnhtb=\"openvpn /offensive/path/to/ovpn/file\"" >> /root/.zshrc
 
 #### Option 2 - HTB VPN using docker hub image
 
 Create a new Dockerfile with the next steps, build a new image and run a new container with -v option.
 
-    FROM aaaguirrep/pentest
+    FROM aaaguirrep/offensive-docker
 
     # Create a shortcut and load the ovpn file from workstation
-    RUN echo "alias vpnhtb=\"openvpn /pentest/path/to/ovpn/file\"" >> /root/.zshrc
+    RUN echo "alias vpnhtb=\"openvpn /offensive/path/to/ovpn/file\"" >> /root/.zshrc
 
 ### 3. Save and load command history in your local environment
 
 When you delete a container all information is deleted incluide command history. The next configuration provides you an option for save the command history in your local environment and load it when you run a new container. So, you wont lose your command history when run a new container.
 
-To use both options you should use -v option to map local directoty with /pentest container directory.
+To use both options you should use -v option to map local directoty with /offensive container directory.
 
 #### Option 1 - Command history using github repository
 
 Add the next line in step "Create shorcuts" in Dockerfile, build a new image and run a new container.
 
     # Save and load command history in your local environment
-    RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
+    RUN sed -i '1i export HISTFILE="/history/.zsh_history"' /root/.zshrc
 
 #### Option 2 - Command history using docker hub image
 
 Create a new Dockerfile with the next steps, build a new image and run a new container.
 
-    FROM aaaguirrep/pentest
+    FROM aaaguirrep/offensive-docker
 
     # Save and load command history in your local environment
-    RUN sed -i '1i export HISTFILE="/pentest/.zsh_history"' /root/.zshrc
+    RUN sed -i '1i export HISTFILE="/history/.zsh_history"' /root/.zshrc
 
 ## :white_check_mark: Environment tested
 
@@ -452,9 +452,9 @@ The image was tested in the following environments:
 
 - Do not save information on container directories because it will be lost after delete the container, you should save information in your local environment using the parameter -v when you run the container. For instance:
 
-      docker run --rm -it -v /path/to/local/directory:/pentest --name my-pentest aaaguirrep/pentest /bin/zsh
+      docker run --rm -it -v /path/to/local/directory:/offensive --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
-  The above command specify a path local directory mapped with /pentest container directory. You should save all information under /pentest directory.
+  The above command specify a path local directory mapped with /offensive container directory. You should save all information under /offensive directory.
 
 - Use hashcat and john the ripper on controlled environments as CTF. You can experiment issues.
 
@@ -468,7 +468,7 @@ While I drink the coffee I check more tools to add in the docker image.
 
 ## Contributors
 
-Thank you to all our [contributors](https://github.com/aaaguirrep/pentest/graphs/contributors)!
+Thank you to all our [contributors](https://github.com/aaaguirrep/offensive-docker/graphs/contributors)!
 
 ## Contributing
 
@@ -476,7 +476,7 @@ Thank you to all our [contributors](https://github.com/aaaguirrep/pentest/graphs
 
 ## :chart_with_upwards_trend: Stargazers over time
 
-[![Stargazers over time](https://starchart.cc/aaaguirrep/pentest.svg)](https://starchart.cc/aaaguirrep/pentest)
+[![Stargazers over time](https://starchart.cc/aaaguirrep/offensive-docker.svg)](https://starchart.cc/aaaguirrep/offensive-docker)
 
 ## License
 
