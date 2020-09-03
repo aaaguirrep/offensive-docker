@@ -8,11 +8,11 @@ yellowColour="\e[0;33m\033[1m"
 grayColour="\e[0;37m\033[1m"
 # Banner
 echo "\t${greenColour}************************************************************************************${yellowColour}"
-figlet -c -w 100 Docker for pentest
+figlet -c -w 100 Offensive Docker
 echo "\t${redColour}Version: ${blueColour}$VERSION${endColour}"
 echo "\t${greenColour}------------------------------------------------------------------------------------"
 echo "\t${redColour}Creator: ${blueColour}Arsenio Aguirre\t\t\t${redColour}Email: ${blueColour}a_aguirre117@hotmail.com"
 echo "\t${grayColour}Repositories links:"
-echo "\t${redColour}Docker Hub: ${blueColour}https://hub.docker.com/r/aaaguirrep/pentest"
-echo "\t${redColour}Github: ${blueColour}https://github.com/aaaguirrep/pentest"
+echo "\t${redColour}Docker Hub: ${blueColour}https://hub.docker.com/r/aaaguirrep/offensive-docker"
+echo "\t${redColour}Github: ${blueColour}https://github.com/aaaguirrep/offensive-docker"
 echo "\t${greenColour}************************************************************************************"
