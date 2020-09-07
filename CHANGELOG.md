@@ -1,6 +1,14 @@
 # Changelog for Docker image
 <!--LATEST=0.2.7-->
 
+## 0.2.9
+
+* feat: update amass
+
+## 0.2.8
+
+* feat: add Bo0om wordlist
+
 ## 0.2.7
 
 * feat: update packages
