@@ -360,7 +360,7 @@ You can use the docker image by the next two options:
 Use image from docker hub: [aaaguirrep/offensive-docker](https://hub.docker.com/r/aaaguirrep/offensive-docker)
 
     docker pull aaaguirrep/offensive-docker
-    docker run --rm -it --name my-offensive-docker offensive-docker /bin/zsh
+    docker run --rm -it --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
 ### Considerations to run the container
 
