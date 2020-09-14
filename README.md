@@ -353,14 +353,14 @@ You can use the docker image by the next two options:
     git clone --depth 1 https://github.com/aaaguirrep/offensive-docker.git
     cd offensive-docker
     docker build -t offensive-docker .
-    docker run --rm -it --name my-offensive-docker offensive-docker /bin/zsh
+    docker run --rm -it --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
 ### Option 2 - Use the image from docker hub
 
 Use image from docker hub: [aaaguirrep/offensive-docker](https://hub.docker.com/r/aaaguirrep/offensive-docker)
 
     docker pull aaaguirrep/offensive-docker
-    docker run --rm -it --name my-offensive-docker offensive-docker /bin/zsh
+    docker run --rm -it --name my-offensive-docker aaaguirrep/offensive-docker /bin/zsh
 
 ### Considerations to run the container
 
