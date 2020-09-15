@@ -467,7 +467,7 @@ WORKDIR /temp
 RUN \
     git clone --depth 1 https://github.com/portcullislabs/enum4linux.git && \
 # Download PEASS - Privilege Escalation Awesome Scripts SUITE
-    mkdir -p /temo/peass
+    mkdir -p /temp/peass
 
 WORKDIR /temp/peass
 RUN \

@@ -464,7 +464,7 @@ Thanks for your donations, are always appreciated.
 
 While I drink the coffee I check more tools to add in the docker image.
 
-<a href="https://www.buymeacoffee.com/aaaguirrep" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 23px !important; width: 100px !important;" ></a>
+[![Buy me a coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/aaaguirrep)
 
 ## Contributors
 
