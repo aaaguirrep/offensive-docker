@@ -4,7 +4,7 @@
   <a href="https://hub.docker.com/r/aaaguirrep/offensive-docker">
     <img
       alt="Offensive Docker"
-      src="img/banner.jpg"
+      src="https://github.com/aaaguirrep/offensive-docker/blob/master/img/banner.jpg"
       width="600"
     />
   </a>
