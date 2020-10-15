@@ -11,3 +11,4 @@ argparse
 tld
 #jwt-tool dependency
 pycryptodomex
+wafw00f

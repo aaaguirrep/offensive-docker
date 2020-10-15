@@ -165,8 +165,6 @@ WORKDIR /temp/
 # Download whatweb
 RUN \
     git clone --depth 1 https://github.com/urbanadventurer/WhatWeb.git && \
-# Download wafw00f
-    git clone --depth 1 https://github.com/EnableSecurity/wafw00f.git && \
 # Install dirsearch
     git clone --depth 1 https://github.com/maurosoria/dirsearch.git && \
 # Download arjun
@@ -188,7 +186,7 @@ RUN \
     unzip aquatone.zip -d aquatone  && \
     rm aquatone.zip && \
 # Install amass
-    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.10.3/amass_linux_amd64.zip -O amass.zip && \
+    wget --quiet https://github.com/OWASP/Amass/releases/download/v3.10.5/amass_linux_amd64.zip -O amass.zip && \
     unzip amass.zip -d amass && \
     rm amass.zip && \
 # Download Sublist3r
@@ -318,10 +316,6 @@ RUN \
 
 WORKDIR /tools/recon/knock
 RUN python setup.py install
-
-# Install wafw00f
-WORKDIR /tools/recon/wafw00f
-RUN python3 setup.py install
 
 # Install linkfinder
 WORKDIR /tools/recon/LinkFinder
