@@ -1,5 +1,9 @@
 # Changelog for Docker image
-<!--LATEST=0.2.7-->
+<!--LATEST=0.3.0-->
+
+## 0.3.0
+
+* feat: update amass and change wafw00f installation mode
 
 ## 0.2.9
 

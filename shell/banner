@@ -1,4 +1,4 @@
-export VERSION=v0.2.7
+export VERSION=v0.3.0
 # Colours
 greenColour="\e[0;32m\033[1m"
 endColour="\033[0m\e[0m"
