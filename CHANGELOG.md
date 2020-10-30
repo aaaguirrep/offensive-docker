@@ -1,5 +1,11 @@
 # Changelog for Docker image
-<!--LATEST=0.3.0-->
+<!--LATEST=0.3.1-->
+
+## 0.3.1
+
+* feat: add ssh service.
+* feat: add plink and netcat executables.
+* fix: change crowbar installation
 
 ## 0.3.0
 

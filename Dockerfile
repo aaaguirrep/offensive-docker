@@ -58,6 +58,7 @@ RUN \
     chromium-browser \
     dos2unix \
     openjdk-8-jdk \
+    ssh \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -144,10 +145,7 @@ ENV PATH "$PATH:$GOPATH/bin:$GOROOT/bin"
 RUN mkdir -p /tools/portScanning
 WORKDIR /tools/portScanning
 
-# Download ScanPorts
 RUN \
-    wget --quiet https://raw.githubusercontent.com/aaaguirrep/scanPorts/master/scanPorts.sh && \
-    chmod +x * && \
 # Download naabu
     mkdir -p /tools/portScanning/naabu
 WORKDIR /tools/portScanning/naabu
@@ -423,6 +421,9 @@ RUN \
 FROM builder5 as builder6
 COPY --from=bruteForce /temp/ /tools/bruteForce/
 
+WORKDIR /tools/bruteForce/crowbar
+RUN pip3 install -r requirements.txt
+
 # CRACKING
 RUN mkdir -p /tools/cracking
 WORKDIR /tools/cracking
@@ -467,7 +468,8 @@ WORKDIR /temp/peass
 RUN \
     wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe && \
     wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe && \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe && \
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASbat/winPEAS.bat
 
 # Install smbmap
 WORKDIR /temp
@@ -540,7 +542,19 @@ RUN \
 # Download Mimikatz
     wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200816/mimikatz_trunk.zip -O mimikatz.zip && \
     unzip mimikatz.zip -d mimikatz && \
-    rm mimikatz.zip
+    rm mimikatz.zip && \
+    mkdir netcat && \
+    mkdir plink
+WORKDIR /temp/netcat
+# Download netcat
+RUN \
+    wget --quiet https://github.com/int0x33/nc.exe/raw/master/nc64.exe -O nc64.exe && \
+    wget --quiet https://github.com/int0x33/nc.exe/raw/master/nc.exe -O nc32.exe 
+WORKDIR /temp/plink
+# Download plink
+RUN \
+    wget --quiet https://the.earth.li/\~sgtatham/putty/latest/w32/plink.exe -O plink32.exe && \
+    wget --quiet https://the.earth.li/\~sgtatham/putty/latest/w64/plink.exe -O plink64.exe
 
 # WINDOWS
 FROM builder8 as builder9

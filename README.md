@@ -164,7 +164,6 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 
 - [nmap](https://github.com/nmap/nmap)
 - [masscan](https://github.com/robertdavidgraham/masscan)
-- [ScanPorts](https://github.com/aaaguirrep/scanPorts) created by [@s4vitar](https://github.com/s4vitar) with some improvements
 - [naabu](https://github.com/projectdiscovery/naabu)
 
 #### :mag: Recon
@@ -320,6 +319,8 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 - [pass-the-hash](https://github.com/byt3bl33d3r/pth-toolkit)
 - [mimikatz](https://github.com/gentilkiwi/mimikatz)
 - gpp-decrypt
+- Netcat executables
+- Plink executables
 
 #### Reverse shell
 
@@ -339,6 +340,7 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 
 - apache2
 - squid
+- ssh
 
 ## :memo: Documentation
 
