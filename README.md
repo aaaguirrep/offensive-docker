@@ -128,6 +128,7 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 - htop
 - tree
 - [gotop](https://github.com/cjbassi/gotop)
+- fcrackzip
 
 ### Network tools
 
@@ -341,6 +342,7 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 - apache2
 - squid
 - ssh
+- rsyslog
 
 ## :memo: Documentation
 
@@ -444,7 +446,7 @@ Create a new Dockerfile with the next steps, build a new image and run a new con
 
 The image was tested in the following environments:
 
-- Docker service for Mac: Docker version 19.03.5, build 633a0ea
+- Docker service for Mac: Docker version 19.03.13, build 4484c46d9d
 
 - Docker service for Linux instance on Google Cloud Platform: Docker version 19.03.6, build 369ce74a3c
 

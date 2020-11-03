@@ -59,6 +59,8 @@ RUN \
     dos2unix \
     openjdk-8-jdk \
     ssh \
+    rsyslog \
+    fcrackzip \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies

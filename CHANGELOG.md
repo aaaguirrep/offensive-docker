@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.3.1-->
 
+## 0.3.2
+
+* feat: add rsyslog and fcrackzip
+
 ## 0.3.1
 
 * feat: add ssh service.
