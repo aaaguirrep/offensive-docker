@@ -61,7 +61,7 @@ RUN \
     ssh \
     rsyslog \
     fcrackzip \
-    textlive-full \
+    texlive-full \
     latexmk \
     # patator dependencies
     libmysqlclient-dev \
