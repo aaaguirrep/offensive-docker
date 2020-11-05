@@ -61,6 +61,8 @@ RUN \
     ssh \
     rsyslog \
     fcrackzip \
+    texlive-full \
+    latexmk \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies

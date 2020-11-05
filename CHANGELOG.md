@@ -1,9 +1,10 @@
 # Changelog for Docker image
-<!--LATEST=0.3.1-->
+<!--LATEST=0.3.2-->
 
 ## 0.3.2
 
 * feat: add rsyslog and fcrackzip
+* feat: add texlive-full and latexmk
 
 ## 0.3.1
 

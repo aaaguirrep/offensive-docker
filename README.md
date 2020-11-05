@@ -69,6 +69,7 @@ Offensive Docker is an image with the more used tools to create an pentest envir
     - [Other resources](#other-resources)
   - [Custom functions](#custom-functions)
   - [Other services](#other-services)
+  - [Reporting tools](#reporting-tools)
 - [:memo: Documentation](#memo-documentation)
 - [:hammer_and_wrench: Usage](#hammer_and_wrench-usage)
   - [Option 1 - Use the github repository](#option-1---use-the-github-repository)
@@ -344,6 +345,10 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 - ssh
 - rsyslog
 
+### Reporting tools
+
+- Latex
+
 ## :memo: Documentation
 
 See the project's [wiki](https://github.com/aaaguirrep/offensive-docker/wiki) for documentation.
@@ -446,11 +451,14 @@ Create a new Dockerfile with the next steps, build a new image and run a new con
 
 The image was tested in the following environments:
 
-- Docker service for Mac: Docker version 19.03.13, build 4484c46d9d
+- Docker service for Mac
+  ```Docker version 19.03.13, build 4484c46d9d```
 
-- Docker service for Linux instance on Google Cloud Platform: Docker version 19.03.6, build 369ce74a3c
+- Docker service for Linux instance on Google Cloud Platform
+  ```Docker version 19.03.6, build 369ce74a3c```
 
-- Docker service for Linux droplet on Digital Ocean: Docker version 19.03.6, build 369ce74a3c
+- Docker service for Linux droplet on Digital Ocean
+  ```Docker version 19.03.6, build 369ce74a3c```
 
 ## :warning: Warning
 
