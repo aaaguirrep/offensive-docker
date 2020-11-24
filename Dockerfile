@@ -132,7 +132,7 @@ RUN \
 # Install go
 WORKDIR /tmp
 RUN \
-    wget -q https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz -O go.tar.gz && \
+    wget -q https://dl.google.com/go/go1.15.5.linux-amd64.tar.gz -O go.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz && \
 # Install aws-cli
     curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
@@ -226,7 +226,7 @@ RUN \
 # Download subfinder
 WORKDIR /temp/subfinder
 RUN \
-    wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.4.3/subfinder_2.4.3_linux_amd64.tar.gz -O subfinder.tar.gz && \
+    wget --quiet https://github.com/projectdiscovery/subfinder/releases/download/v2.4.5/subfinder_2.4.5_linux_amd64.tar.gz -O subfinder.tar.gz && \
     tar -xzf subfinder.tar.gz && \
     rm subfinder.tar.gz
 
