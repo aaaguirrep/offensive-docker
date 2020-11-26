@@ -63,6 +63,10 @@ RUN \
     fcrackzip \
     texlive-full \
     latexmk \
+    exiftool \
+    steghide \
+    binwalk \
+    foremost \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
