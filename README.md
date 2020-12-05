@@ -67,6 +67,7 @@ Offensive Docker is an image with the more used tools to create an pentest envir
     - [Windows](#windows)
     - [Reverse shell](#reverse-shell)
     - [Other resources](#other-resources)
+  - [Forensic](#forensic)
   - [Custom functions](#custom-functions)
   - [Other services](#other-services)
   - [Reporting tools](#reporting-tools)
@@ -333,6 +334,13 @@ Offensive Docker is an image with the more used tools to create an pentest envir
 
 - [pentest-tools](https://github.com/gwen001/offensive-tools) from [@gwen001](https://github.com/gwen001)
 - [qsreplace](https://github.com/tomnomnom/qsreplace) from [@tomnomnom](https://github.com/tomnomnom)
+
+### Forensic
+
+- [exiftool](https://github.com/exiftool/exiftool)
+- [steghide](https://github.com/StefanoDeVuono/steghide)
+- [binwalk](https://github.com/ReFirmLabs/binwalk)
+- [foremost](https://github.com/DogFive/foremost)
 
 ### Custom functions
 
