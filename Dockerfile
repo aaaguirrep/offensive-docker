@@ -461,7 +461,7 @@ RUN chmod +x LinEnum.sh
 # Download enum4linux
 WORKDIR /temp
 RUN \
-    git clone --depth 1 https://github.com/portcullislabs/enum4linux.git && \
+    git clone --depth 1 https://github.com/CiscoCXSecurity/enum4linux.git && \
 # Download PEASS - Privilege Escalation Awesome Scripts SUITE
     mkdir -p /temp/peass
 
