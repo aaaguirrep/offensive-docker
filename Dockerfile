@@ -39,8 +39,6 @@ RUN \
     apache2 \
     squid \
     python3 \
-    python \
-    python-dnspython \
     python3-pip \
     jq \
     libcurl4-openssl-dev \
@@ -67,6 +65,7 @@ RUN \
     steghide \
     binwalk \
     foremost \
+    sqlite3 \
     # patator dependencies
     libmysqlclient-dev \
     # evil-winrm dependencies
@@ -96,11 +95,7 @@ RUN \
     evil-winrm && \
     apt-get update
 
-# Installing python-pip
-RUN curl -O https://raw.githubusercontent.com/pypa/get-pip/master/get-pip.py &&  \
-    python get-pip.py  && \
-    echo "PATH=$HOME/.local/bin/:$PATH" >> ~/.bashrc && \
-    rm get-pip.py
+RUN python3 -m pip install --upgrade pip
 
 FROM baseline as builder
 # SERVICES
@@ -125,10 +120,8 @@ RUN \
     sed -i '78i autoload -U compinit && compinit' /root/.zshrc
 
 # Install python dependencies
-COPY requirements_pip3.txt /tmp
 COPY requirements_pip.txt /tmp
 RUN \
-    pip3 install -r /tmp/requirements_pip3.txt && \
     pip install -r /tmp/requirements_pip.txt
 
 # DEVELOPER TOOLS
@@ -321,17 +314,17 @@ RUN \
     ln -s /tools/recon/httpx/httpx /usr/bin/httpx
 
 WORKDIR /tools/recon/knock
-RUN python setup.py install
+RUN python3 setup.py install
 
 # Install linkfinder
 WORKDIR /tools/recon/LinkFinder
 RUN \
     python3 setup.py install && \
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
 
 # Install spiderfoot
 WORKDIR /tools/recon/spiderfoot
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # BUILDER WORDLIST
 FROM baseline as wordlist
@@ -430,7 +423,7 @@ FROM builder5 as builder6
 COPY --from=bruteForce /temp/ /tools/bruteForce/
 
 WORKDIR /tools/bruteForce/crowbar
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # CRACKING
 RUN mkdir -p /tools/cracking
@@ -468,7 +461,9 @@ RUN chmod +x LinEnum.sh
 # Download enum4linux
 WORKDIR /temp
 RUN \
-    git clone --depth 1 https://github.com/portcullislabs/enum4linux.git && \
+    git clone --depth 1 https://github.com/CiscoCXSecurity/enum4linux.git && \
+# Download enum4linx-ng
+    git clone https://github.com/cddmp/enum4linux-ng.git && \    
 # Download PEASS - Privilege Escalation Awesome Scripts SUITE
     mkdir -p /temp/peass
 
