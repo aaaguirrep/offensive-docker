@@ -1,5 +1,13 @@
 # Changelog for Docker image
-<!--LATEST=0.3.2-->
+<!--LATEST=0.3.3-->
+
+## 0.3.3
+
+* Add sqlite3
+* Upgrade pip for python3
+* Merge requeriments.txt file
+* Update repo for enum4linux
+* Add enum4linux-ng
 
 ## 0.3.2
 
