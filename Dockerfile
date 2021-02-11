@@ -1,99 +1,40 @@
-FROM ubuntu as baseline
+FROM ubuntu:focal as baseline
 
 LABEL maintainer="Arsenio Aguirre" \
       email="a_aguirre117@hotmail.com"
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
+RUN sed -i "s/archive.ubuntu/au.archive.ubuntu/g" /etc/apt/sources.list && apt update && DEBIAN_FRONTEND="noninteractive" apt -y install tzdata
 
 # Install packages
-RUN \
-    apt-get update && \
-    apt-get install -y \
-    traceroute \
-    whois \
-    host \
-    htop \
-    dnsutils \
-    net-tools \
-    figlet \
-    tcpdump \
-    telnet \
-    prips \
-    cifs-utils \
-    rlwrap \
-    iputils-ping \
-    git \
-    xsltproc \
-    rdate \
-    zsh \
-    curl \
-    unzip \
-    p7zip-full \
-    locate \
-    tree \
-    openvpn \
-    vim \
-    wget \
-    ftp \
-    apache2 \
-    squid \
-    python3 \
-    python3-pip \
-    jq \
-    libcurl4-openssl-dev \
-    libssl-dev \
-    nmap \
-    masscan \
-    nikto \
-    netcat \
-    cewl \
-    crunch \
-    hydra \
-    medusa \
-    hashcat \
-    libwww-perl \
-    chromium-browser \
-    dos2unix \
-    openjdk-8-jdk \
-    ssh \
-    rsyslog \
-    fcrackzip \
-    texlive-full \
-    latexmk \
-    exiftool \
-    steghide \
-    binwalk \
-    foremost \
-    sqlite3 \
-    # patator dependencies
-    libmysqlclient-dev \
-    # evil-winrm dependencies
-    ruby-full \
-    # enum4linux dependencies
-    ldap-utils \
-    smbclient \
-    # john dependencies
-    build-essential \
-    libssl-dev \
-    zlib1g-dev  \
-    yasm \
-    pkg-config \
-    libgmp-dev \
-    libpcap-dev \
-    libbz2-dev \
-    # crackmapexec dependencies
-    libffi-dev \
-    python-dev && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y php \
-    libapache2-mod-php && \
-    gem install \
-    gpp-decrypt \
-    addressable \
-    wpscan \
-    # Install evil-winrm
-    evil-winrm && \
-    apt-get update
+RUN apt update && apt install -y traceroute whois host htop dnsutils net-tools figlet tcpdump telnet prips cifs-utils rlwrap iputils-ping git xsltproc rdate zsh curl unzip p7zip-full locate tree openvpn vim wget ftp apache2 squid python3 python3-pip jq libcurl4-openssl-dev libssl-dev nmap masscan nikto netcat cewl crunch hydra medusa hashcat libwww-perl chromium-browser dos2unix openjdk-8-jdk ssh rsyslog fcrackzip texlive-full latexmk exiftool steghide binwalk foremost sqlite3 \
+# patator dependencies
+libmysqlclient-dev \
+# evil-winrm dependencies
+ruby-full \
+# enum4linux dependencies
+ldap-utils \
+smbclient \
+# john dependencies
+build-essential \
+libssl-dev \
+zlib1g-dev  \
+yasm \
+pkg-config \
+libgmp-dev \
+libpcap-dev \
+libbz2-dev \
+# crackmapexec dependencies
+libffi-dev \
+python-dev && \
+DEBIAN_FRONTEND=noninteractive apt-get install -y php \
+libapache2-mod-php && \
+gem install \
+gpp-decrypt \
+addressable \
+wpscan \
+# Install evil-winrm
+evil-winrm && \
+apt update
 
 RUN python3 -m pip install --upgrade pip
 
@@ -121,23 +62,21 @@ RUN \
 
 # Install python dependencies
 COPY requirements_pip.txt /tmp
-RUN \
-    pip install -r /tmp/requirements_pip.txt
+RUN pip install -r /tmp/requirements_pip.txt
 
 # DEVELOPER TOOLS
 
 # Install go
 WORKDIR /tmp
-RUN \
-    wget -q https://dl.google.com/go/go1.15.5.linux-amd64.tar.gz -O go.tar.gz && \
-    tar -C /usr/local -xzf go.tar.gz && \
+
+RUN wget -q https://dl.google.com/go/go1.15.8.linux-amd64.tar.gz -O go.tar.gz && tar -C /usr/local -xzf go.tar.gz && \
+
 # Install aws-cli
-    curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
-    unzip awscliv2.zip && \
-    ./aws/install && \
+curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && unzip awscliv2.zip && ./aws/install && \
+
 # Install node
-    curl -sL https://deb.nodesource.com/setup_14.x | bash && \
-    apt install -y nodejs
+curl -sL https://deb.nodesource.com/setup_14.x | bash && apt install -y nodejs
+
 ENV GOROOT "/usr/local/go"
 ENV GOPATH "/root/go"
 ENV PATH "$PATH:$GOPATH/bin:$GOROOT/bin"
