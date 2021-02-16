@@ -1,6 +1,10 @@
 # Changelog for Docker image
 <!--LATEST=0.3.3-->
 
+## 0.3.4
+
+* update hashcat and PEASS
+
 ## 0.3.3
 
 * Add sqlite3

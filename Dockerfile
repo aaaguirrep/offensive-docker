@@ -51,7 +51,7 @@ RUN \
     crunch \
     hydra \
     medusa \
-    hashcat \
+    pocl-opencl-icd \
     libwww-perl \
     chromium-browser \
     dos2unix \
@@ -425,12 +425,26 @@ COPY --from=bruteForce /temp/ /tools/bruteForce/
 WORKDIR /tools/bruteForce/crowbar
 RUN pip install -r requirements.txt
 
-# CRACKING
-RUN mkdir -p /tools/cracking
-WORKDIR /tools/cracking
+# BUILDER CRACKING
+FROM baseline as cracking
+RUN mkdir /temp
+WORKDIR /temp
+RUN \
+    # Download hashcat
+    wget --quiet https://hashcat.net/files/hashcat-6.1.1.7z -O hashcat.7z && \
+    7z x hashcat.7z && \
+    rm hashcat.7z && \
+    mv hashcat-6.1.1 hashcat && \
+    # Download john the ripper
+    git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
 
+# CRACKING
+FROM builder6 as builder7
+COPY --from=cracking /temp/ /tools/cracking/
+RUN \
+# Install hashcat
+    ln -s /tools/cracking/hashcat/hashcat.bin /usr/bin/hashcat
 # Install john the ripper
-RUN git clone --depth 1 https://github.com/magnumripper/JohnTheRipper -b bleeding-jumbo john
 WORKDIR /tools/cracking/john/src
 RUN ./configure && make -s clean && make -sj4
 
@@ -469,10 +483,11 @@ RUN \
 
 WORKDIR /temp/peass
 RUN \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASany.exe && \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx64.exe && \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/winPEAS/bin/Obfuscated%20Releases/winPEASx86.exe && \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASbat/winPEAS.bat
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases/winPEASany.exe && \
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases/winPEASx64.exe && \
+    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases/winPEASx86.exe && \
+    wget -q https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat && \
+    wget -q https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh
 
 # Install smbmap
 WORKDIR /temp
@@ -488,7 +503,7 @@ RUN \
     chmod +x *
 
 # OS ENUMERATION
-FROM builder6 as builder7
+FROM builder7 as builder8
 COPY --from=osEnumeration /temp/ /tools/osEnumeration/
 WORKDIR /tools/osEnumeration
 
@@ -511,7 +526,7 @@ RUN \
     git clone --depth 1 https://github.com/dirkjanm/PrivExchange.git
 
 # EXPLOITS
-FROM builder7 as builder8
+FROM builder8 as builder9
 COPY --from=exploits /temp/ /tools/exploits/
 WORKDIR /tools/exploits
 
@@ -560,7 +575,7 @@ RUN \
     wget --quiet https://the.earth.li/\~sgtatham/putty/latest/w64/plink.exe -O plink64.exe
 
 # WINDOWS
-FROM builder8 as builder9
+FROM builder9 as builder10
 RUN mkdir -p /tools/windows
 COPY --from=windows /temp/ /tools/windows/
 
@@ -577,7 +592,7 @@ RUN \
     chmod +x apktool.jar
 
 # Mobile
-FROM builder9 as builder10
+FROM builder10 as builder11
 COPY --from=mobile /temp/ /usr/local/bin
 
 # OTHER RESOURCES
