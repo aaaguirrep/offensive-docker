@@ -129,7 +129,9 @@ RUN \
 # Install go
 WORKDIR /tmp
 RUN \
-    wget -q https://dl.google.com/go/go1.15.5.linux-amd64.tar.gz -O go.tar.gz && \
+# Update from 1.15.5 to 1.16.2
+#    wget -q https://dl.google.com/go/go1.15.5.linux-amd64.tar.gz -O go.tar.gz && \
+    wget -q https://dl.google.com/go/go1.16.2.linux-amd64.tar.gz -O go.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz && \
 # Install aws-cli
     curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
