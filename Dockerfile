@@ -484,12 +484,14 @@ RUN \
     mkdir -p /temp/peass
 
 WORKDIR /temp/peass
+
 RUN \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases/winPEASany.exe && \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases/winPEASx64.exe && \
-    wget -q https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/raw/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases/winPEASx86.exe && \
-    wget -q https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/winPEAS/winPEASbat/winPEAS.bat && \
-    wget -q https://raw.githubusercontent.com/carlospolop/privilege-escalation-awesome-scripts-suite/master/linPEAS/linpeas.sh
+    latest_release_url=$(curl --silent --head https://github.com/carlospolop/PEASS-ng/releases/latest | grep "location:" | cut -d" " -f2- | sed "s/tag/download/" | tr -d '\r') && \
+    wget -q "${latest_release_url}/winPEASany.exe" && \
+    wget -q "${latest_release_url}/winPEASx64.exe" && \
+    wget -q "${latest_release_url}/winPEASx86.exe" && \
+    wget -q "${latest_release_url}/winPEAS.bat" && \
+    wget -q "${latest_release_url}/linpeas.sh"
 
 # Install smbmap
 WORKDIR /temp
@@ -560,7 +562,8 @@ RUN \
 # Download Pass-the-Hash
     git clone --depth 1 https://github.com/byt3bl33d3r/pth-toolkit.git && \
 # Download Mimikatz
-    wget --quiet https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20200816/mimikatz_trunk.zip -O mimikatz.zip && \
+    latest_release_url=$(curl --silent --head https://github.com/gentilkiwi/mimikatz/releases/latest | grep "location:" | cut -d" " -f2- | sed "s/tag/download/" | tr -d '\r') && \
+    wget -q "${latest_release_url}/mimikatz_trunk.zip" -O mimikatz.zip && \
     unzip mimikatz.zip -d mimikatz && \
     rm mimikatz.zip && \
     mkdir netcat && \
