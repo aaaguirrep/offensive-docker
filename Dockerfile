@@ -610,6 +610,11 @@ RUN \
 # Download qsreplace
     go get -u github.com/tomnomnom/qsreplace
 
+# Install nuclei
+RUN \
+    go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest && \
+    nuclei -update-templates
+
 # OS TUNNING
 
 COPY shell/ /tmp
