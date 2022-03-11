@@ -129,9 +129,7 @@ RUN \
 # Install go
 WORKDIR /tmp
 RUN \
-# Update from 1.15.5 to 1.16.2
-#    wget -q https://dl.google.com/go/go1.15.5.linux-amd64.tar.gz -O go.tar.gz && \
-    wget -q https://dl.google.com/go/go1.16.2.linux-amd64.tar.gz -O go.tar.gz && \
+    wget -q https://go.dev/dl/go1.17.8.linux-amd64.tar.gz -O go.tar.gz && \
     tar -C /usr/local -xzf go.tar.gz && \
 # Install aws-cli
     curl https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip && \
@@ -257,23 +255,23 @@ WORKDIR /tools/recon
 
 # Install gobuster
 RUN \
-    go get github.com/OJ/gobuster && \
+    go install github.com/OJ/gobuster@latest && \
 # Install tojson
-    go get -u github.com/tomnomnom/hacks/tojson && \
+    go install github.com/tomnomnom/hacks/tojson@latest && \
 # Install gowitness
     ln -s /tools/recon/gowitness/gowitness /usr/bin/gowitness && \
 # Install subjack
-    go get github.com/haccer/subjack && \
+    go install github.com/haccer/subjack@latest && \
 # Install SubOver 
-    go get github.com/Ice3man543/SubOver && \
+    go install github.com/Ice3man543/SubOver@latest && \
 # Install tko-subs
-    go get github.com/anshumanbh/tko-subs && \
+    go install github.com/anshumanbh/tko-subs@latest && \
 # Install hakcheckurl
-    go get github.com/hakluke/hakcheckurl && \
+    go install github.com/hakluke/hakcheckurl@latest && \
 # Install haktldextract
-    go get github.com/hakluke/haktldextract && \
+    go install github.com/hakluke/haktldextract@latest && \
 # Install gotop
-    go get github.com/cjbassi/gotop && \
+    go install github.com/cjbassi/gotop@latest && \
 # Install aquatone
     ln -s /tools/recon/aquatone/aquatone /usr/bin/aquatone && \
 # Install knock
@@ -289,23 +287,23 @@ RUN \
 # Install subjs
     ln -s /tools/recon/subjs/subjs /usr/bin/subjs && \
 # Install otxurls
-    go get github.com/lc/otxurls && \
+    go install github.com/lc/otxurls@latest && \
 # Install amass
     ln -s /tools/recon/amass/amass_linux_amd64/amass /usr/bin/amass && \
 # Install hakrevdns
-    go get github.com/hakluke/hakrevdns && \
+    go install github.com/hakluke/hakrevdns@latest && \
 # Install ffuf
-    go get github.com/ffuf/ffuf && \
+    go install github.com/ffuf/ffuf@latest && \
 # Install httprobe
-    go get -u github.com/tomnomnom/httprobe && \
+    go install github.com/tomnomnom/httprobe@latest && \
 # Install hakrawler
-    go get github.com/hakluke/hakrawler && \
+    go install github.com/hakluke/hakrawler@latest && \
 # Install waybackurls
-    go get github.com/tomnomnom/waybackurls && \
+    go install github.com/tomnomnom/waybackurls@latest && \
 # Download gospider
-    go get -u github.com/jaeles-project/gospider && \
+    go install github.com/jaeles-project/gospider@latest && \
 # Download getJS
-    go get github.com/003random/getJS && \
+    go install github.com/003random/getJS@latest && \
 # Install findomain
     ln -s /tools/recon/findomain/findomain /usr/bin/findomain && \
 # Install subfinder
@@ -403,7 +401,7 @@ FROM builder4 as builder5
 COPY --from=owasp /temp/ /tools/owasp/
 # Install kxss
 RUN \
-    go get github.com/tomnomnom/hacks/kxss && \
+    go install github.com/tomnomnom/hacks/kxss@latest && \
 # Install dalfox
     ln -s /tools/owasp/dalfox/dalfox /usr/bin/dalfox && \
 # Install jaeles
@@ -608,7 +606,7 @@ WORKDIR /tools/otherResources
 RUN \
     git clone --depth 1 https://github.com/gwen001/pentest-tools.git && \
 # Download qsreplace
-    go get -u github.com/tomnomnom/qsreplace
+    go install github.com/tomnomnom/qsreplace@latest
 
 # Install nuclei
 RUN \
